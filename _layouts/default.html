@@ -14,13 +14,17 @@
 <meta property="og:title" content="{{ page.og_title | default: page.title | default: site.title }}">
 <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines }}">
 <meta property="og:locale" content="en_AU">
+<meta property="og:image" content="{{ '/assets/ejukebox-logo.png' | absolute_url }}">
+<meta property="og:image:width" content="560">
+<meta property="og:image:height" content="278">
+<meta property="og:image:alt" content="eJukebox">
 <meta name="twitter:card" content="summary">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23120c11'/%3E%3Crect x='6' y='18' width='3.6' height='7' rx='1.8' fill='%23e6b35c'/%3E%3Crect x='12' y='12' width='3.6' height='13' rx='1.8' fill='%23ff7a55'/%3E%3Crect x='18' y='7' width='3.6' height='18' rx='1.8' fill='%23ff7a55'/%3E%3Crect x='24' y='15' width='3.6' height='10' rx='1.8' fill='%23e6b35c'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Caveat:wght@400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Caveat:wght@400&amp;family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;family=Spline+Sans+Mono:wght@400;500&amp;display=swap">
 
 <style>
 /* ===========================================================================
@@ -135,7 +139,7 @@
   --brass:#e6b35c;
   --brass-line:rgba(230,179,92,.34);
   --brass-soft:rgba(230,179,92,.08);
-  --ash:#6d8496;
+  --ash:#7b93a6;
   --ash-lt:#8199aa;
   --ash-deep:#141b21;
   --violet:#b18cff;
@@ -200,7 +204,11 @@ main:focus{outline:none}
    entirely - a scanline is a screen artefact and there is no screen here.
    (1) a fine speaker grille, (2) film grain kept at the family weight,
    because grain is film and vinyl and belongs to both brothers,
-   (3) a warm vignette from the top and a darkening at the bottom edge.
+   (3) a warm vignette from the top and a darkening at the bottom edge. Both
+   are held at 6%: this layer is FIXED and sits above every piece of content,
+   so anything heavier would pull body text under AA wherever it happens to
+   be sitting at the bottom of the viewport - the footer especially, which
+   cannot be scrolled out of it.
    -------------------------------------------------------------------------- */
 body::before,body::after,html::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:120}
 body::before{
@@ -215,7 +223,7 @@ html::after{
   z-index:119;
   background:
     radial-gradient(120% 90% at 50% 0%,rgba(255,122,85,.06),transparent 62%),
-    linear-gradient(180deg,transparent 72%,rgba(0,0,0,.34));
+    linear-gradient(180deg,transparent 72%,rgba(0,0,0,.06));
 }
 
 /* ---------------------------------------------------------- family bar ---- */
@@ -276,13 +284,19 @@ html::after{
 .daypart__t{font-variant-numeric:tabular-nums;letter-spacing:.09em;color:var(--ember)}
 .daypart__w{color:var(--brass)}
 .eq{display:inline-flex;align-items:flex-end;gap:2px;height:12px;flex:none}
-.eq i{display:block;width:2.5px;border-radius:1.5px;background:var(--ember)}
-.eq i:nth-child(1){height:5px;animation:bar 1.5s var(--ease) infinite}
-.eq i:nth-child(2){height:11px;animation:bar 1.5s var(--ease) .22s infinite}
-.eq i:nth-child(3){height:7px;animation:bar 1.5s var(--ease) .44s infinite}
-.eq i:nth-child(4){height:9px;animation:bar 1.5s var(--ease) .66s infinite}
+.eq i{display:block;width:2.5px;border-radius:1.5px;background:var(--ember);transform-origin:50% 100%}
+.eq i:nth-child(1){height:5px}
+.eq i:nth-child(2){height:11px}
+.eq i:nth-child(3){height:7px}
+.eq i:nth-child(4){height:9px}
 @keyframes bar{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.34)}}
-.eq i{transform-origin:50% 100%}
+/* The bars only move on a page that carries a pause control, and that control
+   stops them. On every other page they render as a still frame, so nothing
+   animates indefinitely with no way to stop it. (WCAG 2.2.2) */
+html.eq-live .eq i{animation:bar 1.5s var(--ease) infinite}
+html.eq-live .eq i:nth-child(2){animation-delay:.22s}
+html.eq-live .eq i:nth-child(3){animation-delay:.44s}
+html.eq-live .eq i:nth-child(4){animation-delay:.66s}
 html.motion-off .eq i{animation:none}
 
 /* -------------------------------------------------------------- layout ---- */
@@ -406,7 +420,7 @@ html.js .playbtn{display:inline-flex}
 html.motion-off .playbtn::before{background:currentColor;clip-path:polygon(0 0,100% 50%,0 100%)}
 
 .segbtn{font-family:var(--mono);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--soft);background:var(--room-2);border:1px solid var(--line-2);
+  color:var(--soft);background:var(--room-2);border:1px solid var(--btn-ghost-line);
   border-radius:var(--r-pill);padding:9px 16px;cursor:pointer;white-space:nowrap;
   font-variant-numeric:tabular-nums;
   transition:color 320ms var(--ease),background-color 320ms var(--ease),border-color 320ms var(--ease)}
@@ -533,15 +547,16 @@ html.motion-off .playbtn::before{background:currentColor;clip-path:polygon(0 0,1
   column-gap:clamp(3px,.5vw,7px);row-gap:clamp(10px,1.3vw,18px);
   margin:clamp(22px,3vw,32px) 0}
 .crowd__f{display:block;width:100%;height:auto;aspect-ratio:24/40;
-  color:var(--ash);opacity:.45;
+  color:var(--ash);opacity:.66;
   transform-box:border-box;transform-origin:50% 100%;
   transform:translateX(14%) rotate(11deg)}
 .crowd__f.stays{color:var(--ember);opacity:1;transform:none}
 .crowd.is-reveal .crowd__f{opacity:0}
-.crowd.is-reveal.is-full .crowd__f{opacity:.45;
+.crowd.is-reveal.is-full .crowd__f{opacity:.66;
   transition:opacity 420ms var(--ease);transition-delay:calc(var(--i,0) * 11ms)}
 .crowd.is-reveal.is-full .crowd__f.stays{opacity:1}
 .crowd__key{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:16px}
+.crowd__key .chip{white-space:normal}
 
 /* ================================================== THE ROOFTOP CLOCK =====
    Five in the afternoon to close, over the Harbour Bridge. Four stacked sky
@@ -741,6 +756,10 @@ html.motion-off .ask__caret{animation:none}
 /* the room is sliced tighter rather than shrunk, so it still reads on a phone */
 @media (max-width:760px){ .rooms__stage{aspect-ratio:1200/700} }
 @media (max-width:480px){ .rooms__stage{aspect-ratio:1200/880} }
+/* and the rooftop the same way - sliced toward the bridge, which is the part
+   carrying the meaning, rather than squeezed into a 100px band on a phone */
+@media (max-width:760px){ .roof__scene{aspect-ratio:1200/620} }
+@media (max-width:480px){ .roof__scene{aspect-ratio:1200/760} }
 @media (max-width:860px){
   .grid--2,.grid--3{grid-template-columns:minmax(0,1fr)}
   .counters{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -792,7 +811,7 @@ html.motion-off .ask__caret{animation:none}
     transition-delay:0ms !important;
     scroll-behavior:auto !important;
   }
-  html:not(.motion-on) .crowd.is-reveal .crowd__f{opacity:.45}
+  html:not(.motion-on) .crowd.is-reveal .crowd__f{opacity:.66}
   html:not(.motion-on) .crowd.is-reveal .crowd__f.stays{opacity:1}
   html:not(.motion-on) .ledger.is-reveal .ledger__row{opacity:1;transform:none}
 }
@@ -816,6 +835,9 @@ html.motion-off .ask__caret{animation:none}
   var doc = document, root = doc.documentElement;
   var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   root.classList.add('js');
+  /* The nav equaliser is the one thing that would otherwise animate for ever
+     on a page with no pause control, so it only runs where one exists. */
+  if (doc.querySelector('[data-play]')) root.classList.add('eq-live');
 
   /* ================================================== THE MOTION CONTROL ===
      Everything on this site that moves by itself registers here, and every
@@ -887,10 +909,25 @@ html.motion-off .ask__caret{animation:none}
     var range = rooms.querySelector('[data-mix]');
     if (!range) return;
     var live = rooms.querySelector('[data-mix-live]');
+    /* Both captions are always in the DOM and one of them is always at
+       opacity:0. Zero-opacity text is still announced, so the hidden one is
+       taken out of the accessibility tree rather than left to contradict the
+       one on screen. */
+    var capCold = rooms.querySelector('[data-cap-cold]');
+    var capWarm = rooms.querySelector('[data-cap-warm]');
+    var coldShown = null;
+    function caps(v){
+      var cold = v < 50;
+      if (coldShown === cold) return;
+      coldShown = cold;
+      if (capCold) capCold.setAttribute('aria-hidden', cold ? 'false' : 'true');
+      if (capWarm) capWarm.setAttribute('aria-hidden', cold ? 'true' : 'false');
+    }
 
     function set(v){
       rooms.style.setProperty('--mix', v + '%');
       rooms.style.setProperty('--m', (v / 100).toFixed(3));
+      caps(v);
     }
     /* One eased run from cold to warm the first time the hero is seen, then
        the reader owns the control for good. */
@@ -965,16 +1002,20 @@ html.motion-off .ask__caret{animation:none}
     var els = doc.querySelectorAll('[data-count-to]');
     if (!els.length) return;
     Array.prototype.forEach.call(els, function(el){
-      var to = parseInt(el.getAttribute('data-count-to'), 10) || 0, done = false;
+      var to = parseInt(el.getAttribute('data-count-to'), 10) || 0, done = false, iv = null;
+      function stop(){ if (iv){ clearInterval(iv); iv = null; } }
       seen(el, function(vis){
         if (!vis || done || !motionOK() || to <= 0) return;
         done = true;
         var n = 0;
-        var iv = setInterval(function(){
+        iv = setInterval(function(){
           n++; el.textContent = n;
-          if (n >= to) clearInterval(iv);
+          if (n >= to) stop();
         }, 190);
       }, { threshold: 0.6 });
+      /* Pause means pause here too - it stops mid-climb and lands on the
+         finished number, which is the value already in the HTML. */
+      onMotion(function(on){ if (!on){ stop(); if (to > 0) el.textContent = to; } });
     });
   })();
 
@@ -1083,7 +1124,11 @@ html.motion-off .ask__caret{animation:none}
 
     var SETS = [];
     Array.prototype.forEach.call(chips, function(c){
-      SETS.push({ q: c.getAttribute('data-q'), rows: JSON.parse(c.getAttribute('data-rows')) });
+      /* One bad attribute here would throw and abort every block after it,
+         including the pause buttons. It fails to an empty set instead. */
+      var r;
+      try { r = JSON.parse(c.getAttribute('data-rows') || '[]'); } catch (e) { r = []; }
+      SETS.push({ q: c.getAttribute('data-q') || '', rows: r });
     });
 
     var idx = 0, t = [], auto = false, visible = false, userDriven = false;
@@ -1091,6 +1136,7 @@ html.motion-off .ask__caret{animation:none}
     function later(fn, ms){ t.push(setTimeout(fn, ms)); }
 
     function rows(set){
+      if (!set.rows.length) return;
       res.innerHTML = '';
       set.rows.forEach(function(r){
         var li = doc.createElement('li');

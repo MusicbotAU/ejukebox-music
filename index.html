@@ -20,11 +20,11 @@ description: >-
     <p class="eyebrow eyebrow--ash">What the music is doing to your room right now</p>
     <h1 id="hero-h">You have been in the wrong room. You just could not say why.</h1>
     <p class="drop">It was the music.</p>
-    <p class="lede">Nobody walks out and tells you the playlist was wrong. They say it felt flat, or they were not in the mood, or they will get the next one somewhere else. <strong>Nine out of ten people have walked out of a venue over the music</strong> - and almost none of them said so on the way past the bar.</p>
+    <p class="lede">Nobody walks out and tells you the playlist was wrong. They say it felt flat, or they were not in the mood, or they will get the next one somewhere else. <strong>Nine out of ten people have left a venue over the music, or vowed never to go back</strong> - and almost none of them said so on the way past the bar.</p>
   </div>
 
-  <div class="rooms" data-rooms role="img" aria-label="The same bar drawn twice. On the left it is cold and steel grey: nine people sitting apart, facing away, nobody staying. On the right the same nine people in warm light, leaning in toward each other, two of them standing with their glasses up. Nothing in the room changed except the music.">
-    <div class="rooms__stage">
+  <div class="rooms" data-rooms>
+    <div class="rooms__stage" role="img" aria-label="The same bar drawn twice. On the left it is cold and steel grey: nine people sitting apart, facing away, nobody staying. On the right the same nine people in warm light, leaning in toward each other, two of them standing with their glasses up. Nothing in the room changed except the music.">
       <div class="rooms__bloom" aria-hidden="true"></div>
       <div class="rooms__layer rooms__layer--cold">{% include room.html %}</div>
       <div class="rooms__layer rooms__layer--warm">{% include room.html %}</div>
@@ -33,11 +33,10 @@ description: >-
     <div class="wrap">
       <div class="roomctl">
         <label class="anno" for="mix">Drag - the same room, silent and sorted</label>
-        <input id="mix" class="roomctl__range" type="range" min="0" max="100" step="1" value="100"
-               data-mix aria-label="Slide from silence to the right music">
+        <input id="mix" class="roomctl__range" type="range" min="0" max="100" step="1" value="100" data-mix>
         <div class="roomctl__caps">
-          <span class="anno anno--ash roomctl__cap roomctl__cap--cold">Silent - 6:40 PM - three tables, nobody staying</span>
-          <span class="anno anno--ember roomctl__cap roomctl__cap--warm">6:40 PM - the right channel on</span>
+          <span class="anno anno--ash roomctl__cap roomctl__cap--cold" aria-hidden="true" data-cap-cold>Silent - 6:40 PM - three tables, nobody staying</span>
+          <span class="anno anno--ember roomctl__cap roomctl__cap--warm" data-cap-warm>6:40 PM - the right channel on</span>
         </div>
         <p class="sr-only" role="status" data-mix-live></p>
       </div>
@@ -50,7 +49,7 @@ description: >-
       <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
       <a class="btn btn--ghost" href="{{ site.contact.main_site }}">Everything else is at ejukebox.com.au</a>
     </div>
-    <p class="trustline" style="margin-top:26px">Australian owned, human-curated, and licensed for business. <strong>The same people who have been putting music into Australian pubs, clubs and bars for years</strong> - and the same people who answer the email.</p>
+    <p class="trustline" style="margin-top:26px">Australian owned, human-curated, and licensed for business. <strong>Real people build the channels</strong> - and the same people answer the email.</p>
     <button class="playbtn" type="button" data-play>Pause the demo</button>
   </div>
 </section>
@@ -59,14 +58,14 @@ description: >-
 <section class="band band--cold" aria-labelledby="ninety-h">
   <div class="wrap">
     <p class="eyebrow eyebrow--ash">The numbers</p>
-    <h2 id="ninety-h">Ninety out of a hundred have walked out over the music.</h2>
+    <h2 id="ninety-h">Ninety out of a hundred have left over the music, or sworn never to come back.</h2>
 
-    <div class="crowd" data-reveal role="img" aria-label="A hundred figures. Ninety of them are grey and tilted toward the door. Ten are upright and lit.">
+    <div class="crowd" data-reveal role="img" aria-label="A hundred figures. Ninety of them are grey and tilted toward the door - the ones who left, or vowed never to come back. Ten are upright and lit.">
       {% assign stays = "7,14,23,38,41,55,62,74,88,96" | split: "," %}
       {% for i in (1..100) %}{% assign s = i | append: '' %}<svg class="crowd__f{% if stays contains s %} stays{% endif %}" viewBox="0 0 24 40" style="--i:{{ forloop.index0 }}" aria-hidden="true" focusable="false"><use href="#fig"></use></svg>{% endfor %}
     </div>
     <p class="crowd__key">
-      <span class="chip chip--ash"><i class="dot" aria-hidden="true"></i>Ninety who left</span>
+      <span class="chip chip--ash"><i class="dot" aria-hidden="true"></i>Ninety who left or never came back</span>
       <span class="chip chip--ember"><i class="dot" aria-hidden="true"></i>Ten who stayed</span>
     </p>
 
@@ -141,8 +140,8 @@ description: >-
   </div>
 
   <div class="wrap">
-    <div class="roof" data-roof data-stage="2" role="img" aria-label="A rooftop bar above the harbour, drawn at four times of the evening. As the sky goes from gold to deep violet the bridge lights come up, the rooftop warms and three more people arrive at the rail.">
-      <div class="roof__scene">
+    <div class="roof" data-roof data-stage="2">
+      <div class="roof__scene" role="img" aria-label="A rooftop bar above the harbour, drawn at four times of the evening. As the sky goes from gold to deep violet the bridge lights come up, the rooftop warms and three more people arrive at the rail.">
         <div class="roof__skies" aria-hidden="true">
           <div class="sky sky--5" data-sky></div>
           <div class="sky sky--7" data-sky></div>
@@ -346,7 +345,7 @@ description: >-
       <div class="counters">
         <div class="panel panel--warm">
           <span class="counter__n" data-count-to="7">7</span>
-          <p class="counter__l">automatic channel changes in this venue today.</p>
+          <p class="counter__l">automatic channel changes in the day logged here.</p>
         </div>
         <div class="panel panel--ash">
           <span class="counter__n counter__n--ash">0</span>
@@ -440,7 +439,12 @@ description: >-
           data-rows='[["Dancing Queen","ABBA"],["You Shook Me All Night Long","AC/DC"],["Livin on a Prayer","Bon Jovi"],["Never Tear Us Apart","INXS"]]'>Something for a 50th</button>
       </div>
 
-      <ul class="ask__res" data-ask-res></ul>
+      <ul class="ask__res" data-ask-res>
+        <li class="ask__row"><b>What a Wonderful World</b><span>Louis Armstrong</span></li>
+        <li class="ask__row"><b>Nowhere to Run</b><span>Martha and the Vandellas</span></li>
+        <li class="ask__row"><b>I Get Around</b><span>The Beach Boys</span></li>
+        <li class="ask__row"><b>Game of Love</b><span>Wayne Fontana and the Mindbenders</span></li>
+      </ul>
       <p class="sr-only" role="status" data-ask-live></p>
       <p class="note">Illustration - the real list comes from your venue's own library.</p>
     </div>
@@ -497,7 +501,7 @@ description: >-
           <rect x="378" y="140" width="86" height="58" rx="8" fill="#2e3b46"/>
           <circle cx="404" cy="172" r="6" fill="#0c1013"/>
           <circle cx="438" cy="172" r="6" fill="#0c1013"/>
-          <text x="260" y="268" text-anchor="middle" fill="#6d8496" font-family="'Spline Sans Mono',monospace" font-size="15" letter-spacing="3">NOT LICENSED FOR PUBLIC PLAY</text>
+          <text x="260" y="268" text-anchor="middle" fill="#7b93a6" font-family="'Spline Sans Mono',monospace" font-size="15" letter-spacing="3">NOT LICENSED FOR PUBLIC PLAY</text>
         </svg>
       </div>
     </div>
@@ -508,7 +512,7 @@ description: >-
 <section class="band band--tight" aria-labelledby="tv-h">
   <div class="wrap wrap--narrow">
     <h2 id="tv-h" style="font-size:clamp(1.4rem,2.6vw,1.9rem)">There is a brother site.</h2>
-    <p class="sub">The same team put the screen in the corner to work as well - guest photos on the wall, announcements you type from your phone. Same room, same people.</p>
+    <p class="sub">The same team put the screen in the corner to work as well. Same room, same people.</p>
     <div class="btn-row">
       <a class="btn btn--ghost" href="{{ site.family.tv }}">See the screen side at ejukebox.tv</a>
     </div>
@@ -520,7 +524,7 @@ description: >-
   <div class="wrap">
     {% include cta.html
        heading="Put it in for thirty days and listen to the room."
-       body="The complete system installed, hardware and installation covered, and nothing to pay while you listen. Tell us three things and we will build the channels around your room before we turn up. If the room does not feel different, we take it out."
+       body="The complete system installed, hardware and installation covered, and nothing to pay while you listen. Tell us three things and we will build the channels around your room before we turn up."
        ask="yes" %}
   </div>
 </section>

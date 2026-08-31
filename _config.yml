@@ -28,7 +28,6 @@ family:
   parent: "https://ejukebox.com.au"
   music: "https://ejukebox.music"
   tv: "https://ejukebox.tv"
-  sister_site: "https://ejukebox.tv"
 
 markdown: kramdown
 
