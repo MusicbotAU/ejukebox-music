@@ -15,10 +15,12 @@ lang: en-AU
 timezone: Australia/Perth
 
 # Read by the nav, the CTA block and the footer. One place, every page.
+# No email address is published on this site by design - publishing one
+# attracts scrapers. Every route to us is the form, which posts to the Azure
+# Function and lands at info@ejukebox.tv / info@ejukebox.music.
 contact:
   name: Marc Kean
   company: MusicBot Pty Ltd
-  email: info@ejukebox.music
   main_site: "https://ejukebox.com.au"
 
 # The eJukebox family. Drives the switcher bar at the top of every page and the
@@ -41,3 +43,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  # Working material, not site content. It is the image brief - every file with
+  # the page and slot it was made for and a prompt-length description. Kept in
+  # the repo, kept off the live site.
+  - assets/img/MANIFEST.json

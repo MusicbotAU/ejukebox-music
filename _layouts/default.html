@@ -80,13 +80,19 @@
      .ticks                 the brass tick list
    THE ROOM (the no-bezel object - include: _includes/room.html)
      .rooms .rooms__layer (--cold|--warm) .rooms__bloom
-     .rm-f .rm-glass        one figure, leaning only on the warm layer
      .roomctl .roomctl__range .roomctl__caps .roomctl__cap (--cold|--warm)
+   PHOTOGRAPHY (every image on the site is AI generated, and labelled so)
+     .shot                  a photograph. Never framed, never in a card.
+       .shot--soft          the four-edge fade, same recipe as the room
+       .shot--strip .shot--wide .shot--photo .shot--tall   the crops
+       .shot--low           crops down the frame instead of centre
+       .shot--cold          the grade for the room nobody stayed in
+       .shot--band          a full-bleed frame between two blocks of copy
+     .shots .shot-figure .shot__cap
    THE CROWD (include: _includes/figure.html defines #fig once)
      .crowd .crowd__f .crowd__f.stays
    THE ROOFTOP CLOCK
-     .roof .roof__scene .roof__skies .sky .roof__art .roof__ctl .roof__cap
-     .roof-late             figures that only arrive once the room fills
+     .roof .roof__scene .roof__img .roof__skies .sky .roof__ctl .roof__cap
    RECOGNITION
      .recog .recog__tone .recog__heads .head .recog__hit
    THE RUN SHEET AND THE LEDGER
@@ -461,15 +467,17 @@ html.motion-off .playbtn::before{background:currentColor;clip-path:polygon(0 0,1
   transform:rotate(-45deg)}
 
 /* ============================================================= THE ROOM ====
-   One venue, drawn once in _includes/room.html, rendered twice. The two
-   layers differ only by the custom properties below and by a lean applied to
-   the warm layer, so the geometry is provably identical - it comes out of one
-   file. The reader drags the seam between them.
+   One front bar, twice, out of the single file _includes/room.html: empty and
+   graded to steel on the cold side, full and warm on the other. The reader
+   drags the seam between them. The room is not relit on the cold side - the
+   warmth is taken out of it, because that is the argument.
 
    THE RULE THAT MATTERS: this object has NO FRAME. ejukebox.tv's hero is a
    bezelled rectangle with a shine, a shadow and a reflection, because it is a
    television. Ours is masked so it bleeds into the page on all four edges.
    Sound has no bezel. Nothing on this site that depicts a room is put in a box.
+
+   Both frames are AI generated, and the label under the hero says so.
    ========================================================================= */
 .rooms{position:relative;--mix:100%;--m:1}
 .rooms__stage{position:relative;aspect-ratio:1200/470;overflow:hidden;
@@ -480,43 +488,30 @@ html.motion-off .playbtn::before{background:currentColor;clip-path:polygon(0 0,1
   -webkit-mask-composite:source-in;
   mask-composite:intersect}
 .rooms__layer{position:absolute;inset:0}
-.rooms__layer svg{width:100%;height:100%;display:block}
-/* the cold room: steel silhouettes, flat dead ground, figures facing away */
-.rooms__layer--cold{--ink:#1f2932;--ink-2:#161e25;--glassc:#2a3742;--edge:rgba(109,132,150,.4);--floor:#0f151b}
-/* the warm room: exactly the same geometry, warm ink, an ember bloom behind */
-.rooms__layer--warm{
-  --ink:#4d2c33;--ink-2:#331d24;--glassc:#9c5442;--edge:rgba(255,140,100,.9);--floor:#2a1520;
-  clip-path:inset(0 calc(100% - var(--mix)) 0 0)}
-.rooms__bloom{position:absolute;inset:0;pointer-events:none;
+.rooms__layer img{width:100%;height:100%;object-fit:cover;display:block}
+/* the cold room: the same bar with every bit of the warmth pulled out of it */
+.rooms__layer--cold img{object-position:50% 50%;
+  filter:grayscale(.66) saturate(.32) brightness(1.36) contrast(.94)}
+.rooms__layer--cold::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(34,50,63,.42),rgba(16,26,34,.5))}
+/* the warm room: clipped to wherever the reader is holding the seam */
+.rooms__layer--warm{clip-path:inset(0 calc(100% - var(--mix)) 0 0)}
+.rooms__layer--warm img{object-position:50% 74%}
+/* the lamp bloom, over the warm side only and held light - the frame under it
+   is already lit, so this lifts the room rather than lighting it */
+.rooms__bloom{position:absolute;inset:0;z-index:2;pointer-events:none;
   background:
-    radial-gradient(30% 46% at 65% 28%,rgba(255,150,90,.5),transparent 66%),
-    radial-gradient(28% 44% at 81% 26%,rgba(255,150,90,.44),transparent 66%),
-    radial-gradient(26% 42% at 95% 32%,rgba(255,150,90,.4),transparent 66%),
-    radial-gradient(46% 62% at 24% 46%,rgba(255,122,85,.42),transparent 70%),
-    radial-gradient(95% 55% at 50% 98%,rgba(255,122,85,.26),transparent 72%);
+    radial-gradient(56% 66% at 66% 34%,rgba(255,150,90,.2),transparent 70%),
+    radial-gradient(95% 52% at 50% 100%,rgba(255,122,85,.18),transparent 74%);
   clip-path:inset(0 calc(100% - var(--mix)) 0 0)}
 /* a thin ember seam sits exactly at the boundary */
-.rooms__stage::after{content:"";position:absolute;top:8%;bottom:10%;left:var(--mix);margin-left:-1px;width:1px;
+.rooms__stage::after{content:"";position:absolute;z-index:3;top:8%;bottom:10%;left:var(--mix);
+  margin-left:-1px;width:1px;
   background:linear-gradient(180deg,transparent,var(--ember),transparent);opacity:1;pointer-events:none;
   box-shadow:0 0 14px 1px rgba(255,122,85,.5)}
 
-/* the figures. Only the warm layer leans, stands and raises a glass. */
-.rm-f{transform-box:fill-box;transform-origin:50% 100%;
-  transition:transform var(--swell) var(--ease)}
-.rm-glass{opacity:0;transform-box:fill-box;transform-origin:0% 100%;
-  transition:opacity var(--swell) var(--ease),transform var(--swell) var(--ease)}
-.rooms__layer--warm .rm-f--1{transform:rotate(7deg)}
-.rooms__layer--warm .rm-f--2{transform:rotate(-8deg)}
-.rooms__layer--warm .rm-f--3{transform:rotate(6deg) translateY(-3px)}
-.rooms__layer--warm .rm-f--4{transform:rotate(-9deg)}
-.rooms__layer--warm .rm-f--5{transform:translateY(-26px) rotate(4deg)}
-.rooms__layer--warm .rm-f--6{transform:rotate(-6deg)}
-.rooms__layer--warm .rm-f--7{transform:translateY(-22px) rotate(-5deg)}
-.rooms__layer--warm .rm-f--8{transform:rotate(9deg)}
-.rooms__layer--warm .rm-f--9{transform:rotate(-4deg)}
-.rooms__layer--warm .rm-glass{opacity:1;transform:rotate(-13deg)}
-
 .rooms__layer--still{clip-path:none}
+.rooms--still .rooms__bloom{clip-path:none}
 .rooms--still .rooms__stage::after{display:none}
 
 .roomctl{margin-top:clamp(18px,2.4vw,26px)}
@@ -559,11 +554,13 @@ html.motion-off .playbtn::before{background:currentColor;clip-path:polygon(0 0,1
 .crowd__key .chip{white-space:normal}
 
 /* ================================================== THE ROOFTOP CLOCK =====
-   Five in the afternoon to close, over the Harbour Bridge. Four stacked sky
-   gradients cross-fade; the bridge lights and the floor bloom come up as the
-   sky goes down; three more figures arrive as the room fills. No frame.
+   Five in the afternoon to close, over the Harbour Bridge. One frame of a roof
+   terrace at dusk, and four grades that cross-fade over it as the hour moves -
+   the sun still up at five, the last of the gold at seven, the blue hour the
+   frame was made at, then late. The light moves, the room does not, which is
+   the point the section is making. No frame here either.
    ========================================================================= */
-.roof{--lit:1;--floor:.42;position:relative}
+.roof{position:relative}
 .roof__scene{position:relative;aspect-ratio:1200/455;overflow:hidden;
   -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,0),#000 12%,#000 84%,rgba(0,0,0,0)),
                      linear-gradient(90deg,rgba(0,0,0,0),#000 7%,#000 93%,rgba(0,0,0,0));
@@ -571,23 +568,21 @@ html.motion-off .playbtn::before{background:currentColor;clip-path:polygon(0 0,1
              linear-gradient(90deg,rgba(0,0,0,0),#000 7%,#000 93%,rgba(0,0,0,0));
   -webkit-mask-composite:source-in;
   mask-composite:intersect}
-.roof__skies{position:absolute;inset:0}
+.roof__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 46%;transition:filter var(--swell) var(--ease)}
+.roof__skies{position:absolute;inset:0;z-index:1}
 .sky{position:absolute;inset:0;opacity:0;transition:opacity var(--swell) var(--ease)}
 .sky.is-on{opacity:1}
-.sky--5{background:linear-gradient(180deg,#ffd9a0 0%,#f7a86a 46%,#c2705a 100%)}
-.sky--7{background:linear-gradient(180deg,#f2a06e 0%,#b45f6e 44%,#4b2c4d 100%)}
-.sky--9{background:linear-gradient(180deg,#4a3468 0%,#2a2044 46%,#141026 100%)}
-.sky--11{background:linear-gradient(180deg,#1c1733 0%,#120e22 48%,#0b0814 100%)}
-.roof__art{position:absolute;inset:0;width:100%;height:100%}
-.roof__art .lights{opacity:var(--lit);transition:opacity var(--swell) var(--ease)}
-.roof__art .roof-bloom{opacity:var(--floor);transition:opacity var(--swell) var(--ease)}
-.roof-late{opacity:0;transition:opacity var(--swell) var(--ease)}
-.roof[data-stage="2"] .roof-late,
-.roof[data-stage="3"] .roof-late{opacity:1}
-.roof[data-stage="0"]{--lit:.05;--floor:.05}
-.roof[data-stage="1"]{--lit:.5;--floor:.2}
-.roof[data-stage="2"]{--lit:1;--floor:.44}
-.roof[data-stage="3"]{--lit:.92;--floor:.3}
+.sky--5{background:linear-gradient(180deg,rgba(255,206,132,.4) 0%,rgba(247,164,102,.26) 46%,rgba(188,112,84,.12) 100%)}
+.sky--7{background:linear-gradient(180deg,rgba(242,150,106,.42) 0%,rgba(150,76,96,.26) 46%,rgba(62,34,60,.14) 100%)}
+.sky--9{background:linear-gradient(180deg,rgba(58,40,90,.18) 0%,rgba(26,20,44,.1) 60%,rgba(20,16,38,.06) 100%)}
+.sky--11{background:linear-gradient(180deg,rgba(16,12,34,.58) 0%,rgba(10,8,22,.46) 50%,rgba(6,5,14,.52) 100%)}
+/* the frame itself lifts and drops with the hour, so five in the afternoon is
+   not just a warmer wash over a night picture */
+.roof[data-stage="0"] .roof__img{filter:brightness(1.24) saturate(1.14) contrast(.96)}
+.roof[data-stage="1"] .roof__img{filter:brightness(1.12) saturate(1.06)}
+.roof[data-stage="2"] .roof__img{filter:none}
+.roof[data-stage="3"] .roof__img{filter:brightness(.66) saturate(.88)}
 .roof__ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:clamp(14px,2vw,20px)}
 .roof__cap{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:baseline;margin:14px 0 0;
   min-height:2.4em}
@@ -722,6 +717,47 @@ html.motion-off .ask__caret{animation:none}
    ========================================================================= */
 .aux{width:100%;height:auto}
 
+/* ========================================================== PHOTOGRAPHY ====
+   Every image on this site is AI generated. It is labelled that way under the
+   hero, under the rooftop and in the footer, and no image is ever put forward
+   as a photograph of a real venue or a real customer.
+
+   They obey the room's rule: NO frame, no bezel, no card, no radius. A
+   photograph is masked at its edges so it bleeds into the ground instead of
+   sitting on it, and it is always cropped with object-fit rather than
+   squashed. The crop lives on the container, so nothing on the page moves
+   while a file is still loading.
+   ========================================================================= */
+.shot{position:relative;display:block;margin:0;overflow:hidden}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot--soft{
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,0),#000 9%,#000 91%,rgba(0,0,0,0)),
+                     linear-gradient(90deg,rgba(0,0,0,0),#000 5%,#000 95%,rgba(0,0,0,0));
+  mask-image:linear-gradient(180deg,rgba(0,0,0,0),#000 9%,#000 91%,rgba(0,0,0,0)),
+             linear-gradient(90deg,rgba(0,0,0,0),#000 5%,#000 95%,rgba(0,0,0,0));
+  -webkit-mask-composite:source-in;
+  mask-composite:intersect}
+.shot--strip{aspect-ratio:1200/430}
+.shot--wide{aspect-ratio:16/9}
+.shot--photo{aspect-ratio:4/3}
+.shot--tall{aspect-ratio:3/4;max-width:360px}
+/* pulls the crop down the frame - keeps a ceiling or a wall out of the top */
+.shot--low img{object-position:50% 78%}
+/* the same grade the cold half of the hero gets: the hour nobody stayed */
+.shot--cold img{filter:grayscale(.62) saturate(.34) brightness(1.3) contrast(.95)}
+.shot--cold::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(32,48,60,.38),rgba(15,24,32,.46))}
+/* a frame that sits between two blocks of copy, edge to edge of the band */
+.shot--band{margin:clamp(30px,4vw,54px) 0}
+.shot-figure{margin:0}
+.shot__cap{display:block;margin:12px 0 0}
+.shots{display:grid;gap:var(--gap);grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:860px){ .shots{grid-template-columns:minmax(0,1fr)} }
+/* a strip is a letterbox on a desktop and squarer on a phone, so the crop
+   never eats the subject on a narrow screen */
+@media (max-width:760px){ .shot--strip{aspect-ratio:1200/620} }
+@media (max-width:480px){ .shot--strip{aspect-ratio:4/3} }
+
 /* --------------------------------------------------------------- closer ---- */
 .closer{position:relative;overflow:hidden;text-align:center;border-radius:var(--r-lg);
   border:1px solid var(--ember-line);
@@ -815,6 +851,37 @@ html.motion-off .ask__caret{animation:none}
   html:not(.motion-on) .crowd.is-reveal .crowd__f.stays{opacity:1}
   html:not(.motion-on) .ledger.is-reveal .ledger__row{opacity:1;transform:none}
 }
+
+/* ------------------------------------------------------------ enquiry form ---- */
+/* Shared between ejukebox.tv and ejukebox.music. Colour comes from whichever
+   token set the host site defines, via var() fallback chains, so one block
+   works on both. No email address appears anywhere in the markup by design. */
+.ef{max-width:52rem}
+.ef__h{margin:0 0 10px}
+.ef__intro{color:var(--smoke,var(--soft,#9aa));max-width:44em;margin:0 0 26px}
+.ef__form{display:flex;flex-direction:column;gap:16px}
+.ef__row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ef__field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ef__label{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--dim,var(--mut,#8b93a1))}
+.ef__req{color:var(--accent,var(--ember,var(--glow,#ffb347)))}
+.ef__in{width:100%;background:var(--room-2,#12161f);color:var(--chalk,var(--ivory,#eef2f7));
+  border:1px solid var(--line-2,#2c3c52);border-radius:10px;padding:11px 13px;
+  font-family:inherit;font-size:1rem;line-height:1.4;-webkit-appearance:none;appearance:none}
+.ef__in:hover{border-color:var(--line-2,#3d4d63)}
+.ef__in:focus{outline:none;border-color:var(--accent,var(--ember,#ffb347));
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent,var(--ember,#ffb347)) 24%, transparent)}
+.ef__in--area{resize:vertical;min-height:118px}
+.ef__hint{color:var(--dim,var(--mut,#8b93a1));font-size:.85rem;margin:2px 0 0}
+.ef__pot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ef__actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px}
+.ef__send[disabled]{opacity:.6;cursor:progress}
+.ef__fine{color:var(--dim,var(--mut,#8b93a1));font-size:.85rem;margin:0;max-width:30em}
+.ef__msg{margin:4px 0 0;font-size:.95rem;min-height:1.4em}
+.ef__msg.is-bad{color:#ff9d8a}
+.ef__msg.is-good{color:var(--good,#4ade80);font-weight:600}
+@media (max-width:620px){ .ef__row{grid-template-columns:1fr} }
+
 </style>
 </head>
 
@@ -1205,6 +1272,106 @@ html.motion-off .ask__caret{animation:none}
     });
     paintButtons();
   })();
+})();
+</script>
+<script>
+/* The enquiry form.
+   Posts JSON to the Azure Function and reports back inline. No page reload, no
+   email address anywhere - on failure it keeps what was typed and offers a retry
+   rather than falling back to a mailto. */
+(function () {
+  var ENDPOINT = 'https://ejukebox-contact-fn.azurewebsites.net/api/contact';
+
+  document.querySelectorAll('[data-ef-form]').forEach(function (form) {
+    var btn = form.querySelector('[data-ef-send]');
+    var msg = form.querySelector('[data-ef-msg]');
+    var label = btn ? btn.textContent : 'Send';
+    var sending = false;
+
+    function say(text, kind) {
+      msg.textContent = text;
+      msg.className = 'ef__msg' + (kind ? ' is-' + kind : '');
+    }
+
+    function invalid() {
+      // Report the first problem rather than a wall of errors.
+      var name = form.name.value.trim();
+      var email = form.email.value.trim();
+      if (!name) return { field: form.name, why: 'Just your name is fine.' };
+      if (!email) return { field: form.email, why: 'We need an email to come back to you on.' };
+      if (!/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(email))
+        return { field: form.email, why: 'That email does not look quite right.' };
+      return null;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (sending) return;
+
+      var bad = invalid();
+      if (bad) {
+        say(bad.why, 'bad');
+        bad.field.focus();
+        return;
+      }
+
+      sending = true;
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      say('', '');
+
+      var payload = {
+        site: form.site.value,
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        venue: form.venue.value.trim(),
+        town: form.town.value.trim(),
+        message: form.message.value.trim(),
+        company_website: form.company_website.value
+      };
+
+      var done = false;
+      var timer = setTimeout(function () {
+        if (done) return;
+        done = true;
+        fail();
+      }, 20000);
+
+      function fail() {
+        sending = false;
+        btn.disabled = false;
+        btn.textContent = label;
+        say('That did not go through. Nothing is lost - press ' + label + ' again in a moment.', 'bad');
+      }
+
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+        .then(function (d) {
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          if (d && d.ok) {
+            form.querySelector('.ef__actions').hidden = true;
+            Array.prototype.forEach.call(form.querySelectorAll('.ef__row, .ef__field'), function (el) {
+              el.hidden = true;
+            });
+            say('Got it. We will come back to you shortly - normally the same day.', 'good');
+          } else {
+            fail();
+          }
+        })
+        .catch(function () {
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          fail();
+        });
+    });
+  });
 })();
 </script>
 </body>

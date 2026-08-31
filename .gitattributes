@@ -1,0 +1,9 @@
+# One line ending across the tree. Jekyll does not care, but whole-file diffs
+# caused by an editor switching CRLF/LF do.
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.jpg binary
+*.mp4 binary
+*.webm binary
+*.woff2 binary

@@ -1,155 +1,39 @@
 {% comment %}
-  THE ROOM - one venue, drawn once, here.
+  THE ROOM - one venue, two hours, out of this one file.
 
   This file is rendered TWICE on the hero, once inside .rooms__layer--cold and
-  once inside .rooms__layer--warm. Because both renders come out of this single
-  file, the geometry is provably identical: the only things that differ are the
-  five custom properties the layer sets (--ink, --ink-2, --glassc, --edge and
-  --floor) and the lean the stylesheet applies to .rm-f on the warm layer.
+  once inside .rooms__layer--warm, and once on the trial page as the warm frame
+  on its own. Pass state="cold" or state="warm"; warm is the default.
 
-  Nothing in here carries an id, so it can be duplicated safely. Nothing on
-  .rm-f or .rm-glass carries a transform attribute either, because a CSS
-  transform would replace it - every figure is drawn at its final position.
+  Both frames are the same kind of Australian front bar shot at eye level with
+  the bar running away to the right, so the seam the reader drags reads as one
+  room changing rather than two pictures swapping. The cold frame is graded to
+  steel in the stylesheet - the room is not relit, the warmth is taken out of
+  it, which is the whole argument of the page.
 
-  The light in here comes from lamps hanging over the tables, never from a
-  screen. No frame, no bezel: sound has neither.
+  The images are AI generated. The label under the hero says so, and so does
+  the footer. Nothing here is a photograph of a real venue or a real customer.
+
+  Neither frame lazy-loads - the drag-to-mix wipe has to be instant - but the warm one is
+  the frame that actually paints at first load (the slider defaults to 100), so it carries
+  fetchpriority="high" and the hidden cold one carries fetchpriority="low". That stops the
+  invisible layer competing with the LCP image on a slow link.
+
+  No frame, no bezel: the stage masks this on all four edges so it bleeds into
+  the page. Sound has neither.
+
+  alt is empty on purpose - .rooms__stage carries the aria-label for the whole
+  device, and two competing descriptions of one picture is worse than none.
 {% endcomment %}
-<svg viewBox="0 0 1200 470" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-
-  <!-- the ground the room sits on. Dead steel when cold, warm plum when lit. -->
-  <rect width="1200" height="430" fill="var(--floor)" opacity=".55"/>
-
-  <!-- pendant lamps. Cord, shade, and the bulb under it. -->
-  <g>
-    <g fill="var(--ink-2)">
-      <rect x="654" y="0" width="2.4" height="70"/>
-      <rect x="784" y="0" width="2.4" height="96"/>
-      <rect x="974" y="0" width="2.4" height="80"/>
-      <rect x="1139" y="0" width="2.4" height="110"/>
-    </g>
-    <g fill="var(--ink)">
-      <path d="M634 112l14-42h14l14 42z"/>
-      <path d="M759 140l17-44h18l17 44z"/>
-      <path d="M949 124l17-44h18l17 44z"/>
-      <path d="M1114 154l17-44h18l17 44z"/>
-    </g>
-    <g fill="var(--edge)">
-      <ellipse cx="655" cy="113" rx="21" ry="4.5"/><circle cx="655" cy="119" r="6"/>
-      <ellipse cx="785" cy="141" rx="26" ry="5"/><circle cx="785" cy="148" r="7"/>
-      <ellipse cx="975" cy="125" rx="26" ry="5"/><circle cx="975" cy="132" r="7"/>
-      <ellipse cx="1140" cy="155" rx="26" ry="5"/><circle cx="1140" cy="162" r="7"/>
-    </g>
-  </g>
-
-  <!-- back bar: the unit, two shelves, and the bottles standing on them -->
-  <rect x="70" y="52" width="540" height="188" rx="8" fill="var(--ink-2)"/>
-  <g fill="var(--glassc)">
-    <rect x="90"  y="74" width="16" height="46" rx="5"/>
-    <rect x="127" y="82" width="16" height="38" rx="5"/>
-    <rect x="164" y="68" width="16" height="52" rx="5"/>
-    <rect x="201" y="78" width="16" height="42" rx="5"/>
-    <rect x="238" y="86" width="16" height="34" rx="5"/>
-    <rect x="275" y="72" width="16" height="48" rx="5"/>
-    <rect x="312" y="80" width="16" height="40" rx="5"/>
-    <rect x="349" y="66" width="16" height="54" rx="5"/>
-    <rect x="386" y="84" width="16" height="36" rx="5"/>
-    <rect x="423" y="76" width="16" height="44" rx="5"/>
-    <rect x="460" y="74" width="16" height="46" rx="5"/>
-    <rect x="497" y="82" width="16" height="38" rx="5"/>
-    <rect x="534" y="70" width="16" height="50" rx="5"/>
-    <rect x="571" y="78" width="16" height="42" rx="5"/>
-    <rect x="108" y="156" width="16" height="40" rx="5"/>
-    <rect x="150" y="148" width="16" height="48" rx="5"/>
-    <rect x="192" y="160" width="16" height="36" rx="5"/>
-    <rect x="234" y="152" width="16" height="44" rx="5"/>
-    <rect x="276" y="144" width="16" height="52" rx="5"/>
-    <rect x="318" y="158" width="16" height="38" rx="5"/>
-    <rect x="360" y="150" width="16" height="46" rx="5"/>
-    <rect x="402" y="162" width="16" height="34" rx="5"/>
-    <rect x="444" y="146" width="16" height="50" rx="5"/>
-    <rect x="486" y="154" width="16" height="42" rx="5"/>
-    <rect x="528" y="152" width="16" height="44" rx="5"/>
-    <rect x="570" y="158" width="16" height="38" rx="5"/>
-  </g>
-  <rect x="70" y="120" width="540" height="6" fill="var(--ink)"/>
-  <rect x="70" y="196" width="540" height="6" fill="var(--ink)"/>
-  <rect x="70" y="118" width="540" height="1.6" fill="var(--edge)"/>
-  <rect x="70" y="194" width="540" height="1.6" fill="var(--edge)"/>
-
-  <!-- table stems, drawn before the people so a table top overlaps a waist -->
-  <g fill="var(--ink)">
-    <rect x="778" y="330" width="14" height="100"/>
-    <rect x="968" y="312" width="14" height="118"/>
-    <rect x="1133" y="344" width="14" height="86"/>
-  </g>
-
-  <!-- six around the tables -->
-  <g fill="var(--ink)">
-    <g class="rm-f rm-f--4"><circle cx="722" cy="276" r="17"/>
-      <path d="M698 430L696 340C692 308 694 290 722 290C750 290 752 308 748 340L746 430Z"/></g>
-    <g class="rm-f rm-f--5"><circle cx="848" cy="276" r="17"/>
-      <path d="M824 430L822 340C818 308 820 290 848 290C876 290 878 308 874 340L872 430Z"/></g>
-    <g class="rm-f rm-f--6"><circle cx="912" cy="258" r="17"/>
-      <path d="M888 430L886 326C882 292 884 272 912 272C940 272 942 292 938 326L936 430Z"/></g>
-    <g class="rm-f rm-f--7"><circle cx="1038" cy="258" r="17"/>
-      <path d="M1014 430L1012 326C1008 292 1010 272 1038 272C1066 272 1068 292 1064 326L1062 430Z"/></g>
-    <g class="rm-f rm-f--8"><circle cx="1082" cy="290" r="17"/>
-      <path d="M1058 430L1056 352C1052 322 1054 304 1082 304C1110 304 1112 322 1108 352L1106 430Z"/></g>
-    <g class="rm-f rm-f--9"><circle cx="1196" cy="290" r="17"/>
-      <path d="M1172 430L1170 352C1166 322 1168 304 1196 304C1224 304 1226 322 1222 352L1220 430Z"/></g>
-  </g>
-
-  <!-- table tops, over the people at them, each with the lamp pooling on it -->
-  <g fill="var(--ink)">
-    <ellipse cx="785" cy="330" rx="70" ry="14"/>
-    <ellipse cx="975" cy="312" rx="70" ry="14"/>
-    <ellipse cx="1140" cy="344" rx="70" ry="14"/>
-  </g>
-  <g fill="var(--edge)">
-    <ellipse cx="785" cy="326" rx="62" ry="7" opacity=".8"/>
-    <ellipse cx="975" cy="308" rx="62" ry="7" opacity=".8"/>
-    <ellipse cx="1140" cy="340" rx="62" ry="7" opacity=".8"/>
-  </g>
-
-  <!-- the counter -->
-  <rect x="32" y="262" width="614" height="140" fill="var(--ink-2)"/>
-  <rect x="24" y="246" width="630" height="16" rx="8" fill="var(--ink)"/>
-  <rect x="24" y="243.5" width="630" height="2.4" fill="var(--edge)"/>
-  <rect x="40" y="404" width="598" height="5" rx="2.5" fill="var(--ink)" opacity=".75"/>
-
-  <!-- stools along the bar -->
-  <g fill="var(--ink)">
-    <ellipse cx="380" cy="322" rx="29" ry="9"/><rect x="374" y="326" width="12" height="104"/>
-    <ellipse cx="380" cy="386" rx="18" ry="4.5"/><ellipse cx="380" cy="430" rx="23" ry="6"/>
-    <ellipse cx="466" cy="322" rx="29" ry="9"/><rect x="460" y="326" width="12" height="104"/>
-    <ellipse cx="466" cy="386" rx="18" ry="4.5"/><ellipse cx="466" cy="430" rx="23" ry="6"/>
-  </g>
-
-  <!-- three standing at the bar -->
-  <g fill="var(--ink)">
-    <g class="rm-f rm-f--1"><circle cx="175" cy="234" r="22"/>
-      <path d="M143 430L141 312C136 272 137 250 175 250C213 250 214 272 209 312L207 430Z"/></g>
-    <g class="rm-f rm-f--2"><circle cx="285" cy="234" r="22"/>
-      <path d="M253 430L251 312C246 272 247 250 285 250C323 250 324 272 319 312L317 430Z"/></g>
-    <g class="rm-f rm-f--3"><circle cx="560" cy="250" r="20"/>
-      <path d="M528 430L526 322C521 286 522 266 560 266C598 266 599 286 594 322L592 430Z"/></g>
-  </g>
-
-  <!-- Two glasses go up, but only in the room where the music is right. Arm
-       and glass are one group so the whole thing swings from the shoulder,
-       which is where .rm-glass takes its transform-origin. -->
-  <g fill="var(--edge)">
-    <g class="rm-glass">
-      <path fill="var(--ink)" d="M304 274L328 218L339 223L315 279Z"/>
-      <path d="M324 194h22l-3.6 19h-14.8zM333 213h4v10h-4zM327 223h16v3.2h-16z"/>
-    </g>
-    <g class="rm-glass">
-      <path fill="var(--ink)" d="M864 322L888 266L899 271L875 327Z"/>
-      <path d="M884 242h18l-3 16h-12zM891.4 258h3.2v8h-3.2zM886 266h14v2.8h-14z"/>
-    </g>
-  </g>
-
-  <!-- the floor -->
-  <rect x="0" y="430" width="1200" height="40" fill="var(--ink-2)"/>
-  <rect x="0" y="428.4" width="1200" height="2" fill="var(--edge)" opacity=".65"/>
-</svg>
+{% assign state = include.state | default: 'warm' %}
+{% if state == 'cold' %}
+<img src="{{ '/assets/img/music-detail-empty-bar-golden-hour.webp' | relative_url }}"
+     srcset="{{ '/assets/img/640/music-detail-empty-bar-golden-hour.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-empty-bar-golden-hour.webp' | relative_url }} 1344w"
+     sizes="(max-width:760px) 100vw, 1200px"
+     alt="" width="1344" height="768" decoding="async" fetchpriority="low">
+{% else %}
+<img src="{{ '/assets/img/music-room-front-bar-warmth.webp' | relative_url }}"
+     srcset="{{ '/assets/img/640/music-room-front-bar-warmth.webp' | relative_url }} 640w, {{ '/assets/img/music-room-front-bar-warmth.webp' | relative_url }} 1344w"
+     sizes="(max-width:760px) 100vw, 1200px"
+     alt="" width="1344" height="768" decoding="async" fetchpriority="high">
+{% endif %}

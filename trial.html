@@ -18,16 +18,20 @@ description: >-
     <h1 id="t-h">Thirty days. The whole thing in, and nothing to pay while you listen.</h1>
     <p class="lede">Not a demo link and not a login. The complete system goes into your venue, <strong>hardware and installation covered</strong>, and it runs for a month while you stand in the room and make up your mind.</p>
     <div class="btn-row">
-      <a class="btn btn--primary" href="mailto:{{ site.contact.email }}?subject=30-day%20trial">Email {{ site.contact.email }}</a>
-      <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+      <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Talk to us</a>
+      <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
     </div>
   </div>
 
-  <div class="rooms rooms--still" role="img" aria-label="A bar in warm light. Nine people leaning in toward each other, two standing with their glasses up. This is the room after thirty days." style="margin-top:clamp(26px,3.4vw,44px)">
+  <div class="rooms rooms--still" role="img" aria-label="A front bar in warm light, people standing along it three deep with their glasses up and one of them laughing. This is the room after thirty days." style="margin-top:clamp(26px,3.4vw,44px)">
     <div class="rooms__stage">
       <div class="rooms__bloom" aria-hidden="true"></div>
-      <div class="rooms__layer rooms__layer--warm rooms__layer--still">{% include room.html %}</div>
+      <div class="rooms__layer rooms__layer--warm rooms__layer--still">{% include room.html state="warm" %}</div>
     </div>
+  </div>
+
+  <div class="wrap">
+    <p class="note">Illustrative - AI generated, not photographs of real customers.</p>
   </div>
 </section>
 
@@ -54,6 +58,14 @@ description: >-
       </div>
     </div>
   </div>
+
+  <div class="shot shot--strip shot--soft shot--band">
+    <img src="{{ '/assets/img/music-detail-doorway-light-corridor.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-detail-doorway-light-corridor.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-doorway-light-corridor.webp' | relative_url }} 1152w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="The dim back passage of an old brick pub, daylight falling through an open doorway in a hard-edged corridor across the floor."
+         width="1152" height="896" loading="lazy" decoding="async">
+  </div>
 </section>
 
 <!-- ========================================================== WHAT YOU DO === -->
@@ -64,6 +76,13 @@ description: >-
         <p class="eyebrow">Beat two</p>
         <h2 id="do-h">What you do.</h2>
         <p class="drop" style="margin-bottom:18px">Nothing.</p>
+        <div class="shot shot--photo shot--soft" style="margin-bottom:clamp(22px,3vw,30px)">
+          <img src="{{ '/assets/img/music-detail-hands-bar-towel.webp' | relative_url }}"
+               srcset="{{ '/assets/img/640/music-detail-hands-bar-towel.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-hands-bar-towel.webp' | relative_url }} 1152w"
+               sizes="(max-width:760px) 100vw, 1200px"
+               alt="A bartender's hands wringing out a bar towel over a stainless sink and wiping down the counter."
+               width="1152" height="896" loading="lazy" decoding="async">
+        </div>
         <p class="sub">The channels change themselves at the hours we agreed. Nobody behind the bar goes looking for a phone, nobody forgets at three in the afternoon, and it runs the same on a Tuesday as it does on a Saturday. <strong>If you want it different, tell us and we change it at our end.</strong></p>
       </div>
       <div class="panel panel--warm">
@@ -91,19 +110,37 @@ description: >-
     <p class="eyebrow">Beat four</p>
     <h2 id="after-h">After thirty days - a conversation.</h2>
     <p class="sub">At the end of the month we ring you and ask what the room did. <strong>If it is worth keeping, we work out what it costs and you decide then</strong>, with a month of your own evidence behind you.</p>
+    <div class="shot shot--wide shot--soft" style="margin-top:clamp(26px,3.4vw,36px)">
+      <img src="{{ '/assets/img/music-room-good-conversation-table.webp' | relative_url }}"
+           srcset="{{ '/assets/img/640/music-room-good-conversation-table.webp' | relative_url }} 640w, {{ '/assets/img/music-room-good-conversation-table.webp' | relative_url }} 1152w"
+           sizes="(max-width:760px) 100vw, 1200px"
+           alt="Four adults around a small round pub table mid-conversation, glasses and a bowl of chips between them."
+           width="1152" height="896" loading="lazy" decoding="async">
+    </div>
+
     <p class="scene scene--ivory" style="margin-top:26px">You will know inside a fortnight. Everybody does. It is the Friday you look up and realise nobody has gone home.</p>
   </div>
 </section>
 
 <!-- =============================================================== THE ASK === -->
 <section class="band band--warm" aria-label="Start the trial">
+  <div class="shot shot--strip shot--soft" style="margin-bottom:clamp(40px,5.4vw,68px)">
+    <img src="{{ '/assets/img/music-detail-pendant-lights-row.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-detail-pendant-lights-row.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-pendant-lights-row.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="A row of warm brass pendants dimmed low over an empty timber bistro bench."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
   <div class="wrap">
     {% include cta.html
        heading="Tell us about the room and we will build it around that."
-       body="Three answers is all we need to start. Email them over or ring and talk them through, and we will have the channels drafted before the player goes in."
+       body="Three answers is all we need to start. Send them through and we will have the channels drafted before the player goes in."
        ask="yes"
-       cta="Email info@ejukebox.music"
-       href="mailto:info@ejukebox.music?subject=30-day%20trial"
+       cta="Start the conversation"
+       href="{{ '/contact/' | relative_url }}"
        ghost="The full product at ejukebox.com.au" %}
+    <div style="margin-top:34px">
+      {% include contactform.html site="ejukebox.music" cta="Start the conversation" %}
+    </div>
   </div>
 </section>

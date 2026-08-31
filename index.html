@@ -12,8 +12,8 @@ description: >-
 {% include figure.html %}
 
 <!-- ==================================================== HERO: THE TWO ROOMS ==
-     One venue, drawn once in _includes/room.html, rendered twice, and the
-     reader drags the seam between them. No frame anywhere near it.
+     One venue, two hours, out of _includes/room.html, rendered twice, and
+     the reader drags the seam between them. No frame anywhere near it.
      ======================================================================= -->
 <section class="band band--flush" aria-labelledby="hero-h" style="padding-bottom:clamp(44px,5vw,72px)">
   <div class="wrap">
@@ -24,29 +24,30 @@ description: >-
   </div>
 
   <div class="rooms" data-rooms>
-    <div class="rooms__stage" role="img" aria-label="The same bar drawn twice. On the left it is cold and steel grey: nine people sitting apart, facing away, nobody staying. On the right the same nine people in warm light, leaning in toward each other, two of them standing with their glasses up. Nothing in the room changed except the music.">
+    <div class="rooms__stage" role="img" aria-label="An Australian front bar in two states, with a slider between them. Cold and grey, the stools empty and the chairs stacked and nobody in it; then warm and full, people standing along the bar with their glasses up and one of them laughing. The only difference between the two is the music.">
       <div class="rooms__bloom" aria-hidden="true"></div>
-      <div class="rooms__layer rooms__layer--cold">{% include room.html %}</div>
-      <div class="rooms__layer rooms__layer--warm">{% include room.html %}</div>
+      <div class="rooms__layer rooms__layer--cold">{% include room.html state="cold" %}</div>
+      <div class="rooms__layer rooms__layer--warm">{% include room.html state="warm" %}</div>
     </div>
 
     <div class="wrap">
       <div class="roomctl">
-        <label class="anno" for="mix">Drag - the same room, silent and sorted</label>
+        <label class="anno" for="mix">Drag - the room silent, and the room sorted</label>
         <input id="mix" class="roomctl__range" type="range" min="0" max="100" step="1" value="100" data-mix>
         <div class="roomctl__caps">
-          <span class="anno anno--ash roomctl__cap roomctl__cap--cold" aria-hidden="true" data-cap-cold>Silent - 6:40 PM - three tables, nobody staying</span>
+          <span class="anno anno--ash roomctl__cap roomctl__cap--cold" aria-hidden="true" data-cap-cold>Silent - 6:40 PM - stools out, nobody staying</span>
           <span class="anno anno--ember roomctl__cap roomctl__cap--warm" data-cap-warm>6:40 PM - the right channel on</span>
         </div>
         <p class="sr-only" role="status" data-mix-live></p>
       </div>
+      <p class="note">Illustrative - AI generated, not photographs of real customers.</p>
     </div>
   </div>
 
   <div class="wrap" style="margin-top:clamp(24px,3vw,36px)">
     <div class="btn-row">
       <a class="btn btn--primary" href="{{ '/trial/' | relative_url }}">Start the 30-day trial</a>
-      <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+      <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
       <a class="btn btn--ghost" href="{{ site.contact.main_site }}">Everything else is at ejukebox.com.au</a>
     </div>
     <p class="trustline" style="margin-top:26px">Australian owned, human-curated, and licensed for business. <strong>Real people build the channels</strong> - and the same people answer the email.</p>
@@ -86,6 +87,14 @@ description: >-
 
     <p class="note">Nobody on that list filled in a form on the way out. They just did not come back.</p>
   </div>
+
+  <div class="shot shot--strip shot--soft shot--cold shot--low shot--band">
+    <img src="{{ '/assets/img/music-daypart-bistro-morning-empty.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-daypart-bistro-morning-empty.webp' | relative_url }} 640w, {{ '/assets/img/music-daypart-bistro-morning-empty.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="A pub bistro first thing in the morning with nobody in it, the chairs still stacked on the tables and a cleaner working at the far end."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
 </section>
 
 <!-- ============================================ THE MOMENT OF RECOGNITION == -->
@@ -96,6 +105,13 @@ description: >-
 
     <div class="grid grid--split grid--top" style="align-items:start">
       <div>
+        <div class="shot shot--photo shot--soft" style="margin-bottom:clamp(22px,3vw,30px)">
+          <img src="{{ '/assets/img/music-room-man-laughing-close.webp' | relative_url }}"
+               srcset="{{ '/assets/img/640/music-room-man-laughing-close.webp' | relative_url }} 640w, {{ '/assets/img/music-room-man-laughing-close.webp' | relative_url }} 1152w"
+               sizes="(max-width:760px) 100vw, 1200px"
+               alt="A man in his fifties at a pub bar caught mid-laugh, eyes creased shut, his glass half raised."
+               width="1152" height="896" loading="lazy" decoding="async">
+        </div>
         <p class="sub">There is a half-second when a track comes on and somebody recognises it. Shoulders drop. They settle in. They order another one. <strong>That is not a taste thing, it is a belonging thing</strong> - a room full of songs nobody knows is a room full of people who feel like guests. So we build our channels out of the songs people already love, every commercial radio hit, and we deliberately leave out the obscure stuff that makes a person feel out of place. The variety is huge, so nobody gets sick of it.</p>
         <p class="scene" style="margin-top:26px">The flow is so natural you will never feel the need to skip a track.</p>
       </div>
@@ -141,105 +157,18 @@ description: >-
 
   <div class="wrap">
     <div class="roof" data-roof data-stage="2">
-      <div class="roof__scene" role="img" aria-label="A rooftop bar above the harbour, drawn at four times of the evening. As the sky goes from gold to deep violet the bridge lights come up, the rooftop warms and three more people arrive at the rail.">
+      <div class="roof__scene">
+        <img class="roof__img" src="{{ '/assets/img/music-room-rooftop-harbour-dusk.webp' | relative_url }}"
+             srcset="{{ '/assets/img/640/music-room-rooftop-harbour-dusk.webp' | relative_url }} 640w, {{ '/assets/img/music-room-rooftop-harbour-dusk.webp' | relative_url }} 1344w"
+             sizes="(max-width:760px) 100vw, 1200px"
+             alt="A pub roof terrace at dusk over the harbour, the bridge dark against the last of the light, string bulbs overhead and people along the benches with a drink in front of them."
+             width="1344" height="768" loading="lazy" decoding="async">
         <div class="roof__skies" aria-hidden="true">
           <div class="sky sky--5" data-sky></div>
           <div class="sky sky--7" data-sky></div>
           <div class="sky sky--9 is-on" data-sky></div>
           <div class="sky sky--11" data-sky></div>
         </div>
-
-        <svg class="roof__art" viewBox="0 165 1200 455" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-          <defs>
-            <radialGradient id="roof-bloom" cx="50%" cy="100%" r="72%">
-              <stop offset="0" stop-color="#ff8f60" stop-opacity="1"/>
-              <stop offset="1" stop-color="#ff7a55" stop-opacity="0"/>
-            </radialGradient>
-            <pattern id="balusters" width="30" height="10" patternUnits="userSpaceOnUse">
-              <rect x="0" y="0" width="4" height="10" fill="#09050c"/>
-            </pattern>
-          </defs>
-
-          <!-- the water -->
-          <rect x="0" y="392" width="1200" height="156" fill="#0b0710" opacity=".5"/>
-          <g fill="#ffe1a8" opacity=".14">
-            <rect x="120" y="404" width="180" height="2"/><rect x="420" y="416" width="240" height="2"/>
-            <rect x="260" y="430" width="150" height="2"/><rect x="700" y="410" width="200" height="2"/>
-            <rect x="560" y="446" width="290" height="2"/><rect x="880" y="434" width="170" height="2"/>
-          </g>
-
-          <!-- the skyline -->
-          <g fill="#0a0710" opacity=".72">
-            <rect x="0" y="318" width="58" height="76"/><rect x="58" y="340" width="44" height="54"/>
-            <rect x="102" y="300" width="70" height="94"/><rect x="172" y="352" width="38" height="42"/>
-            <rect x="210" y="286" width="86" height="108"/><rect x="296" y="330" width="50" height="64"/>
-            <rect x="360" y="356" width="40" height="38"/><rect x="400" y="346" width="54" height="48"/>
-            <rect x="820" y="350" width="44" height="44"/><rect x="864" y="360" width="30" height="34"/>
-            <rect x="880" y="296" width="64" height="98"/><rect x="944" y="336" width="42" height="58"/>
-            <rect x="986" y="272" width="74" height="122"/><rect x="1060" y="326" width="46" height="68"/>
-            <rect x="1106" y="300" width="58" height="94"/><rect x="1164" y="344" width="36" height="50"/>
-          </g>
-
-          <!-- the coathanger -->
-          <g fill="none" stroke="#0a0710" stroke-opacity=".82">
-            <path d="M300 372Q550 150 800 372" stroke-width="10"/>
-            <path d="M324 372Q550 206 776 372" stroke-width="5"/>
-            <g stroke-width="3">
-              <path d="M350 332v40"/><path d="M400 301v71"/><path d="M450 279v93"/><path d="M500 265v107"/>
-              <path d="M550 261v111"/><path d="M600 265v107"/><path d="M650 279v93"/><path d="M700 301v71"/>
-              <path d="M750 332v40"/>
-            </g>
-          </g>
-          <rect x="288" y="366" width="524" height="10" fill="#0a0710" opacity=".86"/>
-          <g fill="#0a0710" opacity=".88">
-            <rect x="278" y="308" width="26" height="88"/><rect x="314" y="308" width="26" height="88"/>
-            <rect x="758" y="308" width="26" height="88"/><rect x="794" y="308" width="26" height="88"/>
-          </g>
-
-          <!-- the lights come up as the sky goes down -->
-          <g class="lights">
-            <g fill="#ffe1a8">
-              <circle cx="350" cy="332" r="3"/><circle cx="400" cy="301" r="3"/><circle cx="450" cy="279" r="3"/>
-              <circle cx="500" cy="265" r="3"/><circle cx="550" cy="261" r="3"/><circle cx="600" cy="265" r="3"/>
-              <circle cx="650" cy="279" r="3"/><circle cx="700" cy="301" r="3"/><circle cx="750" cy="332" r="3"/>
-              <circle cx="320" cy="362" r="2.4"/><circle cx="380" cy="362" r="2.4"/><circle cx="440" cy="362" r="2.4"/>
-              <circle cx="500" cy="362" r="2.4"/><circle cx="560" cy="362" r="2.4"/><circle cx="620" cy="362" r="2.4"/>
-              <circle cx="680" cy="362" r="2.4"/><circle cx="740" cy="362" r="2.4"/>
-            </g>
-            <g fill="#ffd79a" opacity=".85">
-              <rect x="118" y="316" width="4" height="6"/><rect x="132" y="330" width="4" height="6"/>
-              <rect x="146" y="316" width="4" height="6"/><rect x="118" y="348" width="4" height="6"/>
-              <rect x="146" y="348" width="4" height="6"/><rect x="226" y="302" width="4" height="6"/>
-              <rect x="244" y="318" width="4" height="6"/><rect x="262" y="302" width="4" height="6"/>
-              <rect x="226" y="336" width="4" height="6"/><rect x="262" y="354" width="4" height="6"/>
-              <rect x="1000" y="288" width="4" height="6"/><rect x="1018" y="304" width="4" height="6"/>
-              <rect x="1036" y="288" width="4" height="6"/><rect x="1000" y="322" width="4" height="6"/>
-              <rect x="1036" y="340" width="4" height="6"/><rect x="894" y="312" width="4" height="6"/>
-              <rect x="912" y="330" width="4" height="6"/><rect x="1120" y="316" width="4" height="6"/>
-              <rect x="1140" y="334" width="4" height="6"/>
-            </g>
-          </g>
-
-          <!-- the rooftop itself -->
-          <rect x="0" y="548" width="1200" height="72" fill="#0e0a0d"/>
-          <ellipse class="roof-bloom" cx="600" cy="606" rx="560" ry="132" fill="url(#roof-bloom)"/>
-
-          <!-- people at the rail. Three are always here. Three arrive later. -->
-          <g fill="#120c11">
-            <g><circle cx="250" cy="409" r="20"/><path d="M218 556c0-82 14-134 32-134s32 52 32 134z"/></g>
-            <g><circle cx="470" cy="409" r="20"/><path d="M438 556c0-82 14-134 32-134s32 52 32 134z"/></g>
-            <g><circle cx="880" cy="409" r="20"/><path d="M848 556c0-82 14-134 32-134s32 52 32 134z"/></g>
-            <g class="roof-late"><circle cx="150" cy="415" r="18"/><path d="M121 556c0-74 13-121 29-121s29 47 29 121z"/></g>
-            <g class="roof-late"><circle cx="640" cy="415" r="18"/><path d="M611 556c0-74 13-121 29-121s29 47 29 121z"/></g>
-            <g class="roof-late"><circle cx="1030" cy="415" r="18"/><path d="M1001 556c0-74 13-121 29-121s29 47 29 121z"/></g>
-          </g>
-
-          <!-- the rail, in front of everybody -->
-          <rect x="0" y="477" width="1200" height="63" fill="url(#balusters)"/>
-          <rect x="0" y="468" width="1200" height="9" rx="4" fill="#18101a"/>
-          <rect x="0" y="466" width="1200" height="2" fill="#ff7a55" opacity=".3"/>
-          <rect x="0" y="538" width="1200" height="7" rx="3" fill="#120b12"/>
-        </svg>
       </div>
 
       <div class="roof__ctl">
@@ -256,7 +185,7 @@ description: >-
         <span class="anno anno--mut">SMOOTH COCKTAIL AND DANCE</span>
       </p>
       <p class="sr-only" role="status" data-roof-live></p>
-      <p class="note">Illustration - drawn, not a photograph.</p>
+      <p class="note">Illustrative - AI generated, not photographs of real customers. The hours are the real ones we set with you.</p>
     </div>
   </div>
 
@@ -272,7 +201,16 @@ description: >-
     <h2 id="people-h">Channels, not playlists. Every one of them built by a <span class="brassed">person</span>.</h2>
 
     <div class="grid grid--split grid--top">
-      <p class="sub">An algorithm optimises for the next click. A music director builds for the next two hours in a room they have stood in. <strong>Ours are professionals, they are Australian</strong>, and they are the reason the flow feels right rather than nearly right.</p>
+      <div>
+        <p class="sub">An algorithm optimises for the next click. A music director builds for the next two hours in a room they have stood in. <strong>Ours are professionals, they are Australian</strong>, and they are the reason the flow feels right rather than nearly right.</p>
+        <div class="shot shot--photo shot--soft">
+          <img src="{{ '/assets/img/music-detail-upright-piano-corner.webp' | relative_url }}"
+               srcset="{{ '/assets/img/640/music-detail-upright-piano-corner.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-upright-piano-corner.webp' | relative_url }} 1152w"
+               sizes="(max-width:760px) 100vw, 1200px"
+               alt="A battered upright piano pushed into the corner of a pub lounge, the lid closed and used as a shelf."
+               width="1152" height="896" loading="lazy" decoding="async">
+        </div>
+      </div>
       <ul class="ticks">
         <li><strong>Professional music directors</strong>, not an algorithm.</li>
         <li><strong>Every commercial radio hit</strong> - the songs people already know.</li>
@@ -332,6 +270,17 @@ description: >-
       </div>
     </div>
   </div>
+
+  <div class="shot shot--strip shot--soft shot--band">
+    <img src="{{ '/assets/img/music-room-small-dance-floor-late.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-room-small-dance-floor-late.webp' | relative_url }} 640w, {{ '/assets/img/music-room-small-dance-floor-late.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="A small worn dance floor in a suburban pub late on a Saturday night, eight or nine adults of mixed ages dancing loosely."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
+  <div class="wrap">
+    <p class="anno anno--ember">11:00 PM - late and loose</p>
+  </div>
 </section>
 
 <!-- ================================================= THE UNTOUCHED LEDGER == -->
@@ -368,6 +317,17 @@ description: >-
 
     <p class="note">Want it different next month? Tell us. We change it at our end.</p>
   </div>
+
+  <div class="shot shot--strip shot--soft shot--band">
+    <img src="{{ '/assets/img/music-room-bistro-mid-afternoon-busy.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-room-bistro-mid-afternoon-busy.webp' | relative_url }} 640w, {{ '/assets/img/music-room-bistro-mid-afternoon-busy.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="A pub bistro at half past two on a weekday, tables full, staff carrying plates through the room."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
+  <div class="wrap">
+    <p class="anno anno--mut">3:00 PM - the channel changed itself an hour ago and nobody noticed</p>
+  </div>
 </section>
 
 <!-- ====================================================== IT KEEPS PLAYING == -->
@@ -376,6 +336,14 @@ description: >-
     <p class="eyebrow eyebrow--ash">The sober bit</p>
     <h2 id="keeps-h">The internet drops out. The music does not.</h2>
     <p class="lede">A compact solid-state player goes in at the venue, and it holds the music. If the line goes down mid-Saturday the room never hears it. One-off to install, then it looks after itself.</p>
+
+    <div class="shot shot--strip shot--soft" style="margin-top:clamp(6px,1vw,10px)">
+      <img src="{{ '/assets/img/music-detail-player-box-shelf.webp' | relative_url }}"
+           srcset="{{ '/assets/img/640/music-detail-player-box-shelf.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-player-box-shelf.webp' | relative_url }} 1344w"
+           sizes="(max-width:760px) 100vw, 1200px"
+           alt="A small matte-black player box the size of a paperback on a shelf in a venue's AV cupboard, one green light on, an amplifier below it."
+           width="1344" height="768" loading="lazy" decoding="async">
+    </div>
 
     <div class="panel panel--cold cut" data-cut style="margin-top:clamp(22px,3vw,32px)">
       <div class="cut__link">
@@ -396,6 +364,29 @@ description: >-
       </div>
       <p class="cut__said" data-cut-said>Everything normal. Now cut the line and watch what the room does.</p>
       <p class="sr-only" role="status" data-cut-live></p>
+    </div>
+
+    <div class="shots" style="margin-top:clamp(28px,3.6vw,44px)">
+      <figure class="shot-figure">
+        <div class="shot shot--wide shot--soft">
+          <img src="{{ '/assets/img/music-room-country-pub-interior.webp' | relative_url }}"
+               srcset="{{ '/assets/img/640/music-room-country-pub-interior.webp' | relative_url }} 640w, {{ '/assets/img/music-room-country-pub-interior.webp' | relative_url }} 1152w"
+               sizes="(max-width:760px) 100vw, 1200px"
+               alt="The front bar of an old country pub, a few regulars along the counter under a pressed metal ceiling."
+               width="1152" height="896" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="anno anno--mut shot__cap">Zone one - the front bar</figcaption>
+      </figure>
+      <figure class="shot-figure">
+        <div class="shot shot--wide shot--soft">
+          <img src="{{ '/assets/img/music-room-beer-garden-gums.webp' | relative_url }}"
+               srcset="{{ '/assets/img/640/music-room-beer-garden-gums.webp' | relative_url }} 640w, {{ '/assets/img/music-room-beer-garden-gums.webp' | relative_url }} 1344w"
+               sizes="(max-width:760px) 100vw, 1200px"
+               alt="A suburban pub beer garden late on a summer afternoon, a group around a picnic table under two big gums."
+               width="1344" height="768" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="anno anno--mut shot__cap">Zone two - the beer garden</figcaption>
+      </figure>
     </div>
 
     <div class="grid grid--2" style="margin-top:var(--gap)">
@@ -521,6 +512,13 @@ description: >-
 
 <!-- ============================================================== THE CLOSER -->
 <section class="band band--warm" aria-label="Start the trial">
+  <div class="shot shot--strip shot--soft" style="margin-bottom:clamp(40px,5.4vw,68px)">
+    <img src="{{ '/assets/img/music-room-country-verandah-sunset.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-room-country-verandah-sunset.webp' | relative_url }} 640w, {{ '/assets/img/music-room-country-verandah-sunset.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="The verandah of a two-storey country pub at sunset, four or five people sitting out on old chairs along the rail."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
   <div class="wrap">
     {% include cta.html
        heading="Put it in for thirty days and listen to the room."

@@ -1,0 +1,70 @@
+{% comment %}
+  The enquiry form. Posts as JSON to the Azure Function, which sends the mail
+  through Microsoft Graph from a mailbox in the eJukebox tenant.
+
+  NO EMAIL ADDRESS APPEARS ANYWHERE IN THIS MARKUP, deliberately. Publishing one
+  is what attracts the scrapers, and Marc does not want that on the child sites.
+  If the endpoint ever fails, the form keeps what the visitor typed and offers a
+  retry - it never falls back to a mailto, because that would put an address in
+  the page source, which is the thing we are avoiding.
+
+  Params:
+    site    - "ejukebox.tv" or "ejukebox.music". Tells the function which site
+              the enquiry came from, and titles the email.
+    heading - optional h2 text. Omit to render the form with no heading, for
+              embedding under a heading the page already has.
+    intro   - optional paragraph above the fields.
+    cta     - submit button label. Defaults to "Send it through".
+{% endcomment %}
+{% assign site_key = include.site | default: 'ejukebox.tv' %}
+{% assign cta = include.cta | default: 'Send it through' %}
+
+<div class="ef" data-ef>
+  {% if include.heading %}<h2 class="ef__h">{{ include.heading }}</h2>{% endif %}
+  {% if include.intro %}<p class="ef__intro">{{ include.intro }}</p>{% endif %}
+
+  <form class="ef__form" data-ef-form novalidate>
+    <input type="hidden" name="site" value="{{ site_key }}">
+
+    <div class="ef__row">
+      <div class="ef__field">
+        <label class="ef__label" for="ef-name">Your name <span class="ef__req" aria-hidden="true">*</span></label>
+        <input class="ef__in" id="ef-name" name="name" type="text" autocomplete="name" required maxlength="120">
+      </div>
+      <div class="ef__field">
+        <label class="ef__label" for="ef-email">Email <span class="ef__req" aria-hidden="true">*</span></label>
+        <input class="ef__in" id="ef-email" name="email" type="email" autocomplete="email" required maxlength="200" inputmode="email">
+      </div>
+    </div>
+
+    <div class="ef__row">
+      <div class="ef__field">
+        <label class="ef__label" for="ef-venue">Venue</label>
+        <input class="ef__in" id="ef-venue" name="venue" type="text" autocomplete="organization" maxlength="160">
+      </div>
+      <div class="ef__field">
+        <label class="ef__label" for="ef-town">Town</label>
+        <input class="ef__in" id="ef-town" name="town" type="text" autocomplete="address-level2" maxlength="120">
+      </div>
+    </div>
+
+    <div class="ef__field">
+      <label class="ef__label" for="ef-message">What are you after?</label>
+      <textarea class="ef__in ef__in--area" id="ef-message" name="message" rows="4" maxlength="4000"></textarea>
+      <p class="ef__hint">However much or little you like. How many screens, what is on them now, when suits for a look - all useful, none of it required.</p>
+    </div>
+
+    {% comment %} Honeypot. Off-screen rather than display:none, which some bots skip. {% endcomment %}
+    <div class="ef__pot" aria-hidden="true">
+      <label for="ef-company-website">Do not fill this in</label>
+      <input id="ef-company-website" name="company_website" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="ef__actions">
+      <button class="btn btn--primary ef__send" type="submit" data-ef-send>{{ cta }}</button>
+      <p class="ef__fine">Goes straight to a person at eJukebox. We normally come back the same day.</p>
+    </div>
+
+    <p class="ef__msg" data-ef-msg role="status" aria-live="polite"></p>
+  </form>
+</div>

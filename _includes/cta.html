@@ -6,7 +6,7 @@
     body       - one paragraph under it
     ask        - "yes" to show the three qualifying questions
     cta        - primary button label
-    href       - primary button target. Passed through untouched, so a mailto:
+    href       - primary button target. Passed through untouched, so a page
                  or an absolute URL survives. Defaults to /trial/.
     ghost      - third button label
     ghost_href - third button target
@@ -27,8 +27,8 @@
 
   <div class="btn-row">
     <a class="btn btn--primary" href="{{ cta_href }}">{{ include.cta | default: "Start the 30-day trial" }}</a>
-    <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+    <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
     <a class="btn btn--ghost" href="{{ ghost_href }}">{{ include.ghost | default: "The full product at ejukebox.com.au" }}</a>
   </div>
-  <p class="anno anno--mut closer__fine">{{ site.contact.email }}</p>
+  <p class="anno anno--mut closer__fine">A person reads every enquiry - normally back the same day.</p>
 </div>
