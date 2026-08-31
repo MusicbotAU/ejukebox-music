@@ -1,0 +1,44 @@
+# ejukebox.music - Jekyll config for GitHub Pages.
+# Built server-side by GitHub Pages (Jekyll 3.10). Whitelisted plugins only,
+# no Actions, no local build step. Nothing here needs Jekyll 4.
+
+title: eJukebox Music
+tagline: The room where people stay
+description: >-
+  Channels built by real music directors, not an algorithm - every commercial
+  radio hit, changing itself through the day, playing on even if the internet
+  drops out, and licensed for business. The music your room has been missing.
+
+url: "https://ejukebox.music"
+baseurl: ""
+lang: en-AU
+timezone: Australia/Perth
+
+# Read by the nav, the CTA block and the footer. One place, every page.
+contact:
+  name: Marc Kean
+  company: MusicBot Pty Ltd
+  email: info@ejukebox.music
+  main_site: "https://ejukebox.com.au"
+
+# The eJukebox family. Drives the switcher bar at the top of every page and the
+# parent block in the footer. "current" marks which sibling this site is.
+family:
+  current: "music"
+  parent: "https://ejukebox.com.au"
+  music: "https://ejukebox.music"
+  tv: "https://ejukebox.tv"
+  sister_site: "https://ejukebox.tv"
+
+markdown: kramdown
+
+# jekyll-sitemap is on the GitHub Pages whitelist, so it runs server-side with
+# no Actions and no local build. It writes /sitemap.xml and /robots.txt.
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor

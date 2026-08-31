@@ -1,0 +1,526 @@
+---
+layout: default
+permalink: /
+title: eJukebox Music | The music that keeps a room full
+og_title: You have been in the wrong room. You just could not say why.
+description: >-
+  Channels hand-built by professional music directors, not an algorithm. Every
+  commercial radio hit, changing itself through the day, playing on even if the
+  internet drops out, and licensed for business. Thirty days free in your venue.
+---
+
+{% include figure.html %}
+
+<!-- ==================================================== HERO: THE TWO ROOMS ==
+     One venue, drawn once in _includes/room.html, rendered twice, and the
+     reader drags the seam between them. No frame anywhere near it.
+     ======================================================================= -->
+<section class="band band--flush" aria-labelledby="hero-h" style="padding-bottom:clamp(44px,5vw,72px)">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--ash">What the music is doing to your room right now</p>
+    <h1 id="hero-h">You have been in the wrong room. You just could not say why.</h1>
+    <p class="drop">It was the music.</p>
+    <p class="lede">Nobody walks out and tells you the playlist was wrong. They say it felt flat, or they were not in the mood, or they will get the next one somewhere else. <strong>Nine out of ten people have walked out of a venue over the music</strong> - and almost none of them said so on the way past the bar.</p>
+  </div>
+
+  <div class="rooms" data-rooms role="img" aria-label="The same bar drawn twice. On the left it is cold and steel grey: nine people sitting apart, facing away, nobody staying. On the right the same nine people in warm light, leaning in toward each other, two of them standing with their glasses up. Nothing in the room changed except the music.">
+    <div class="rooms__stage">
+      <div class="rooms__bloom" aria-hidden="true"></div>
+      <div class="rooms__layer rooms__layer--cold">{% include room.html %}</div>
+      <div class="rooms__layer rooms__layer--warm">{% include room.html %}</div>
+    </div>
+
+    <div class="wrap">
+      <div class="roomctl">
+        <label class="anno" for="mix">Drag - the same room, silent and sorted</label>
+        <input id="mix" class="roomctl__range" type="range" min="0" max="100" step="1" value="100"
+               data-mix aria-label="Slide from silence to the right music">
+        <div class="roomctl__caps">
+          <span class="anno anno--ash roomctl__cap roomctl__cap--cold">Silent - 6:40 PM - three tables, nobody staying</span>
+          <span class="anno anno--ember roomctl__cap roomctl__cap--warm">6:40 PM - the right channel on</span>
+        </div>
+        <p class="sr-only" role="status" data-mix-live></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(24px,3vw,36px)">
+    <div class="btn-row">
+      <a class="btn btn--primary" href="{{ '/trial/' | relative_url }}">Start the 30-day trial</a>
+      <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+      <a class="btn btn--ghost" href="{{ site.contact.main_site }}">Everything else is at ejukebox.com.au</a>
+    </div>
+    <p class="trustline" style="margin-top:26px">Australian owned, human-curated, and licensed for business. <strong>The same people who have been putting music into Australian pubs, clubs and bars for years</strong> - and the same phone number.</p>
+    <button class="playbtn" type="button" data-play>Pause the demo</button>
+  </div>
+</section>
+
+<!-- ============================================ NINETY OUT OF A HUNDRED ==== -->
+<section class="band band--cold" aria-labelledby="ninety-h">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--ash">The numbers</p>
+    <h2 id="ninety-h">Ninety out of a hundred have walked out over the music.</h2>
+
+    <div class="crowd" data-reveal role="img" aria-label="A hundred figures. Ninety of them are grey and tilted toward the door. Ten are upright and lit.">
+      {% assign stays = "7,14,23,38,41,55,62,74,88,96" | split: "," %}
+      {% for i in (1..100) %}{% assign s = i | append: '' %}<svg class="crowd__f{% if stays contains s %} stays{% endif %}" viewBox="0 0 24 40" style="--i:{{ forloop.index0 }}" aria-hidden="true" focusable="false"><use href="#fig"></use></svg>{% endfor %}
+    </div>
+    <p class="crowd__key">
+      <span class="chip chip--ash"><i class="dot" aria-hidden="true"></i>Ninety who left</span>
+      <span class="chip chip--ember"><i class="dot" aria-hidden="true"></i>Ten who stayed</span>
+    </p>
+
+    <p class="sub" style="max-width:44em;margin-top:26px">Ninety per cent of people say bad music has made them leave a venue, or vow never to go back. Ninety-seven per cent of venues already know their customers want to hear music. Only twenty-seven per cent say the music in their venue actually created a nice atmosphere. <strong>The distance between that second number and that third one is the whole opportunity</strong>, and it is sitting in your room tonight.</p>
+
+    <div class="grid grid--2 grid--top" style="margin-top:clamp(30px,4vw,46px)">
+      <div class="panel panel--warm stat">
+        <span class="stat__n">+48.2%</span>
+        <p class="stat__l">more sales at venues with music than at venues without.</p>
+        <p class="stat__src">OneMusic Hospitality, Presto Report</p>
+      </div>
+      <div class="panel panel--brass stat">
+        <span class="stat__n stat__n--brass">+21%</span>
+        <p class="stat__l">more weekday sales in pubs with music playing.</p>
+        <p class="stat__src">Independent hospitality research</p>
+      </div>
+    </div>
+
+    <p class="note">Nobody on that list filled in a form on the way out. They just did not come back.</p>
+  </div>
+</section>
+
+<!-- ============================================ THE MOMENT OF RECOGNITION == -->
+<section class="band band--warm" aria-labelledby="recog-h">
+  <div class="wrap">
+    <p class="eyebrow">The second it lands</p>
+    <h2 id="recog-h">The song they already know is the song that makes them <span class="warm">stay</span>.</h2>
+
+    <div class="grid grid--split grid--top" style="align-items:start">
+      <div>
+        <p class="sub">There is a half-second when a track comes on and somebody recognises it. Shoulders drop. They settle in. They order another one. <strong>That is not a taste thing, it is a belonging thing</strong> - a room full of songs nobody knows is a room full of people who feel like guests. So we build our channels out of the songs people already love, every commercial radio hit, and we deliberately leave out the obscure stuff that makes a person feel out of place. The variety is huge, so nobody gets sick of it.</p>
+        <p class="scene" style="margin-top:26px">The flow is so natural you will never feel the need to skip a track.</p>
+      </div>
+
+      <div class="recog is-hit" data-recog role="img" aria-label="Room tone rising as a familiar song lands, and three of five silhouettes turning their heads toward it.">
+        <div class="recog__tone" aria-hidden="true">
+          {% for i in (1..40) %}{% assign n = i | times: 37 | modulo: 11 | plus: 3 | times: 7 %}<i style="--h:.{{ n }};--i:{{ forloop.index0 }}"></i>{% endfor %}
+        </div>
+        <div class="recog__heads" aria-hidden="true">
+          <svg viewBox="0 0 600 130" preserveAspectRatio="xMidYMax meet" focusable="false">
+            <g fill="#100a0f">
+              <path d="M24 130c0-46 20-74 46-74s46 28 46 74z"/>
+              <path d="M151 130c0-41 17-66 39-66s39 25 39 66z"/>
+              <path d="M263 130c0-44 19-71 42-71s42 27 42 71z"/>
+              <path d="M383 130c0-39 17-63 37-63s37 24 37 63z"/>
+              <path d="M494 130c0-42 18-68 41-68s41 26 41 68z"/>
+            </g>
+            <g class="head head--1"><circle cx="70" cy="39" r="26" fill="#100a0f"/>
+              <path d="M70 13a26 26 0 0 1 26 26" fill="none" stroke="#e6b35c" stroke-opacity=".3" stroke-width="2.8"/></g>
+            <g class="head head--2"><circle cx="190" cy="49" r="23" fill="#100a0f"/>
+              <path d="M190 26a23 23 0 0 1 23 23" fill="none" stroke="#e6b35c" stroke-opacity=".34" stroke-width="2.6"/></g>
+            <g class="head head--3"><circle cx="305" cy="43" r="25" fill="#100a0f"/>
+              <path d="M305 18a25 25 0 0 1 25 25" fill="none" stroke="#e6b35c" stroke-opacity=".28" stroke-width="2.7"/></g>
+            <g class="head head--4"><circle cx="420" cy="53" r="22" fill="#100a0f"/>
+              <path d="M420 31a22 22 0 0 1 22 22" fill="none" stroke="#e6b35c" stroke-opacity=".34" stroke-width="2.5"/></g>
+            <g class="head head--5"><circle cx="535" cy="46" r="24" fill="#100a0f"/>
+              <path d="M535 22a24 24 0 0 1 24 24" fill="none" stroke="#e6b35c" stroke-opacity=".32" stroke-width="2.6"/></g>
+          </svg>
+        </div>
+        <p class="anno anno--ember recog__hit">Three people just looked up</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================== THE ROOFTOP CLOCK ==== -->
+<section class="band band--warm" aria-labelledby="roof-h">
+  <div class="wrap">
+    <p class="eyebrow">Five PM to close</p>
+    <h2 id="roof-h">A rooftop bar over the Harbour Bridge, and the music moving with the light.</h2>
+    <p class="lede">Morning is light and uplifting. The midday rush gets energy. Then as night falls it rolls into smooth cocktail and dance music - the perfect soundtrack to the view. More patrons. Longer stays. More drinks sold.</p>
+  </div>
+
+  <div class="wrap">
+    <div class="roof" data-roof data-stage="2" role="img" aria-label="A rooftop bar above the harbour, drawn at four times of the evening. As the sky goes from gold to deep violet the bridge lights come up, the rooftop warms and three more people arrive at the rail.">
+      <div class="roof__scene">
+        <div class="roof__skies" aria-hidden="true">
+          <div class="sky sky--5" data-sky></div>
+          <div class="sky sky--7" data-sky></div>
+          <div class="sky sky--9 is-on" data-sky></div>
+          <div class="sky sky--11" data-sky></div>
+        </div>
+
+        <svg class="roof__art" viewBox="0 165 1200 455" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="roof-bloom" cx="50%" cy="100%" r="72%">
+              <stop offset="0" stop-color="#ff8f60" stop-opacity="1"/>
+              <stop offset="1" stop-color="#ff7a55" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="balusters" width="30" height="10" patternUnits="userSpaceOnUse">
+              <rect x="0" y="0" width="4" height="10" fill="#09050c"/>
+            </pattern>
+          </defs>
+
+          <!-- the water -->
+          <rect x="0" y="392" width="1200" height="156" fill="#0b0710" opacity=".5"/>
+          <g fill="#ffe1a8" opacity=".14">
+            <rect x="120" y="404" width="180" height="2"/><rect x="420" y="416" width="240" height="2"/>
+            <rect x="260" y="430" width="150" height="2"/><rect x="700" y="410" width="200" height="2"/>
+            <rect x="560" y="446" width="290" height="2"/><rect x="880" y="434" width="170" height="2"/>
+          </g>
+
+          <!-- the skyline -->
+          <g fill="#0a0710" opacity=".72">
+            <rect x="0" y="318" width="58" height="76"/><rect x="58" y="340" width="44" height="54"/>
+            <rect x="102" y="300" width="70" height="94"/><rect x="172" y="352" width="38" height="42"/>
+            <rect x="210" y="286" width="86" height="108"/><rect x="296" y="330" width="50" height="64"/>
+            <rect x="360" y="356" width="40" height="38"/><rect x="400" y="346" width="54" height="48"/>
+            <rect x="820" y="350" width="44" height="44"/><rect x="864" y="360" width="30" height="34"/>
+            <rect x="880" y="296" width="64" height="98"/><rect x="944" y="336" width="42" height="58"/>
+            <rect x="986" y="272" width="74" height="122"/><rect x="1060" y="326" width="46" height="68"/>
+            <rect x="1106" y="300" width="58" height="94"/><rect x="1164" y="344" width="36" height="50"/>
+          </g>
+
+          <!-- the coathanger -->
+          <g fill="none" stroke="#0a0710" stroke-opacity=".82">
+            <path d="M300 372Q550 150 800 372" stroke-width="10"/>
+            <path d="M324 372Q550 206 776 372" stroke-width="5"/>
+            <g stroke-width="3">
+              <path d="M350 332v40"/><path d="M400 301v71"/><path d="M450 279v93"/><path d="M500 265v107"/>
+              <path d="M550 261v111"/><path d="M600 265v107"/><path d="M650 279v93"/><path d="M700 301v71"/>
+              <path d="M750 332v40"/>
+            </g>
+          </g>
+          <rect x="288" y="366" width="524" height="10" fill="#0a0710" opacity=".86"/>
+          <g fill="#0a0710" opacity=".88">
+            <rect x="278" y="308" width="26" height="88"/><rect x="314" y="308" width="26" height="88"/>
+            <rect x="758" y="308" width="26" height="88"/><rect x="794" y="308" width="26" height="88"/>
+          </g>
+
+          <!-- the lights come up as the sky goes down -->
+          <g class="lights">
+            <g fill="#ffe1a8">
+              <circle cx="350" cy="332" r="3"/><circle cx="400" cy="301" r="3"/><circle cx="450" cy="279" r="3"/>
+              <circle cx="500" cy="265" r="3"/><circle cx="550" cy="261" r="3"/><circle cx="600" cy="265" r="3"/>
+              <circle cx="650" cy="279" r="3"/><circle cx="700" cy="301" r="3"/><circle cx="750" cy="332" r="3"/>
+              <circle cx="320" cy="362" r="2.4"/><circle cx="380" cy="362" r="2.4"/><circle cx="440" cy="362" r="2.4"/>
+              <circle cx="500" cy="362" r="2.4"/><circle cx="560" cy="362" r="2.4"/><circle cx="620" cy="362" r="2.4"/>
+              <circle cx="680" cy="362" r="2.4"/><circle cx="740" cy="362" r="2.4"/>
+            </g>
+            <g fill="#ffd79a" opacity=".85">
+              <rect x="118" y="316" width="4" height="6"/><rect x="132" y="330" width="4" height="6"/>
+              <rect x="146" y="316" width="4" height="6"/><rect x="118" y="348" width="4" height="6"/>
+              <rect x="146" y="348" width="4" height="6"/><rect x="226" y="302" width="4" height="6"/>
+              <rect x="244" y="318" width="4" height="6"/><rect x="262" y="302" width="4" height="6"/>
+              <rect x="226" y="336" width="4" height="6"/><rect x="262" y="354" width="4" height="6"/>
+              <rect x="1000" y="288" width="4" height="6"/><rect x="1018" y="304" width="4" height="6"/>
+              <rect x="1036" y="288" width="4" height="6"/><rect x="1000" y="322" width="4" height="6"/>
+              <rect x="1036" y="340" width="4" height="6"/><rect x="894" y="312" width="4" height="6"/>
+              <rect x="912" y="330" width="4" height="6"/><rect x="1120" y="316" width="4" height="6"/>
+              <rect x="1140" y="334" width="4" height="6"/>
+            </g>
+          </g>
+
+          <!-- the rooftop itself -->
+          <rect x="0" y="548" width="1200" height="72" fill="#0e0a0d"/>
+          <ellipse class="roof-bloom" cx="600" cy="606" rx="560" ry="132" fill="url(#roof-bloom)"/>
+
+          <!-- people at the rail. Three are always here. Three arrive later. -->
+          <g fill="#120c11">
+            <g><circle cx="250" cy="409" r="20"/><path d="M218 556c0-82 14-134 32-134s32 52 32 134z"/></g>
+            <g><circle cx="470" cy="409" r="20"/><path d="M438 556c0-82 14-134 32-134s32 52 32 134z"/></g>
+            <g><circle cx="880" cy="409" r="20"/><path d="M848 556c0-82 14-134 32-134s32 52 32 134z"/></g>
+            <g class="roof-late"><circle cx="150" cy="415" r="18"/><path d="M121 556c0-74 13-121 29-121s29 47 29 121z"/></g>
+            <g class="roof-late"><circle cx="640" cy="415" r="18"/><path d="M611 556c0-74 13-121 29-121s29 47 29 121z"/></g>
+            <g class="roof-late"><circle cx="1030" cy="415" r="18"/><path d="M1001 556c0-74 13-121 29-121s29 47 29 121z"/></g>
+          </g>
+
+          <!-- the rail, in front of everybody -->
+          <rect x="0" y="477" width="1200" height="63" fill="url(#balusters)"/>
+          <rect x="0" y="468" width="1200" height="9" rx="4" fill="#18101a"/>
+          <rect x="0" y="466" width="1200" height="2" fill="#ff7a55" opacity=".3"/>
+          <rect x="0" y="538" width="1200" height="7" rx="3" fill="#120b12"/>
+        </svg>
+      </div>
+
+      <div class="roof__ctl">
+        <div class="segrow" role="group" aria-label="Time of the evening">
+          <button class="segbtn" type="button" data-hour aria-pressed="false">5 PM</button>
+          <button class="segbtn" type="button" data-hour aria-pressed="false">7 PM</button>
+          <button class="segbtn" type="button" data-hour aria-pressed="true">9 PM</button>
+          <button class="segbtn" type="button" data-hour aria-pressed="false">11 PM</button>
+        </div>
+        <button class="playbtn" type="button" data-play>Pause the demo</button>
+      </div>
+      <p class="roof__cap" data-roof-cap>
+        <span class="anno anno--ember">9:00 PM</span>
+        <span class="anno anno--mut">SMOOTH COCKTAIL AND DANCE</span>
+      </p>
+      <p class="sr-only" role="status" data-roof-live></p>
+      <p class="note">Illustration - drawn, not a photograph.</p>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:clamp(26px,3.4vw,40px)">
+    <p class="sub"><strong>Nobody behind the bar touches a thing.</strong> The channels change themselves at the times we set with you, and a real person chose every one of them.</p>
+  </div>
+</section>
+
+<!-- ====================================================== BUILT BY PEOPLE == -->
+<section class="band" aria-labelledby="people-h">
+  <div class="wrap">
+    <p class="eyebrow">Hand-built</p>
+    <h2 id="people-h">Channels, not playlists. Every one of them built by a <span class="brassed">person</span>.</h2>
+
+    <div class="grid grid--split grid--top">
+      <p class="sub">An algorithm optimises for the next click. A music director builds for the next two hours in a room they have stood in. <strong>Ours are professionals, they are Australian</strong>, and they are the reason the flow feels right rather than nearly right.</p>
+      <ul class="ticks">
+        <li><strong>Professional music directors</strong>, not an algorithm.</li>
+        <li><strong>Every commercial radio hit</strong> - the songs people already know.</li>
+        <li><strong>Huge variety</strong>, so there is no fatigue across a long shift.</li>
+        <li><strong>Family friendly</strong> - every track free of swearing and explicit lyrics.</li>
+        <li><strong>Broadcast-quality processing</strong> for consistent volume, with no jarring jumps between tracks.</li>
+        <li><strong>Australian owned</strong>, operated and human-curated.</li>
+      </ul>
+    </div>
+
+    <p class="anno anno--mut" style="display:block;margin-top:clamp(34px,4.4vw,50px)">One venue, one day - the run sheet a music director writes for it</p>
+    <div class="sheet">
+      <div class="sheet__row">
+        <span class="sheet__t">7:00 AM</span>
+        <div><p class="sheet__name">Doors</p><p class="sheet__what">Light and uplifting, nothing anybody has to think about.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:26%"></i></span>
+      </div>
+      <div class="sheet__row">
+        <span class="sheet__t">10:00 AM</span>
+        <div><p class="sheet__name">Mid-morning</p><p class="sheet__what">Still easy, a bit more colour in it.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:38%"></i></span>
+      </div>
+      <div class="sheet__row">
+        <span class="sheet__t">12:00 PM</span>
+        <div><p class="sheet__name">The rush</p><p class="sheet__what">Energetic. The room is loud and the music holds the pace.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:74%"></i></span>
+      </div>
+      <div class="sheet__row">
+        <span class="sheet__t">3:00 PM</span>
+        <div><p class="sheet__name">The flat bit</p><p class="sheet__what">The one hour that decides whether the afternoon crowd stays.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:44%"></i></span>
+      </div>
+
+      <p class="margin-note">Do not let 3pm drop. Warm, familiar, nothing clever - that hour is where you lose the afternoon.
+        <span class="margin-note__by">A note on the run sheet, in the music director's own hand</span>
+      </p>
+
+      <div class="sheet__row">
+        <span class="sheet__t">5:00 PM</span>
+        <div><p class="sheet__name">Knock-off</p><p class="sheet__what">The lift. The songs everybody knows, and the first round.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:82%"></i></span>
+      </div>
+      <div class="sheet__row">
+        <span class="sheet__t">8:00 PM</span>
+        <div><p class="sheet__name">The night</p><p class="sheet__what">Upbeat, familiar, built for a full room.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:92%"></i></span>
+      </div>
+      <div class="sheet__row">
+        <span class="sheet__t">11:00 PM</span>
+        <div><p class="sheet__name">Late and loose</p><p class="sheet__what">The singalongs. The ones people put their arms around each other for.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:100%"></i></span>
+      </div>
+      <div class="sheet__row">
+        <span class="sheet__t">1:00 AM</span>
+        <div><p class="sheet__name">Close</p><p class="sheet__what">It winds the room down for you, so your staff do not have to.</p></div>
+        <span class="sheet__bar" aria-hidden="true"><i style="--e:34%"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= THE UNTOUCHED LEDGER == -->
+<section class="band band--tight" aria-labelledby="ledger-h">
+  <div class="wrap">
+    <p class="eyebrow">Fully managed</p>
+    <h2 id="ledger-h">It changes itself, and a person chose every change.</h2>
+    <p class="sub">We sit down with you once, work out what your room does at each hour, and set the schedule to match. After that the channels change themselves at the times we agreed. Nobody behind the bar touches it, nobody forgets, and it is the same on a Tuesday as it is on a Saturday.</p>
+
+    <div class="grid grid--wide-split grid--top" style="margin-top:clamp(26px,3.4vw,38px)">
+      <div class="counters">
+        <div class="panel panel--warm">
+          <span class="counter__n" data-count-to="7">7</span>
+          <p class="counter__l">automatic channel changes in this venue today.</p>
+        </div>
+        <div class="panel panel--ash">
+          <span class="counter__n counter__n--ash">0</span>
+          <p class="counter__l">actions required from your staff.</p>
+        </div>
+      </div>
+
+      <div class="panel panel--flush">
+        <div class="ledger" data-reveal style="padding:clamp(18px,2.2vw,26px)">
+          <div class="ledger__row"><span class="ledger__t">07:00</span><span class="ledger__ev">Doors channel started</span></div>
+          <div class="ledger__row"><span class="ledger__t">10:00</span><span class="ledger__ev">Changed to Mid-morning</span></div>
+          <div class="ledger__row"><span class="ledger__t">12:00</span><span class="ledger__ev">Changed to The rush</span></div>
+          <div class="ledger__row"><span class="ledger__t">15:00</span><span class="ledger__ev">Changed to The flat bit</span></div>
+          <div class="ledger__row"><span class="ledger__t">17:00</span><span class="ledger__ev">Changed to Knock-off</span></div>
+          <div class="ledger__row"><span class="ledger__t">20:00</span><span class="ledger__ev">Changed to The night</span></div>
+          <div class="ledger__row"><span class="ledger__t">23:00</span><span class="ledger__ev">Changed to Late and loose</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note">Want it different next month? Ring us. We change it at our end.</p>
+  </div>
+</section>
+
+<!-- ====================================================== IT KEEPS PLAYING == -->
+<section class="band band--cold" aria-labelledby="keeps-h">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--ash">The sober bit</p>
+    <h2 id="keeps-h">The internet drops out. The music does not.</h2>
+    <p class="lede">A compact solid-state player goes in at the venue, and it holds the music. If the line goes down mid-Saturday the room never hears it. One-off to install, then it looks after itself.</p>
+
+    <div class="panel panel--cold cut" data-cut style="margin-top:clamp(22px,3vw,32px)">
+      <div class="cut__link">
+        <span class="anno anno--mut">Us</span>
+        <span class="cut__wire" aria-hidden="true"></span>
+        <span class="chip chip--good" data-cut-chip><i class="dot" aria-hidden="true"></i>Line up</span>
+        <span class="cut__wire" aria-hidden="true"></span>
+        <span class="anno anno--mut">The player, on site</span>
+      </div>
+
+      <div class="cut__meter" aria-hidden="true">
+        {% for b in (1..44) %}{% assign bh = b | times: 29 | modulo: 13 | plus: 4 | times: 6 %}<i style="--h:.{{ bh }};--i:{{ forloop.index0 }}"></i>{% endfor %}
+      </div>
+
+      <div class="cut__state">
+        <button class="btn btn--ghost btn--small" type="button" data-cut-toggle aria-pressed="false">Cut the internet</button>
+        <span class="anno anno--mut">Illustration, not a live player</span>
+      </div>
+      <p class="cut__said" data-cut-said>Everything normal. Now cut the line and watch what the room does.</p>
+      <p class="sr-only" role="status" data-cut-live></p>
+    </div>
+
+    <div class="grid grid--2" style="margin-top:var(--gap)">
+      <div class="panel panel--cold">
+        <h3>Two zones included</h3>
+        <p style="color:var(--soft);margin:0">The front bar and the beer garden run different music at the same time. Most providers charge you for every zone. A third zone here is a small add-on.</p>
+      </div>
+      <div class="panel panel--cold">
+        <h3>The player</h3>
+        <p style="color:var(--soft);margin:0">Compact, solid-state, installed and set up for you. It is the reason a dropped line is your problem for ten minutes and never the room's.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================ ASK FOR IT IN PLAIN ENGLISH -->
+<section class="band band--night" aria-labelledby="ai-h">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--violet">AI song search</p>
+    <h2 id="ai-h">A machine can fetch. It cannot <span class="brassed">choose</span>.</h2>
+    <p class="lede">Nobody remembers the title. They remember the film, or the year, or the feeling. So you can search for it that way now - and the machine that goes and gets it is a completely different machine from the one that picks what the room hears.</p>
+
+    <div class="panel panel--night ask" data-ask style="margin-top:clamp(20px,2.6vw,30px)">
+      <div class="ask__field">
+        <svg class="ask__mag" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false">
+          <circle cx="9.5" cy="9.5" r="6.6" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M14.4 14.4 20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="ask__q" data-ask-q>songs from the movie Good Morning Vietnam</span><span class="ask__caret" aria-hidden="true"></span>
+      </div>
+
+      <div class="segrow" style="margin-top:18px" role="group" aria-label="Try a search">
+        <button class="segbtn segbtn--violet" type="button" data-ask-chip aria-pressed="true"
+          data-q="songs from the movie Good Morning Vietnam"
+          data-rows='[["What a Wonderful World","Louis Armstrong"],["Nowhere to Run","Martha and the Vandellas"],["I Get Around","The Beach Boys"],["Game of Love","Wayne Fontana and the Mindbenders"]]'>Good Morning Vietnam</button>
+        <button class="segbtn segbtn--violet" type="button" data-ask-chip aria-pressed="false"
+          data-q="80s Australian pub rock"
+          data-rows='[["Khe Sanh","Cold Chisel"],["Throw Your Arms Around Me","Hunters and Collectors"],["Beds Are Burning","Midnight Oil"],["Down Under","Men at Work"]]'>80s Australian pub rock</button>
+        <button class="segbtn segbtn--violet" type="button" data-ask-chip aria-pressed="false"
+          data-q="something for a 50th"
+          data-rows='[["Dancing Queen","ABBA"],["You Shook Me All Night Long","AC/DC"],["Livin on a Prayer","Bon Jovi"],["Never Tear Us Apart","INXS"]]'>Something for a 50th</button>
+      </div>
+
+      <ul class="ask__res" data-ask-res></ul>
+      <p class="sr-only" role="status" data-ask-live></p>
+      <p class="note">Illustration - the real list comes from your venue's own library.</p>
+    </div>
+
+    <div class="grid grid--2 grid--top" style="margin-top:var(--gap)">
+      <div class="panel panel--ash">
+        <p class="anno anno--ash" style="display:block;margin-bottom:8px">The machine we do not use</p>
+        <h3 style="color:var(--ash-lt)">An algorithm that chooses</h3>
+        <p style="color:var(--soft);margin:0">It picks the next song for your room based on what got clicked somewhere else. It has never stood in your bar at three in the afternoon. That is the machine we do not use, and never will.</p>
+      </div>
+      <div class="panel panel--night">
+        <p class="anno anno--violet" style="display:block;margin-bottom:8px">The machine we do use</p>
+        <h3 style="color:var(--violet)">AI that fetches</h3>
+        <p style="color:var(--soft);margin:0">Somebody asks for a song in plain English and it goes and finds it. It does not decide anything. A person still built the channel it lands in.</p>
+      </div>
+    </div>
+
+    <div class="grid grid--2 grid--top" style="margin-top:var(--gap)">
+      <div class="panel">
+        <h3>Requests from their own phone</h3>
+        <p style="color:var(--soft);margin:0">A customer picks the next song from where they are sitting, and your staff keep full control of what is playable - so nothing goes on that you would not have put on yourself.</p>
+      </div>
+      <div class="panel">
+        <h3>Playing Across the Country</h3>
+        <p style="color:var(--soft);margin:0">A live national feed of what is going off in other venues right now. Your room, plugged into every other room.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== LICENSED FOR BUSINESS -->
+<section class="band band--cold" aria-labelledby="lic-h">
+  <div class="wrap">
+    <div class="grid grid--wide-split">
+      <div>
+        <p class="eyebrow eyebrow--ash">The licence</p>
+        <h2 id="lic-h">The app on your phone is not licensed to play in your bar.</h2>
+        <p class="sub">Right now there is a good chance it is somebody's own phone on the back bar, plugged into the aux, on a personal account. <strong>Personal accounts like Spotify and Amazon Music are against their own terms of service to play in public</strong>, however good the playlist is. eJukebox is licensed for business. The music in your room is on the right side of the law and nobody there has to think about it again.</p>
+        <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned, operated and human-curated.</p>
+      </div>
+
+      <div role="img" aria-label="A staff phone lying face down on the back bar with its cable running into the aux socket. Drawn flat and grey, because it is the wrong room's object.">
+        <svg class="aux" viewBox="0 0 520 300" preserveAspectRatio="xMidYMid meet" focusable="false">
+          <rect x="0" y="196" width="520" height="14" rx="7" fill="#232d36"/>
+          <rect x="0" y="193" width="520" height="2.4" fill="#6d8496" opacity=".4"/>
+          <rect x="16" y="210" width="488" height="84" fill="#141b21"/>
+          <g>
+            <rect x="118" y="128" width="112" height="70" rx="12" fill="#2e3b46"/>
+            <rect x="126" y="136" width="96" height="54" rx="8" fill="#1d262e"/>
+            <circle cx="174" cy="146" r="2.6" fill="#6d8496" opacity=".5"/>
+          </g>
+          <path d="M230 172c46 0 58 12 84 12s44-10 44-10" fill="none" stroke="#6d8496" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+          <rect x="352" y="164" width="26" height="16" rx="4" fill="#6d8496" opacity=".8"/>
+          <rect x="378" y="140" width="86" height="58" rx="8" fill="#2e3b46"/>
+          <circle cx="404" cy="172" r="6" fill="#0c1013"/>
+          <circle cx="438" cy="172" r="6" fill="#0c1013"/>
+          <text x="260" y="268" text-anchor="middle" fill="#6d8496" font-family="'Spline Sans Mono',monospace" font-size="15" letter-spacing="3">NOT LICENSED FOR PUBLIC PLAY</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================== PLAYS WELL WITH SCREENS -->
+<section class="band band--tight" aria-labelledby="tv-h">
+  <div class="wrap wrap--narrow">
+    <h2 id="tv-h" style="font-size:clamp(1.4rem,2.6vw,1.9rem)">There is a brother site.</h2>
+    <p class="sub">The same team put the screen in the corner to work as well - guest photos on the wall, announcements you type from your phone. Same room, same people.</p>
+    <div class="btn-row">
+      <a class="btn btn--ghost" href="{{ site.contact.sister_site }}">See the screen side at ejukebox.tv</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== THE CLOSER -->
+<section class="band band--warm" aria-label="Start the trial">
+  <div class="wrap">
+    {% include cta.html
+       heading="Put it in for thirty days and listen to the room."
+       body="The complete system installed, hardware and installation covered, and nothing to pay while you listen. Tell us three things and we will build the channels around your room before we turn up. If the room does not feel different, we take it out."
+       ask="yes" %}
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<footer class="site-footer">
+  <div class="wrap">
+
+    <!-- the loud route back to the parent site -->
+    <div class="parentcard">
+      <img class="parentcard__logo" src="{{ '/assets/ejukebox-logo.png' | relative_url }}"
+           alt="eJukebox" width="89" height="44" loading="lazy" decoding="async">
+      <div>
+        <p class="parentcard__t">This is the music side of eJukebox.</p>
+        <p class="parentcard__s">The zones, the add-ons, the screens and the full pricing all live on the main site. The music and the screen are built to run together, and most venues take both.</p>
+      </div>
+      <a class="btn btn--ghost parentcard__go" href="{{ site.family.parent }}">Go to ejukebox.com.au</a>
+    </div>
+    <div class="site-footer__in">
+      <div>
+        <a class="brand" href="{{ '/' | relative_url }}" aria-label="eJukebox Music, home">
+          <img src="{{ '/assets/ejukebox-logo.png' | relative_url }}" width="170" height="84" alt="eJukebox">
+          <span class="brand__dot" aria-hidden="true">.music</span>
+        </a>
+        <p style="margin-top:12px;max-width:30em">Channels built by real music directors, changing themselves through the day, playing on if the internet drops out, and licensed for business.</p>
+      </div>
+
+      <div>
+        <p class="anno anno--mut" style="margin-bottom:8px">Talk to us</p>
+        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+      </div>
+
+      <div>
+        <p class="anno anno--mut" style="margin-bottom:8px">Pages</p>
+        <div class="site-footer__links">
+          <a href="{{ '/' | relative_url }}">The room</a>
+          <a href="{{ '/trial/' | relative_url }}">The 30-day trial</a>
+          <a href="{{ site.contact.main_site }}">The full product at ejukebox.com.au</a>
+          <a href="{{ site.contact.sister_site }}">The screen side, at ejukebox.tv</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__legal">
+      <span>{{ site.contact.company }} - Australian owned, operated and human-curated.</span>
+      <span class="anno anno--mut">ejukebox.music</span>
+    </div>
+  </div>
+</footer>

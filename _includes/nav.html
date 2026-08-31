@@ -1,0 +1,22 @@
+{% include familybar.html %}
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="eJukebox Music, home">
+      <img src="{{ '/assets/ejukebox-logo.png' | relative_url }}" width="170" height="84" alt="eJukebox">
+      <span class="brand__dot" aria-hidden="true">.music</span>
+    </a>
+
+    <nav class="topnav" aria-label="Main">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-here" aria-current="page"{% endif %}>The room</a>
+      <a href="{{ '/trial/' | relative_url }}"{% if page.url contains '/trial' %} class="is-here" aria-current="page"{% endif %}>The trial</a>
+      <a href="{{ site.contact.main_site }}">ejukebox.com.au</a>
+    </nav>
+
+    <p class="daypart">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sr-only">Now playing in venues like yours</span>
+      <span class="daypart__t" data-clock aria-hidden="true">6:12 PM</span>
+      <span class="daypart__w" data-daypart aria-hidden="true">Knock-off</span>
+    </p>
+  </div>
+</header>

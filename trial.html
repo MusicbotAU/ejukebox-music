@@ -1,0 +1,109 @@
+---
+layout: default
+permalink: /trial/
+title: The 30-day trial | eJukebox Music
+og_title: Thirty days. The whole thing in, and nothing to pay while you listen.
+description: >-
+  The complete eJukebox system installed in your venue for thirty days, with
+  hardware and installation covered. Channels built for your room before we
+  arrive, two zones, the licence handled, and a conversation at the end of it.
+---
+
+<!-- This page is pinned to one fixed light state. No timed devices, no cycling,
+     nothing that moves by itself. After the homepage, the ask should feel calm. -->
+
+<section class="band band--flush" aria-labelledby="t-h" style="padding-bottom:clamp(30px,4vw,52px)">
+  <div class="wrap">
+    <p class="eyebrow">The 30-day trial</p>
+    <h1 id="t-h">Thirty days. The whole thing in, and nothing to pay while you listen.</h1>
+    <p class="lede">Not a demo link and not a login. The complete system goes into your venue, <strong>hardware and installation covered</strong>, and it runs for a month while you stand in the room and make up your mind.</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="mailto:{{ site.contact.email }}?subject=30-day%20trial">Email {{ site.contact.email }}</a>
+      <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+    </div>
+  </div>
+
+  <div class="rooms rooms--still" role="img" aria-label="A bar in warm light. Nine people leaning in toward each other, two standing with their glasses up. This is the room after thirty days." style="margin-top:clamp(26px,3.4vw,44px)">
+    <div class="rooms__stage">
+      <div class="rooms__bloom" aria-hidden="true"></div>
+      <div class="rooms__layer rooms__layer--warm rooms__layer--still">{% include room.html %}</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= WHAT TURNS UP == -->
+<section class="band" aria-labelledby="turn-h">
+  <div class="wrap">
+    <p class="eyebrow">Beat one</p>
+    <h2 id="turn-h">What turns up.</h2>
+    <div class="grid grid--3 grid--top" style="margin-top:clamp(22px,3vw,32px)">
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">The player</p>
+        <h3>A compact box, not a computer</h3>
+        <p style="color:var(--soft);margin:0">Solid-state, silent, about the size of a paperback. It holds the music on board, which is why a dropped line never reaches the room. We install it and set it up.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">The channels</p>
+        <h3>Built before we arrive</h3>
+        <p style="color:var(--soft);margin:0">You tell us what your room does at each hour. A music director builds the run sheet around it, so what comes on at five on the first day is already meant for five o'clock in your venue.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">The install</p>
+        <h3>Two zones, wired and tested</h3>
+        <p style="color:var(--soft);margin:0">Two zones are included, so the front bar and the beer garden can run different music from day one. We test both before we leave.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================== WHAT YOU DO === -->
+<section class="band band--warm" aria-labelledby="do-h">
+  <div class="wrap">
+    <div class="grid grid--wide-split">
+      <div>
+        <p class="eyebrow">Beat two</p>
+        <h2 id="do-h">What you do.</h2>
+        <p class="drop" style="margin-bottom:18px">Nothing.</p>
+        <p class="sub">The channels change themselves at the hours we agreed. Nobody behind the bar goes looking for a phone, nobody forgets at three in the afternoon, and it runs the same on a Tuesday as it does on a Saturday. <strong>If you want it different, ring us and we change it at our end.</strong></p>
+      </div>
+      <div class="panel panel--warm">
+        <span class="counter__n counter__n--ash">0</span>
+        <p class="counter__l">actions required from your staff, on any day of the trial.</p>
+        <p class="anno anno--mut" style="display:block;margin-top:18px">Set once. Then never again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ THE LICENCE == -->
+<section class="band band--cold" aria-labelledby="lic-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">Beat three</p>
+    <h2 id="lic-h">The licence, stated straight.</h2>
+    <p class="sub">Personal accounts like Spotify and Amazon Music are against their own terms of service to play in public, however good the playlist is. That is the whole argument, and it has nothing to do with price. <strong>eJukebox is licensed for business</strong>, so the music in your room is on the right side of the law from the first day of the trial, and nobody there has to think about it again.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned, operated and human-curated.</p>
+  </div>
+</section>
+
+<!-- ====================================================== AFTER THIRTY DAYS == -->
+<section class="band" aria-labelledby="after-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Beat four</p>
+    <h2 id="after-h">After thirty days - a conversation, not a contract that renews itself in the dark.</h2>
+    <p class="sub">At the end of the month we ring you and ask what the room did. If it is worth keeping, we work out what it costs and you decide then, with a month of your own evidence behind you. <strong>If the room does not feel different, we take it out</strong> and that is the end of it. No auto-renewal, no notice period to find, nothing quietly ticking over.</p>
+    <p class="scene scene--ivory" style="margin-top:26px">You will know inside a fortnight. Everybody does. It is the Friday you look up and realise nobody has gone home.</p>
+  </div>
+</section>
+
+<!-- =============================================================== THE ASK === -->
+<section class="band band--warm" aria-label="Start the trial">
+  <div class="wrap">
+    {% include cta.html
+       heading="Tell us about the room and we will build it around that."
+       body="Three answers is all we need to start. Email them over or ring and talk them through, and we will have the channels drafted before the player goes in."
+       ask="yes"
+       cta="Email info@ejukebox.music"
+       href="mailto:info@ejukebox.music?subject=30-day%20trial"
+       ghost="The full product at ejukebox.com.au" %}
+  </div>
+</section>

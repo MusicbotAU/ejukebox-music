@@ -1,0 +1,34 @@
+{% comment %}
+  The site closer. Every page ends on this, and it is the warmest point on
+  the page it sits on.
+  Params (all optional):
+    heading    - the big line
+    body       - one paragraph under it
+    ask        - "yes" to show the three qualifying questions
+    cta        - primary button label
+    href       - primary button target. Passed through untouched, so a mailto:
+                 or an absolute URL survives. Defaults to /trial/.
+    ghost      - third button label
+    ghost_href - third button target
+{% endcomment %}
+{% if include.href %}{% assign cta_href = include.href %}{% else %}{% assign cta_href = '/trial/' | relative_url %}{% endif %}
+{% if include.ghost_href %}{% assign ghost_href = include.ghost_href %}{% else %}{% assign ghost_href = site.contact.main_site %}{% endif %}
+<div class="closer">
+  <h2>{{ include.heading | default: "Put it in for thirty days and listen to the room." }}</h2>
+  <p>{{ include.body | default: "The complete system installed, hardware and installation covered, and nothing to pay while you listen. Tell us about the room and we will build the channels around it. If the room does not feel different, we take it out." }}</p>
+
+  {% if include.ask == "yes" %}
+  <ul class="closer__ask">
+    <li>How many rooms are you filling with sound?</li>
+    <li>What is playing in them now?</li>
+    <li>When are your busy hours?</li>
+  </ul>
+  {% endif %}
+
+  <div class="btn-row">
+    <a class="btn btn--primary" href="{{ cta_href }}">{{ include.cta | default: "Start the 30-day trial" }}</a>
+    <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+    <a class="btn btn--ghost" href="{{ ghost_href }}">{{ include.ghost | default: "The full product at ejukebox.com.au" }}</a>
+  </div>
+  <p class="anno anno--mut closer__fine">{{ site.contact.email }}</p>
+</div>
