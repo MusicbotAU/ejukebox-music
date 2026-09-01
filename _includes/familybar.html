@@ -1,5 +1,14 @@
 <!-- The eJukebox family switcher. Same component as ejukebox.tv - only
-     site.family.current differs. Keeps the parent one click from every page. -->
+     site.family.current differs. Keeps the parent one click from every page.
+
+     This bar renders on every page, so its anchor text is the dominant anchor
+     pointing at each sibling domain. It used to read "Music" and "TV" - two
+     generic words that describe a TLD rather than a product, passing no
+     topical signal at all. It stays a compact switcher, because that is what
+     it is for, but each sibling label now says what is on the other end of it.
+     The parent link stays short - the three pills have to fit one row on a
+     360px phone, and the footer parentcard carries the descriptive parent
+     anchor ("See the full eJukebox product range") where there is room.  -->
 <nav class="fambar" aria-label="eJukebox sites">
   <div class="fambar__in">
     <img class="fambar__logo" src="{{ '/assets/ejukebox-logo.png' | relative_url }}"
@@ -7,8 +16,8 @@
     <span class="fambar__label">Part of eJukebox</span>
     <div class="fambar__nav">
       <a class="is-parent" href="{{ site.family.parent }}">Main site &rarr;</a>
-      <a href="{{ site.family.music }}"{% if site.family.current == 'music' %} class="is-here" aria-current="true"{% endif %}>Music</a>
-      <a href="{{ site.family.tv }}"{% if site.family.current == 'tv' %} class="is-here" aria-current="true"{% endif %}>TV</a>
+      <a href="{{ site.family.music }}"{% if site.family.current == 'music' %} class="is-here" aria-current="true"{% endif %}>Venue music</a>
+      <a href="{{ site.family.tv }}"{% if site.family.current == 'tv' %} class="is-here" aria-current="true"{% endif %}>Venue screens</a>
     </div>
   </div>
 </nav>

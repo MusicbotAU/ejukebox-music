@@ -1,12 +1,23 @@
 ---
 layout: default
 permalink: /trial/
-title: The 30-day trial | eJukebox Music
+
+# The old title spent the most valuable position in the tag on the word "The"
+# and never said what the trial was of. "30 Day" unhyphenated, because that is
+# how people type it - "30-day" stays in the body prose, where it reads better.
+title: 30 Day Free Trial - Music for Your Venue | eJukebox Music
 og_title: Thirty days. The whole thing in, and nothing to pay while you listen.
 description: >-
-  The complete eJukebox system installed in your venue for thirty days, with
-  hardware and installation covered. Channels built for your room before we
-  arrive, two zones, the licence handled, and a conversation at the end of it.
+  The complete system installed in your venue for 30 days, hardware and
+  installation covered. Channels built for your room, two zones, licence
+  handled.
+
+date: 2026-09-01 12:00:00 +0800
+breadcrumb: The 30-day trial
+schema_service: trial
+schema_faq: true
+faq_set: trial
+sitemap_priority: "0.9"
 ---
 
 <!-- This page is pinned to one fixed light state. No timed devices, no cycling,
@@ -18,8 +29,8 @@ description: >-
     <h1 id="t-h">Thirty days. The whole thing in, and nothing to pay while you listen.</h1>
     <p class="lede">Not a demo link and not a login. The complete system goes into your venue, <strong>hardware and installation covered</strong>, and it runs for a month while you stand in the room and make up your mind.</p>
     <div class="btn-row">
-      <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Talk to us</a>
-      <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
+      <a class="btn btn--primary" href="/contact/">Start the trial</a>
+      <a class="btn btn--ghost" href="{{ '/licensing/' | relative_url }}">How the music licence works</a>
     </div>
   </div>
 
@@ -122,6 +133,25 @@ description: >-
   </div>
 </section>
 
+<!-- ============================================================ QUESTIONS === -->
+<section class="band band--tight" aria-labelledby="faq-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">Before you ask</p>
+    <h2 id="faq-h">Trial questions we actually get asked.</h2>
+
+    <div class="faq">
+      {%- for f in site.data.faq.trial %}
+      <details{% if forloop.first %} open{% endif %}>
+        <summary>{{ f.q }}</summary>
+        <div class="faq__a">{% for p in f.a %}<p>{{ p }}</p>{% endfor %}</div>
+      </details>
+      {%- endfor %}
+    </div>
+
+    <p class="note" style="margin-top:22px">More on the licensing side of it on <a href="{{ '/licensing/' | relative_url }}">how music licensing works for an Australian venue</a>.</p>
+  </div>
+</section>
+
 <!-- =============================================================== THE ASK === -->
 <section class="band band--warm" aria-label="Start the trial">
   <div class="shot shot--strip shot--soft" style="margin-bottom:clamp(40px,5.4vw,68px)">
@@ -137,7 +167,7 @@ description: >-
        body="Three answers is all we need to start. Send them through and we will have the channels drafted before the player goes in."
        ask="yes"
        cta="Start the conversation"
-       href="{{ '/contact/' | relative_url }}"
+       href="/contact/"
        ghost="The full product at ejukebox.com.au" %}
     <div style="margin-top:34px">
       {% include contactform.html site="ejukebox.music" cta="Start the conversation" %}

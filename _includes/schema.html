@@ -1,0 +1,267 @@
+{%- comment -%}
+  =========================================================================
+  JSON-LD for ejukebox.music. One <script>, one @graph, every page.
+  Sibling of the same file on ejukebox.tv - keep the two in step.
+
+  WHAT IS IN THE GRAPH
+    Organization    always. Deliberately reuses the PARENT site @id, so all
+                    three eJukebox domains resolve to one entity rather than
+                    three unrelated strangers. Minting our own would create a
+                    competitor to our own brand. BECAUSE THE @id IS SHARED,
+                    THIS NODE STATES THE MINIMUM. The parent already publishes
+                    legalName, the full postal address and a logo ImageObject
+                    at https://ejukebox.com.au/#logo, so none of them are
+                    restated here - a merged node holding two values for one
+                    property is worse than holding none. Do not add them back;
+                    add them to the parent. (The parent writes the company as
+                    "Musicbot Pty Ltd", our footer as "MusicBot Pty Ltd" - that
+                    casing is unsettled, which is why legalName is not
+                    asserted from here.)
+    WebSite         always.
+    WebPage         always. ContactPage on /contact/ via page.schema_type.
+    BreadcrumbList  when the page sets  breadcrumb: <label>
+    Service         when the page sets  schema_service: music | trial
+    FAQPage         when the page sets  schema_faq: true  and  faq_set: <key>
+                    reading _data/faq.yml - the same data the visible
+                    <details> list renders from. One source of truth, so a
+                    marked-up answer can never drift from the shown answer.
+
+  FOUR THINGS THAT MUST NEVER GO IN HERE. All four are the standard advice
+  you will find elsewhere, and all four would turn this file into a liability.
+
+    1. telephone or email on any node. This site publishes neither, by
+       policy - putting an address in JSON-LD hands it straight to the
+       scrapers the policy exists to defeat. /contact/ is typed ContactPage,
+       which tells Google what the page is for, and carries no ContactPoint.
+    2. aggregateRating, review, award, or any "trusted by N venues" count.
+       Nothing on this site supports one. Fabricating it is a manual-action
+       risk and it is dishonest.
+    3. price, priceCurrency, availability - on the trial or anywhere else.
+       This site carries no pricing by house rule, and an Offer with a price
+       of 0 buys no rich result on a Service anyway.
+    4. potentialAction / SearchAction on the WebSite node. There is no search
+       page and no search endpoint here, so the urlTemplate would 404 - a
+       plain false statement in structured data. Google also retired the
+       sitelinks searchbox result. Left out on purpose. Do not add it back.
+
+  OPEN QUESTION, MARC'S CALL, NOT A CODE FIX. The parent's node at that @id
+  carries telephone and email. This site publishes neither and never will, and
+  nothing here exposes them - a scraper reading ejukebox.music finds nothing.
+  But a consumer that merges the graph by @id, which is the entire point of
+  sharing it, attaches the parent's phone and address to the eJukebox Music
+  entity. That is the one place the no-contact-details rule and the
+  single-entity strategy pull against each other. Accepting it exposes nothing
+  new, since the parent already publishes both openly. The alternative is to
+  mint our own @id and link the parent with sameAs + parentOrganization, giving
+  up the merge. Left as the merge, on purpose. Revisit only with a decision,
+  not a tidy-up.
+
+  Service is used rather than Product on purpose. Product invites Google to
+  look for offers, price, availability and reviews, none of which we may
+  supply, and produces permanent "missing field: price" warnings.
+
+  After any edit: jekyll build, then check every emitted block parses. A
+  stray comma here is silent on the page and fatal to the markup.
+  =========================================================================
+{%- endcomment -%}
+{%- assign org_id = site.organization_id -%}
+{%- assign site_id = site.url | append: "/#website" -%}
+{%- assign page_url = page.url | absolute_url -%}
+{%- assign og = site.og_image | absolute_url -%}
+{%- assign desc = page.description | default: site.description | strip_newlines | strip -%}
+{%- assign site_desc = site.description | strip_newlines | strip -%}
+{%- assign page_type = page.schema_type | default: "WebPage" -%}
+{%- assign tv_service = "https://ejukebox.tv/#service-screen" -%}
+{%- comment -%} The parent's Organization node writes its url WITH a trailing slash, and site.url here has none. Normalise both - on a shared @id, two values differing only by a slash is a dedup hazard, and WebSite.url must match the canonical the pages already emit. {%- endcomment -%}
+{%- assign parent_url = site.family.parent | append: "/" -%}
+{%- assign home_url = site.url | append: "/" -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": {{ org_id | jsonify }},
+      "name": "eJukebox",
+      "url": {{ parent_url | jsonify }},
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      {% comment %} Trailing slashes to match "url" above and the canonical each site emits. One entity should not identify itself by two spellings of the same address. The merge stays one-directional until ejukebox.tv and ejukebox.music are added to the PARENT's sameAs, which today lists only the Facebook and X profiles - that change lives in the ejukebox.com.au repo. {% endcomment %}"sameAs": [
+        {{ site.family.parent | append: "/" | jsonify }},
+        {{ site.family.music | append: "/" | jsonify }},
+        {{ site.family.tv | append: "/" | jsonify }}
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ site_id | jsonify }},
+      "url": {{ home_url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "description": {{ site_desc | jsonify }},
+      "inLanguage": "en-AU",
+      "publisher": { "@id": {{ org_id | jsonify }} }
+    },
+    {
+      "@type": {{ page_type | jsonify }},
+      "@id": "{{ page_url }}#webpage",
+      "url": {{ page_url | jsonify }},
+      "name": {{ page.title | default: site.title | jsonify }},
+      "description": {{ desc | jsonify }},
+      "isPartOf": { "@id": {{ site_id | jsonify }} },
+{%- comment -%} about is the SUBJECT of the page. Only a page with a Service node has one worth naming; /licensing/ is about music licensing generally, which is not an entity in this graph, so it carries no about rather than a wrong one. Pointing every page at the Organization said "this page is about the company", which was true of none of them. {%- endcomment -%}
+{%- if page.schema_service == "music" %}
+      "about": { "@id": "{{ site.url }}/#service-music" },
+{%- elsif page.schema_service == "trial" %}
+      "about": { "@id": "{{ site.url }}/trial/#service-trial" },
+{%- endif %}
+      "publisher": { "@id": {{ org_id | jsonify }} },
+      "inLanguage": "en-AU",
+{%- if page.date %}
+      "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+      "dateModified": {{ page.date | date_to_xmlschema | jsonify }},
+{%- endif %}
+{%- if page.breadcrumb %}
+      "breadcrumb": { "@id": "{{ page_url }}#breadcrumb" },
+{%- endif %}
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "@id": "{{ page_url }}#primaryimage",
+        "url": {{ og | jsonify }},
+        "width": 1200,
+        "height": 630,
+        "caption": {{ site.og_image_alt | jsonify }}
+      }
+    }
+{%- if page.breadcrumb %},
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ page_url }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ site.title | jsonify }},
+          "item": "{{ site.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ page.breadcrumb | jsonify }},
+          "item": {{ page_url | jsonify }}
+        }
+      ]
+    }
+{%- endif %}
+{%- if page.schema_service == "music" %},
+    {
+      "@type": "Service",
+      "@id": "{{ site.url }}/#service-music",
+      "name": "eJukebox Music",
+      "serviceType": "Background music for venues",
+      "description": "Licensed background music for Australian pubs, bars, clubs, cafes and restaurants. Channels built by professional music directors, changing themselves through the day, playing from an on-site player that keeps going if the internet drops out. Two zones included.",
+      "provider": { "@id": {{ org_id | jsonify }} },
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "audience": {
+        "@type": "BusinessAudience",
+        "name": "Pubs, clubs, bars, hotels, cafes, restaurants and function rooms"
+      },
+      "url": {{ home_url | jsonify }},
+      "image": {{ og | jsonify }},
+      "isRelatedTo": { "@id": {{ tv_service | jsonify }} },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "What is in the music service",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Human-curated channels",
+              "description": "Every channel built and maintained by a professional music director, not generated by an algorithm."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Dayparting",
+              "description": "The music changes itself through the day, from the morning coffee trade through to close, on a run sheet built around the room."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "On-site player",
+              "description": "A compact solid-state player holds the music on board, so a dropped internet line never reaches the room."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Two zones included",
+              "description": "The front bar and the beer garden can run different music from day one, with no second subscription."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Licensed for business",
+              "description": "Licensed to supply music to a business, unlike a personal streaming account, and we collect and remit the OneMusic licence for the venue at cost."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "AI song search",
+              "description": "Guests and staff search in plain English rather than by title, so nobody has to know the name of the track."
+            }
+          }
+        ]
+      }
+    }
+{%- endif %}
+{%- if page.schema_service == "trial" %},
+    {
+      "@type": "Service",
+      "@id": "{{ site.url }}/trial/#service-trial",
+      "name": "30 day free trial",
+      "serviceType": "Background music trial for venues",
+      "description": "The complete eJukebox system installed in your venue for thirty days, with hardware and installation covered. Channels built for the room before we arrive, two zones wired and tested, and the licence handled.",
+      "provider": { "@id": {{ org_id | jsonify }} },
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "audience": {
+        "@type": "BusinessAudience",
+        "name": "Pubs, clubs, bars, hotels, cafes, restaurants and function rooms"
+      },
+      "url": {{ page_url | jsonify }},
+      "image": {{ og | jsonify }},
+      "isRelatedTo": { "@id": "{{ site.url }}/#service-music" }
+    }
+{%- endif %}
+{%- if page.schema_faq and page.faq_set %}
+{%- assign faqs = site.data.faq[page.faq_set] %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ page_url }}#faq",
+      "inLanguage": "en-AU",
+      "isPartOf": { "@id": "{{ page_url }}#webpage" },
+      "mainEntity": [
+{%- for f in faqs %}
+        {
+          "@type": "Question",
+          "name": {{ f.q | strip_newlines | strip | jsonify }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ f.a | join: " " | strip_newlines | strip | jsonify }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+      ]
+    }
+{%- endif %}
+  ]
+}
+</script>

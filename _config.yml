@@ -17,7 +17,7 @@ timezone: Australia/Perth
 # Read by the nav, the CTA block and the footer. One place, every page.
 # No email address is published on this site by design - publishing one
 # attracts scrapers. Every route to us is the form, which posts to the Azure
-# Function and lands at info@ejukebox.tv / info@ejukebox.music.
+# Function and lands in the eJukebox inbox.
 contact:
   name: Marc Kean
   company: MusicBot Pty Ltd
@@ -30,6 +30,29 @@ family:
   parent: "https://ejukebox.com.au"
   music: "https://ejukebox.music"
   tv: "https://ejukebox.tv"
+
+# ---------------------------------------------------------------------------
+# Sharing and structured data
+# ---------------------------------------------------------------------------
+# One 1200x630 card for the whole site. Facebook, LinkedIn, X and Slack all
+# want that size - anything smaller downgrades to a postage-stamp thumbnail.
+# Also used as primaryImageOfPage in the JSON-LD, so it is declared once here.
+og_image: /assets/og-image.jpg
+og_image_alt: "eJukebox Music - licensed background music for Australian pubs and bars"
+
+# The legal entity behind all three eJukebox sites. Read by the footer only.
+# NOT asserted in the structured data any more: ejukebox.com.au already
+# publishes legalName on the Organization node whose @id we share, and it
+# writes it as "Musicbot Pty Ltd" against our "MusicBot Pty Ltd". One entity
+# cannot hold two spellings of its own legal name, so the parent owns that
+# property and we do not restate it. Worth settling the casing across all
+# three sites at some point - until then, nothing here contradicts anything.
+legal_name: MusicBot Pty Ltd
+
+# The parent site already publishes a full Organization node at this @id.
+# Our schema deliberately reuses it rather than minting our own, so all three
+# domains resolve to one entity instead of three strangers. See schema.html.
+organization_id: "https://ejukebox.com.au/#organization"
 
 markdown: kramdown
 

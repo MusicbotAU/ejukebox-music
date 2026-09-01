@@ -10,6 +10,19 @@
                  or an absolute URL survives. Defaults to /trial/.
     ghost      - third button label
     ghost_href - third button target
+
+  PASS PLAIN PATHS, NOT LIQUID. Liquid does not evaluate a curly-brace output
+  tag inside an include argument - it takes the characters literally - so
+  href="[[ '/contact/' | relative_url ]]" (with real braces) ships that whole
+  string into the href and the button 404s. Write href="/contact/" instead.
+  baseurl is empty on this site, so a leading-slash path is already correct.
+  A standard link checker will not catch the broken form, because the href is
+  not a path at all; the check that does catch it is grepping the BUILT html
+  for a leftover opening output tag. Run it after every build on both sites.
+
+  The middle "Talk to us" button is suppressed when the primary button
+  already points at /contact/, so a page whose main ask IS the contact page
+  does not get two buttons to the same place.
 {% endcomment %}
 {% if include.href %}{% assign cta_href = include.href %}{% else %}{% assign cta_href = '/trial/' | relative_url %}{% endif %}
 {% if include.ghost_href %}{% assign ghost_href = include.ghost_href %}{% else %}{% assign ghost_href = site.contact.main_site %}{% endif %}
@@ -25,10 +38,11 @@
   </ul>
   {% endif %}
 
+{% assign contact_href = '/contact/' | relative_url %}
   <div class="btn-row">
     <a class="btn btn--primary" href="{{ cta_href }}">{{ include.cta | default: "Start the 30-day trial" }}</a>
-    <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
-    <a class="btn btn--ghost" href="{{ ghost_href }}">{{ include.ghost | default: "The full product at ejukebox.com.au" }}</a>
+    {% unless cta_href == contact_href %}<a class="btn btn--ghost" href="{{ contact_href }}">Talk to us</a>
+    {% endunless %}<a class="btn btn--ghost" href="{{ ghost_href }}">{{ include.ghost | default: "The full product at ejukebox.com.au" }}</a>
   </div>
   <p class="anno anno--mut closer__fine">A person reads every enquiry - normally back the same day.</p>
 </div>

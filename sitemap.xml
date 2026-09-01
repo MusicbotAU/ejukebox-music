@@ -1,0 +1,44 @@
+---
+# A hand-rolled sitemap rather than the jekyll-sitemap default.
+#
+# jekyll-sitemap only ever emitted a bare <loc> per URL here, because it will
+# not write a <lastmod> unless a page carries date: or last_modified_at:, and
+# none of these pages did. A sitemap with no freshness signal at all gives a
+# crawler no reason to come back after a copy change, which is exactly the
+# situation while the wording on these pages is still being iterated.
+#
+# jekyll-sitemap stands down when a sitemap.xml already exists in the source,
+# so this file simply wins. Same trick as robots.txt at the repo root.
+#
+# Per page you may set, in front matter:
+#   date:                 becomes <lastmod>. Bump it when the copy changes.
+#   sitemap: false        leaves the page out entirely.
+#   sitemap_changefreq:   defaults to monthly.
+#   sitemap_priority:     defaults to 0.8, home is 1.0.
+layout: null
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign pages = site.pages | sort: "url" -%}
+{%- for p in pages -%}
+{%- unless p.sitemap == false -%}
+{%- unless p.name contains ".html" -%}{%- continue -%}{%- endunless -%}
+{%- if p.url contains "404" -%}{%- continue -%}{%- endif -%}
+{%- if p.url == "/" -%}
+{%- assign prio = p.sitemap_priority | default: "1.0" -%}
+{%- assign freq = p.sitemap_changefreq | default: "monthly" -%}
+{%- else -%}
+{%- assign prio = p.sitemap_priority | default: "0.8" -%}
+{%- assign freq = p.sitemap_changefreq | default: "monthly" -%}
+{%- endif %}
+  <url>
+    <loc>{{ p.url | absolute_url | xml_escape }}</loc>
+    <lastmod>{% if p.date %}{{ p.date | date_to_xmlschema }}{% else %}{{ site.time | date_to_xmlschema }}{% endif %}</lastmod>
+    <changefreq>{{ freq }}</changefreq>
+    <priority>{{ prio }}</priority>
+  </url>
+{%- endunless -%}
+{%- endfor %}
+</urlset>

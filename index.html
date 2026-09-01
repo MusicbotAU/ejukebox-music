@@ -1,12 +1,23 @@
 ---
 layout: default
 permalink: /
-title: eJukebox Music | The music that keeps a room full
+
+# TITLE - deliberately split from the parent site. ejukebox.com.au keeps the
+# broad "music for business Australia" head term; this site owns the
+# hospitality vertical and the human-curation and Spotify-replacement
+# long-tails. "Background music" is the phrase the market actually types.
+title: Licensed Background Music for Pubs and Bars | eJukebox Music
 og_title: You have been in the wrong room. You just could not say why.
+
+# Under 155 characters, or Google cuts it mid-sentence and the hook never
+# renders. The long-form version of this now lives in the page body instead.
 description: >-
-  Channels hand-built by professional music directors, not an algorithm. Every
-  commercial radio hit, changing itself through the day, playing on even if the
-  internet drops out, and licensed for business. Thirty days free in your venue.
+  Channels built by real music directors, not an algorithm. Two zones included,
+  keeps playing if the internet drops, licensed for business. 30 days free.
+
+date: 2026-09-01 12:00:00 +0800
+schema_service: music
+sitemap_priority: "1.0"
 ---
 
 {% include figure.html %}
@@ -17,7 +28,7 @@ description: >-
      ======================================================================= -->
 <section class="band band--flush" aria-labelledby="hero-h" style="padding-bottom:clamp(44px,5vw,72px)">
   <div class="wrap">
-    <p class="eyebrow eyebrow--ash">What the music is doing to your room right now</p>
+    <p class="eyebrow eyebrow--ash">Background music for pubs and bars</p>
     <h1 id="hero-h">You have been in the wrong room. You just could not say why.</h1>
     <p class="drop">It was the music.</p>
     <p class="lede">Nobody walks out and tells you the playlist was wrong. They say it felt flat, or they were not in the mood, or they will get the next one somewhere else. <strong>Nine out of ten people have left a venue over the music, or vowed never to go back</strong> - and almost none of them said so on the way past the bar.</p>
@@ -50,7 +61,7 @@ description: >-
       <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
       <a class="btn btn--ghost" href="{{ site.contact.main_site }}">Everything else is at ejukebox.com.au</a>
     </div>
-    <p class="trustline" style="margin-top:26px">Australian owned, human-curated, and licensed for business. <strong>Real people build the channels</strong> - and the same people answer the email.</p>
+    <p class="trustline" style="margin-top:26px">Licensed background music for Australian pubs, bars, clubs, cafes and restaurants. <strong>Real people build the channels</strong> - and the same people answer the email.</p>
     <button class="playbtn" type="button" data-play>Pause the demo</button>
   </div>
 </section>
@@ -92,7 +103,7 @@ description: >-
     <img src="{{ '/assets/img/music-daypart-bistro-morning-empty.webp' | relative_url }}"
          srcset="{{ '/assets/img/640/music-daypart-bistro-morning-empty.webp' | relative_url }} 640w, {{ '/assets/img/music-daypart-bistro-morning-empty.webp' | relative_url }} 1344w"
          sizes="(max-width:760px) 100vw, 1200px"
-         alt="A pub bistro first thing in the morning with nobody in it, the chairs still stacked on the tables and a cleaner working at the far end."
+         alt="A pub bistro first thing in the morning with nobody in it, the chairs still stacked on the tables and a cleaner working at the far end, and no music on yet."
          width="1344" height="768" loading="lazy" decoding="async">
   </div>
 </section>
@@ -150,7 +161,7 @@ description: >-
 <!-- ================================================== THE ROOFTOP CLOCK ==== -->
 <section class="band band--warm" aria-labelledby="roof-h">
   <div class="wrap">
-    <p class="eyebrow">Five PM to close</p>
+    <p class="eyebrow">Dayparting, five PM to close</p>
     <h2 id="roof-h">A rooftop bar over the Harbour Bridge, and the music moving with the light.</h2>
     <p class="lede">Morning is light and uplifting. The midday rush gets energy. Then as night falls it rolls into smooth cocktail and dance music - the perfect soundtrack to the view. More patrons. Longer stays. More drinks sold.</p>
   </div>
@@ -197,7 +208,7 @@ description: >-
 <!-- ====================================================== BUILT BY PEOPLE == -->
 <section class="band" aria-labelledby="people-h">
   <div class="wrap">
-    <p class="eyebrow">Hand-built</p>
+    <p class="eyebrow">Human-curated music channels</p>
     <h2 id="people-h">Channels, not playlists. Every one of them built by a <span class="brassed">person</span>.</h2>
 
     <div class="grid grid--split grid--top">
@@ -286,7 +297,7 @@ description: >-
 <!-- ================================================= THE UNTOUCHED LEDGER == -->
 <section class="band band--tight" aria-labelledby="ledger-h">
   <div class="wrap">
-    <p class="eyebrow">Fully managed</p>
+    <p class="eyebrow">Managed background music</p>
     <h2 id="ledger-h">It changes itself, and a person chose every change.</h2>
     <p class="sub">We sit down with you once, work out what your room does at each hour, and set the schedule to match. After that the channels change themselves at the times we agreed. Nobody behind the bar touches it, nobody forgets, and it is the same on a Tuesday as it is on a Saturday.</p>
 
@@ -333,7 +344,7 @@ description: >-
 <!-- ====================================================== IT KEEPS PLAYING == -->
 <section class="band band--cold" aria-labelledby="keeps-h">
   <div class="wrap">
-    <p class="eyebrow eyebrow--ash">The sober bit</p>
+    <p class="eyebrow eyebrow--ash">The on-site music player</p>
     <h2 id="keeps-h">The internet drops out. The music does not.</h2>
     <p class="lede">A compact solid-state player goes in at the venue, and it holds the music. If the line goes down mid-Saturday the room never hears it. One-off to install, then it looks after itself.</p>
 
@@ -382,7 +393,7 @@ description: >-
           <img src="{{ '/assets/img/music-room-beer-garden-gums.webp' | relative_url }}"
                srcset="{{ '/assets/img/640/music-room-beer-garden-gums.webp' | relative_url }} 640w, {{ '/assets/img/music-room-beer-garden-gums.webp' | relative_url }} 1344w"
                sizes="(max-width:760px) 100vw, 1200px"
-               alt="A suburban pub beer garden late on a summer afternoon, a group around a picnic table under two big gums."
+               alt="A suburban pub beer garden late on a summer afternoon, a group around a picnic table under two big gums with a dog lying in the bark chips beside them."
                width="1344" height="768" loading="lazy" decoding="async">
         </div>
         <figcaption class="anno anno--mut shot__cap">Zone two - the beer garden</figcaption>
@@ -471,9 +482,10 @@ description: >-
   <div class="wrap">
     <div class="grid grid--wide-split">
       <div>
-        <p class="eyebrow eyebrow--ash">The licence</p>
+        <p class="eyebrow eyebrow--ash">Music licensing for Australian venues</p>
         <h2 id="lic-h">The app on your phone is not licensed to play in your bar.</h2>
         <p class="sub">Right now there is a good chance it is somebody's own phone on the back bar, plugged into the aux, on a personal account. <strong>Personal accounts like Spotify and Amazon Music are against their own terms of service to play in public</strong>, however good the playlist is. eJukebox is licensed for business. The music in your room is on the right side of the law and nobody there has to think about it again.</p>
+        <p class="sub"><a href="{{ '/licensing/' | relative_url }}">How music licensing works for an Australian venue</a> - the two licences, which one is yours, and what changes when you leave a personal streaming account.</p>
         <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned, operated and human-curated.</p>
       </div>
 
@@ -503,9 +515,9 @@ description: >-
 <section class="band band--tight" aria-labelledby="tv-h">
   <div class="wrap wrap--narrow">
     <h2 id="tv-h" style="font-size:clamp(1.4rem,2.6vw,1.9rem)">There is a brother site.</h2>
-    <p class="sub">The same team put the screen in the corner to work as well. Same room, same people.</p>
+    <p class="sub">The same team put the screen in the corner to work as well - a guest photo wall, promo slides and announcements, on the TV you already own. Same room, same people.</p>
     <div class="btn-row">
-      <a class="btn btn--ghost" href="{{ site.family.tv }}">See the screen side at ejukebox.tv</a>
+      <a class="btn btn--ghost" href="{{ site.family.tv }}">Guest photo walls and venue screens - eJukebox TV</a>
     </div>
   </div>
 </section>

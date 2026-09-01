@@ -7,3 +7,8 @@
 *.mp4 binary
 *.webm binary
 *.woff2 binary
+# favicon.ico and favicon.svg were classified only by git's NUL heuristic.
+# Say it explicitly instead: an .ico is binary, and an .svg is text that must
+# never have its line endings rewritten on the way into a commit.
+*.ico binary
+*.svg -text

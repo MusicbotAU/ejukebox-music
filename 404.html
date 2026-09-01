@@ -3,6 +3,15 @@ layout: default
 permalink: /404.html
 title: Nothing on that address | eJukebox Music
 description: That page is not here. Here is what is.
+
+# GitHub Pages serves this file with a real HTTP 404 for a missing path, which
+# is correct - but it is ALSO reachable at its own literal address, where it
+# returns 200 and self-canonicalises. That is a textbook soft 404, and on a
+# site this small one junk URL is a big share of the index. noindex is the
+# right instrument; a cross-canonical to the homepage would be a lie about the
+# content. "follow" is kept so the links below still pass equity.
+noindex: true
+sitemap: false
 ---
 
 <section class="band band--flush band--warm" aria-labelledby="nf-h" style="padding-top:clamp(48px,8vw,110px)">

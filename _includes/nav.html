@@ -5,10 +5,19 @@
       <span class="brand__e">e<em>Jukebox</em></span><span class="brand__dot" aria-hidden="true">.music</span>
     </a>
 
+    {% comment %}
+      /contact/ is the only conversion endpoint on a site that publishes no
+      phone number and no email address by design, and it used to be reachable
+      from the footer and the closer only. The slot it took came off the
+      outbound ejukebox.com.au link, which was spending a site-wide nav link
+      sending crawl equity off the domain - the familybar directly above still
+      carries a link to the parent on every page, so nothing is lost.
+    {% endcomment %}
     <nav class="topnav" aria-label="Main">
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-here" aria-current="page"{% endif %}>The room</a>
       <a href="{{ '/trial/' | relative_url }}"{% if page.url contains '/trial' %} class="is-here" aria-current="page"{% endif %}>The trial</a>
-      <a href="{{ site.contact.main_site }}">ejukebox.com.au</a>
+      <a href="{{ '/licensing/' | relative_url }}"{% if page.url contains '/licensing' %} class="is-here" aria-current="page"{% endif %}>The licence</a>
+      <a href="{{ '/contact/' | relative_url }}"{% if page.url contains '/contact' %} class="is-here" aria-current="page"{% endif %}>Talk to us</a>
     </nav>
 
     <p class="daypart">

@@ -1,0 +1,149 @@
+# =============================================================================
+# The Q and A on this site. One source of truth.
+#
+# The visible <details> list on the page and the FAQPage JSON-LD in
+# _includes/schema.html BOTH render from this file. Never hand-copy an answer
+# into a schema block beside the markup - the two copies drift, and a schema
+# answer that no longer matches the visible answer is the specific thing that
+# gets structured data ignored.
+#
+# WRITING RULES FOR THIS FILE
+#   - Every answer is a LIST of paragraphs under  a:  and every paragraph is a
+#     folded block scalar  ( - >-  on its own line, the text indented under it).
+#     This is not decoration. Several answers contain a colon mid-sentence, and
+#     a plain  - "text: more text"  is silently parsed by YAML as a mapping,
+#     which emits literal Ruby hash garbage into the JSON-LD.
+#   - No dollar figures. This site carries no pricing, by house rule - route
+#     anything numeric to a conversation or to the main site.
+#   - No email address and no phone number, here or anywhere on the site.
+#   - Nothing that is not verified. If it is not certain, it does not ship.
+#   - Australian English, and spaced hyphens - never em dashes.
+#
+# Add a set here, then on the page set  schema_faq: true  and  faq_set: <key>.
+# =============================================================================
+
+licensing:
+  - q: Do I need a licence to play music in my venue in Australia?
+    a:
+      - >-
+        Yes. Any business playing music where customers or staff can hear it
+        needs a public performance licence for that premises, and that is true
+        whoever supplies the music - a streaming app, a radio, a live band or
+        us. In Australia it comes from OneMusic, which APRA AMCOS and PPCA set
+        up so a venue deals with one body instead of two.
+      - >-
+        It is charged per premises, and it is separate from whatever you pay
+        your music supplier. Two pubs under one company are two licences.
+  - q: Can I play Spotify in my business?
+    a:
+      - >-
+        Not on a personal account, no. Consumer Spotify, Apple Music and Amazon
+        Music are licensed one to one - for you, personally, at home or in the
+        car. Running one through the PA in a venue is against their own terms
+        of service, however good the playlist is.
+      - >-
+        That is not us being precious about it. It is written into the
+        agreement whoever set it up already agreed to. eJukebox is licensed one
+        to many, which is what supplying music to a business actually requires.
+  - q: Is the OneMusic licence included in what I pay eJukebox?
+    a:
+      - >-
+        No, and anybody telling you otherwise has blurred two different
+        licences. Ours covers us supplying the music to you. Yours covers you
+        playing it in public, and it stays yours whoever you buy music from.
+      - >-
+        What we do is collect it and remit it for you, at cost, with nothing
+        added on top. One less piece of paperwork, without it being buried in
+        the bill.
+  - q: What does the eJukebox licence actually cover?
+    a:
+      - >-
+        We are licensed to supply the same curated music to many businesses at
+        once - one to many. That is the licence a consumer streaming app does
+        not hold and cannot pass on to you.
+      - >-
+        It is why the music in your room is on the right side of the law from
+        the first day. Your own OneMusic public performance licence is still a
+        separate thing - we work out which tier your premises sits on, collect
+        it and remit it at cost, so nobody behind the bar has to think about it
+        again.
+  - q: Will switching to eJukebox change my OneMusic bill?
+    a:
+      - >-
+        It can, and which way depends entirely on what is playing now. A shop
+        coming off a personal streaming account usually moves down onto the
+        tier for venues using a commercial background music supplier. For a pub
+        the tier is set by how many screens you have rather than by the music,
+        so the tier itself does not move - what comes off is the digital
+        delivery component a personal streaming service adds.
+      - >-
+        Be careful of one claim you will hear elsewhere. The licence saving
+        covers a good part of what a venue pays for its music, but it does not
+        pay for the music service. We would rather do the sums for your
+        premises than hand you a number that turns out to be somebody else's.
+  - q: What if we have only ever had the radio on?
+    a:
+      - >-
+        Then say so early, because it changes the answer. A venue playing
+        nothing but a plain broadcast radio sits on the cheapest tier there is,
+        and moving to a commercial supplier can put that licence up rather than
+        down.
+      - >-
+        It is usually still the right move for the room, but we would rather
+        tell you that up front than have you find it on an invoice.
+  - q: Do zones change the licence?
+    a:
+      - >-
+        No. Zones inside one venue affect what you pay us, not what you pay
+        OneMusic. The licence is per premises, and for hospitality the tier is
+        driven by things like how many screens are up, not by how many places
+        the music reaches.
+  - q: Who does the paperwork?
+    a:
+      - >-
+        We do. You tell us about the premises - what sort of venue it is,
+        roughly how big, what is on the screens - and we work out the right
+        tier, collect the licence fee alongside your account and remit it.
+      - >-
+        If OneMusic needs something, it comes through us. You should never have
+        to become an expert on this to play music in your own bar.
+
+trial:
+  - q: What does the 30 day trial cost?
+    a:
+      - >-
+        Nothing while it runs. The complete system goes into the venue,
+        hardware and installation covered, and there is nothing to pay for the
+        thirty days.
+      - >-
+        What it costs afterwards depends on how many zones you need and which
+        extras you want, and it is all set out on the main site at
+        ejukebox.com.au. At the end of the month we ring you, ask what the room
+        did, and you decide then.
+  - q: Do I have to buy hardware to try it?
+    a:
+      - >-
+        No. The player comes with us and goes in as part of the trial, and we
+        wire and test both zones before we leave. It is a compact solid-state
+        box rather than a computer, and it usually lives on a shelf out the
+        back.
+  - q: What if the internet at my place is unreliable?
+    a:
+      - >-
+        The player holds the music on board, so a dropped line never reaches
+        the room. The music keeps playing while the connection sorts itself
+        out, and the first anyone knows about it is when the internet comes
+        back. Country venues are exactly why it was built that way.
+  - q: Can I run different music in different areas?
+    a:
+      - >-
+        Yes. Two zones are included as standard, so the front bar and the beer
+        garden can be on different channels from day one. More zones are
+        available and are priced on the main site.
+  - q: What do you need from us before the install?
+    a:
+      - >-
+        Three answers, really. How many rooms are you filling with sound, what
+        is playing in them now, and when are your busy hours. A music director
+        builds the run sheet around that before we arrive, so what comes on at
+        five on the first day is already meant for five o'clock in your venue.

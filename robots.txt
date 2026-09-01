@@ -1,0 +1,14 @@
+# ejukebox.music
+# A real robots.txt in the repo, which overrides the one-line file
+# jekyll-sitemap generates when none exists. That generated file had a
+# Sitemap: line and no User-agent group at all, which several validators
+# flag and which leaves nowhere to state intent.
+#
+# Everything on this site is meant to be crawled. No Disallow rules on
+# purpose - blocking /assets/img/ would keep the venue photography out of
+# Google Images, which is free distribution we want.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ejukebox.music/sitemap.xml

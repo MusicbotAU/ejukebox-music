@@ -1,15 +1,20 @@
 <footer class="site-footer">
   <div class="wrap">
 
-    <!-- the loud route back to the parent site -->
+    <!-- The loud route back to the parent site. The anchor is deliberately
+         descriptive rather than a bare URL - this and the familybar are the
+         main links the three domains give each other, and "Go to
+         ejukebox.com.au" passed no topical signal in either direction. The
+         logo alt differs from the familybar one on purpose, so the same two
+         words are not the alt text for two separate images on every page. -->
     <div class="parentcard">
       <img class="parentcard__logo" src="{{ '/assets/ejukebox-logo.png' | relative_url }}"
-           alt="eJukebox" width="89" height="44" loading="lazy" decoding="async">
+           alt="eJukebox, the main site" width="89" height="44" loading="lazy" decoding="async">
       <div>
         <p class="parentcard__t">This is the music side of eJukebox.</p>
-        <p class="parentcard__s">The zones, the add-ons, the screens and the full detail all live on the main site. The music and the screen are built to run together, and most venues take both.</p>
+        <p class="parentcard__s">The zones, the add-ons, the screens and the full detail all live on the main site. The music and the screen are built to run together, and they can go in as one job.</p>
       </div>
-      <a class="btn btn--ghost parentcard__go" href="{{ site.family.parent }}">Go to ejukebox.com.au</a>
+      <a class="btn btn--ghost parentcard__go" href="{{ site.family.parent }}">See the full eJukebox product range</a>
     </div>
     <div class="site-footer__in">
       <div>
@@ -27,10 +32,12 @@
       <div>
         <p class="anno anno--mut" style="margin-bottom:8px">Pages</p>
         <div class="site-footer__links">
-          <a href="{{ '/' | relative_url }}">The room</a>
-          <a href="{{ '/trial/' | relative_url }}">The 30-day trial</a>
-          <a href="{{ site.contact.main_site }}">The full product at ejukebox.com.au</a>
-          <a href="{{ site.family.tv }}">The screen side, at ejukebox.tv</a>
+          <a href="{{ '/' | relative_url }}">Background music for your venue</a>
+          <a href="{{ '/trial/' | relative_url }}">The 30-day free trial</a>
+          <a href="{{ '/licensing/' | relative_url }}">Music licensing for Australian venues</a>
+          <a href="{{ '/contact/' | relative_url }}">Talk to us about your room</a>
+          <a href="{{ site.contact.main_site }}">Full product range and pricing - ejukebox.com.au</a>
+          <a href="{{ site.family.tv }}">Guest photo walls and venue screens - eJukebox TV</a>
         </div>
       </div>
     </div>

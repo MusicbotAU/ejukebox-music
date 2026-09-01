@@ -1,15 +1,67 @@
 ---
 layout: default
 permalink: /contact/
-title: Talk to us | eJukebox Music
-description: Tell us about your venue and we will get the 30 day trial organised. A person reads every enquiry and normally comes back the same day.
+
+# Was "Talk to us | eJukebox Music" - 27 characters, naming neither the
+# product nor the site, and near-identical to the same page on ejukebox.tv.
+title: Contact eJukebox Music - Book Your Venue Trial
+description: >-
+  Tell us about your room and we will get the 30 day trial organised. What you
+  play now, how many areas need sound - all useful, none of it required.
+
+date: 2026-09-01 12:00:00 +0800
+breadcrumb: Talk to us
+schema_type: ContactPage
+sitemap_priority: "0.7"
 ---
+
+<!-- This page used to be one h1 and a form, with no subheadings and no image -
+     the only page on the site with no structure in it at all, and the one page
+     every conversion has to pass through. The three sections below add nothing
+     new: every fact in them is already stated on this site, in the closer fine
+     print, in the form hint text or on the trial page. -->
 
 <section class="band" aria-labelledby="ct-h">
   <div class="wrap">
-    <p class="eyebrow">Talk to us</p>
+    <p class="eyebrow">Background music for your venue</p>
     <h1 id="ct-h">Tell us about your room.</h1>
     <p class="sub" style="max-width:42em">Fill in as much as you like. What sort of room it is, how many areas need sound, what you are playing now - all useful, none of it required. A person at eJukebox reads it, not a queue.</p>
     {% include contactform.html site="ejukebox.music" cta="Start the conversation" %}
+  </div>
+
+  {%- comment -%}
+    The only image on the page, and the first one in flow, so it is the LCP
+    candidate - no lazy, and fetchpriority high. Every other image on the site
+    stays lazy. Exactly one eager image per page.
+  {%- endcomment -%}
+  <div class="shot shot--strip shot--soft shot--band">
+    <img src="{{ '/assets/img/music-room-tiled-corner-bar-morning.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-room-tiled-corner-bar-morning.webp' | relative_url }} 640w, {{ '/assets/img/music-room-tiled-corner-bar-morning.webp' | relative_url }} 1152w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="An old tiled corner pub front bar at eleven in the morning, shot from behind the counter past a row of clean upturned glasses, with one customer down the far end."
+         width="1152" height="896" decoding="async" fetchpriority="high">
+  </div>
+</section>
+
+<section class="band band--tight band--flush" aria-labelledby="ct-next">
+  <div class="wrap wrap--narrow">
+    <h2 id="ct-next">What happens after you send it</h2>
+    <p class="sub">It lands with a person at eJukebox, not in a ticket queue, and we normally come back the same day. The first reply is usually a couple of questions about the room, because that is what the channels get built around - and if it is a trial you are after, we will put a date to it there and then.</p>
+
+    <h2 id="ct-useful" style="margin-top:clamp(34px,4vw,52px)">What is useful to tell us</h2>
+    <p class="sub">None of it is required. All of it saves a round trip.</p>
+    <ul class="ticks" style="margin-top:18px">
+      <li><strong>How many areas need sound.</strong> Front bar, bistro, beer garden, gaming room. Two zones come as standard, so the count matters.</li>
+      <li><strong>What is playing in there now.</strong> A phone on the aux, a radio, a competitor, or nothing at all. It changes both the advice and the licence.</li>
+      <li><strong>When your busy hours are.</strong> A music director builds the run sheet around them, so the room is already on the right channel at five o'clock.</li>
+      <li><strong>What sort of venue it is.</strong> A country pub, a laneway wine bar, an RSL, a cafe and a bottle shop all want different rooms.</li>
+    </ul>
+
+    <h2 id="ct-trial" style="margin-top:clamp(34px,4vw,52px)">Or start with the 30 day trial</h2>
+    <p class="sub">You do not have to decide anything from a page. The complete system goes into the venue for thirty days with hardware and installation covered, and at the end of it we ring you and ask what the room did.</p>
+    <div class="btn-row" style="margin-top:20px">
+      <a class="btn btn--primary" href="{{ '/trial/' | relative_url }}">How the 30-day trial works</a>
+      <a class="btn btn--ghost" href="{{ '/licensing/' | relative_url }}">Music licensing for Australian venues</a>
+    </div>
   </div>
 </section>
