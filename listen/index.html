@@ -1,0 +1,159 @@
+---
+layout: none
+permalink: /listen/
+sitemap: false
+---
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listen live | eJukebox Music</title>
+<meta name="description" content="Every Australian and New Zealand radio station, free, at the highest quality it broadcasts. Shared from the eJukebox Music app.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Listen live on eJukebox Music">
+<meta property="og:description" content="Free radio for Australia and New Zealand in HD. Every station, one tap.">
+<meta property="og:image" content="https://ejukebox.music/assets/og-image.jpg">
+<meta name="theme-color" content="#0a0d12">
+<link rel="icon" href="/favicon.ico">
+<!--
+  The share landing page. The app shares https://ejukebox.music/listen/#<stationId>.
+  This page reads the id, looks the station up in the same catalog the app uses,
+  shows it, plays it in the browser, and points people at the app. No build step:
+  plain HTML, the catalog is public JSON with CORS.
+-->
+<style>
+  :root { --bg:#0a0d12; --raised:#131820; --card:#1a2130; --line:#232c3a; --text:#f2f5f9; --dim:#9aa6b8; --faint:#5d6878; --accent:#2ec4ff; --hd:#ffd166; --live:#ff5c7a; }
+  * { box-sizing:border-box }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; -webkit-font-smoothing:antialiased }
+  .wrap { max-width:520px; margin:0 auto; padding:28px 20px 48px }
+  .brand { display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text) }
+  .brand img { width:40px; height:40px; border-radius:10px }
+  .brand b { font-size:18px; letter-spacing:-.2px }
+  .brand span { display:block; color:var(--dim); font-size:13px }
+  .card { margin-top:26px; background:var(--raised); border:1px solid var(--line); border-radius:22px; padding:22px; text-align:center }
+  .art { width:min(60vw,240px); height:min(60vw,240px); border-radius:24px; object-fit:cover; background:var(--card); margin:6px auto 16px; display:block }
+  .art.initials { display:flex; align-items:center; justify-content:center; font-size:64px; font-weight:800; color:#fff }
+  h1 { font-size:26px; margin:0 0 4px; letter-spacing:-.4px }
+  .sub { color:var(--dim); font-size:15px; margin:0 }
+  .tag { color:var(--faint); font-size:14px; margin:8px 0 0 }
+  .hd { display:inline-block; margin-left:8px; color:var(--hd); border:1.5px solid var(--hd); border-radius:5px; padding:0 5px; font-size:11px; font-weight:900; letter-spacing:1px; vertical-align:middle }
+  .song { margin:18px 0 0; min-height:22px; font-size:16px; font-weight:600 }
+  .play { margin:22px auto 0; width:88px; height:88px; border-radius:50%; border:0; background:var(--accent); color:#04121c; font-size:34px; cursor:pointer; display:flex; align-items:center; justify-content:center }
+  .play:active { transform:scale(.97) }
+  .status { color:var(--dim); font-size:12px; letter-spacing:.6px; text-transform:uppercase; margin:12px 0 0; min-height:16px }
+  .cta { margin-top:22px; display:grid; gap:10px }
+  .btn { display:block; text-decoration:none; text-align:center; padding:15px 18px; border-radius:16px; font-weight:700; font-size:16px }
+  .btn.primary { background:var(--accent); color:#04121c }
+  .btn.ghost { border:1px solid var(--line); color:var(--text); background:var(--card) }
+  .why { margin-top:28px; color:var(--dim); font-size:15px; line-height:1.55 }
+  .why b { color:var(--text) }
+  footer { margin-top:34px; color:var(--faint); font-size:12px; text-align:center; line-height:1.6 }
+  footer a { color:var(--dim) }
+  .hidden { display:none }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="brand" href="https://ejukebox.music"><img src="/assets/icon.png" alt="" onerror="this.style.display='none'"><span><b>eJukebox Music</b><span>Free radio for Australia and New Zealand, in HD</span></span></a>
+
+  <div class="card" id="card">
+    <div id="art" class="art initials">...</div>
+    <h1 id="name">Loading station...</h1>
+    <p class="sub" id="sub"></p>
+    <p class="tag" id="tag"></p>
+    <p class="song" id="song"></p>
+    <button class="play" id="play" aria-label="Play">&#9654;</button>
+    <p class="status" id="status">Tap to listen here</p>
+    <audio id="audio" preload="none"></audio>
+  </div>
+
+  <div class="cta">
+    <a class="btn primary" id="openApp" href="#">Open in the eJukebox Music app</a>
+    <a class="btn ghost" id="getApp" href="https://ejukebox.music">Get the free app</a>
+  </div>
+
+  <p class="why"><b>Every station, one tap.</b> Australian and New Zealand radio at the highest quality each station broadcasts, favourites, works in the car with the steering wheel, and our own eJukebox channels at the top. Free, no sign-up.</p>
+
+  <footer>Streams belong to their broadcasters. eJukebox Music brings them together.<br><a href="https://ejukebox.music">ejukebox.music</a> · <a href="https://ejukebox.com.au">eJukebox for venues</a></footer>
+</div>
+
+<script>
+(function () {
+  var CATALOG = 'https://stejukenationwide.blob.core.windows.net/music/stations.json';
+  var id = decodeURIComponent((location.hash || '').replace(/^#/, '')) || new URLSearchParams(location.search).get('s') || '';
+  var $ = function (i) { return document.getElementById(i); };
+  var audio = $('audio'), playBtn = $('play'), status = $('status');
+  var station = null, hls = null, playing = false;
+
+  function colourFor(seed) { var p = ['#2ec4ff','#6c5ce7','#ff7675','#00b894','#fdcb6e','#e17055','#0984e3','#a29bfe','#fd79a8','#55efc4'], h = 0; for (var i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0; return p[h % p.length]; }
+  function initials(n) { var w = n.replace(/[^a-z0-9 ]/gi, ' ').trim().split(/\s+/); return w.length > 1 ? (w[0][0] + w[1][0]).toUpperCase() : (w[0] || '?').slice(0, 2).toUpperCase(); }
+
+  function show(st) {
+    station = st;
+    document.title = st.name + ' | Listen live on eJukebox Music';
+    $('name').innerHTML = st.name + (st.hd ? '<span class="hd">HD</span>' : '');
+    var where = st.city || (st.region && st.region.slice(-4) === '-NAT' ? (st.country === 'AU' ? 'Australia-wide' : 'NZ-wide') : st.region) || '';
+    $('sub').textContent = where + (st.frequency ? ' · ' + st.frequency : '');
+    $('tag').textContent = st.tagline || '';
+    var art = $('art');
+    if (st.logo) { var img = document.createElement('img'); img.className = 'art'; img.src = st.logo; img.alt = ''; img.onerror = function () { img.replaceWith(art); }; art.replaceWith(img); }
+    else { art.textContent = initials(st.name); art.style.background = st.colour || colourFor(st.id); }
+    $('openApp').href = 'ejukeboxmusic://station/' + encodeURIComponent(st.id);
+    if (st.website && /^https?:/.test(st.website)) { /* keep the app link primary */ }
+  }
+
+  function setStatus(t) { status.textContent = t; }
+
+  function start() {
+    if (!station) return;
+    var s = station.streams[0];
+    if (!s) return;
+    setStatus('Connecting...');
+    if (s.type === 'hls' && !audio.canPlayType('application/vnd.apple.mpegurl')) {
+      // Chrome, Firefox, Edge: HLS through hls.js
+      var run = function () {
+        if (hls) { hls.destroy(); }
+        hls = new Hls({ liveSyncDurationCount: 3 });
+        hls.loadSource(s.url); hls.attachMedia(audio);
+        hls.on(Hls.Events.MANIFEST_PARSED, function () { audio.play().catch(function () { setStatus('Tap play again'); }); });
+        hls.on(Hls.Events.ERROR, function (e, d) { if (d.fatal) setStatus('That stream would not start - try the app'); });
+      };
+      if (window.Hls) run(); else { var sc = document.createElement('script'); sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.15/hls.min.js'; sc.onload = run; document.head.appendChild(sc); }
+    } else {
+      audio.src = s.url;
+      audio.play().catch(function () { setStatus('Tap play again'); });
+    }
+  }
+  function stop() { audio.pause(); if (hls) { hls.destroy(); hls = null; } audio.removeAttribute('src'); audio.load(); }
+
+  audio.addEventListener('playing', function () { playing = true; playBtn.innerHTML = '&#10074;&#10074;'; setStatus('Live' + (station && station.quality ? ' · ' + station.quality : '')); });
+  audio.addEventListener('pause', function () { playing = false; playBtn.innerHTML = '&#9654;'; });
+  audio.addEventListener('error', function () { setStatus('That stream would not start - try the app'); });
+  playBtn.addEventListener('click', function () { if (playing) { stop(); setStatus('Tap to listen here'); } else start(); });
+
+  // Now playing, for the sources with an open endpoint
+  function poll() {
+    if (!station || !station.nowPlaying) return;
+    var np = station.nowPlaying, url = null;
+    if (np.type === 'iheart' && np.id) url = 'https://au.api.iheart.com/api/v3/live-meta/stream/' + np.id + '/currentTrackMeta';
+    if (np.type === 'abc' && np.key) url = 'https://music.abcradio.net.au/api/v1/plays/' + encodeURIComponent(np.key) + '/now.json';
+    if (!url) return;
+    fetch(url).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+      if (!d) return;
+      var t = d.title ? ((d.artist ? d.artist + ' - ' : '') + d.title) : (d.now && d.now.summary && d.now.summary.title ? (d.now.summary.artist ? d.now.summary.artist + ' - ' : '') + d.now.summary.title : '');
+      $('song').textContent = t || '';
+    }).catch(function () {});
+  }
+
+  if (!id) { $('name').textContent = 'eJukebox Music'; $('sub').textContent = 'Every Australian and New Zealand station, free.'; $('card').querySelector('.play').classList.add('hidden'); setStatus(''); $('openApp').href = 'ejukeboxmusic://'; return; }
+  fetch(CATALOG).then(function (r) { return r.json(); }).then(function (c) {
+    var st = null; for (var i = 0; i < c.stations.length; i++) if (c.stations[i].id === id) { st = c.stations[i]; break; }
+    if (c.app && c.app.appStoreUrl) $('getApp').href = c.app.appStoreUrl;
+    if (!st) { $('name').textContent = 'Station not found'; $('sub').textContent = 'It may have changed. Open the app and search for it.'; playBtn.classList.add('hidden'); setStatus(''); return; }
+    show(st); poll(); setInterval(poll, 20000);
+  }).catch(function () { $('name').textContent = 'Could not load the station list'; setStatus(''); });
+})();
+</script>
+</body>
+</html>
