@@ -25,6 +25,14 @@ contact:
 
 # The eJukebox family. Drives the switcher bar at the top of every page and the
 # parent block in the footer. "current" marks which sibling this site is.
+# The free eJukebox Music app (iPhone, CarPlay). Read by /app/. Leave a url
+# empty until the store listing is live and the page says "soon" instead of
+# linking to nothing. Bundle au.com.ejukebox.music, ASC app 6809090284.
+app:
+  name: eJukebox Music
+  ios_url: ""
+  android_url: ""
+
 family:
   current: "music"
   parent: "https://ejukebox.com.au"

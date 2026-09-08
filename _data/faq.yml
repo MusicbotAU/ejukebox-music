@@ -147,3 +147,54 @@ trial:
         is playing in them now, and when are your busy hours. A music director
         builds the run sheet around that before we arrive, so what comes on at
         five on the first day is already meant for five o'clock in your venue.
+
+app:
+  - q: Is the eJukebox Music app free?
+    a:
+      - >-
+        Yes, all of it. No account, no sign-up, no subscription and no
+        advertising of ours on top of the stations. The stations carry whatever
+        their own broadcasters put to air, exactly as they would on a radio.
+  - q: Which stations are in it?
+    a:
+      - >-
+        Every Australian and New Zealand station we can find a public stream
+        for - the commercial networks, the ABC and RNZ, community and regional
+        stations, and our own eJukebox channels at the top. The list is checked
+        every day, so a station that moves its stream comes back on its own.
+      - >-
+        If your local station is missing, tell us through the contact page and
+        we will add it.
+  - q: Why does it sound better than the station's own app?
+    a:
+      - >-
+        Most stations put out several streams at different qualities. The app
+        picks the best-sounding one by default, and the STREAM row in the
+        player lets you choose another if you are short on data.
+  - q: Does it work in the car?
+    a:
+      - >-
+        Yes. It keeps playing with the phone locked or in your pocket, and the
+        steering-wheel or lock-screen next and previous buttons step through
+        your favourites in the order you put them.
+  - q: What are recordings for?
+    a:
+      - >-
+        Missing a show is the reason. Press Record and the app keeps what is
+        playing, at full stream quality, until you stop it or the time you set
+        runs out. Recordings play back like any station, with the phone locked
+        if you like. They are for your own listening - the station still owns
+        the broadcast.
+  - q: What has a venue music company got to do with a radio app?
+    a:
+      - >-
+        Everything we do is about getting people listening to music. In a pub
+        or a club that means eJukebox playing the room and letting the people
+        in it request their own songs. On your phone it means every station you
+        could want and full control over what you hear. Same idea, different
+        room.
+  - q: Is there an Android version?
+    a:
+      - >-
+        The app is built to run on both. iPhone is first, and the Android
+        version follows once the iPhone one has settled.

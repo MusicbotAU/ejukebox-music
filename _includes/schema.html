@@ -112,6 +112,8 @@
       "about": { "@id": "{{ site.url }}/#service-music" },
 {%- elsif page.schema_service == "trial" %}
       "about": { "@id": "{{ site.url }}/trial/#service-trial" },
+{%- elsif page.schema_app %}
+      "about": { "@id": "{{ page_url }}#app" },
 {%- endif %}
       "publisher": { "@id": {{ org_id | jsonify }} },
       "inLanguage": "en-AU",
@@ -238,6 +240,22 @@
       },
       "url": {{ page_url | jsonify }},
       "image": {{ og | jsonify }},
+      "isRelatedTo": { "@id": "{{ site.url }}/#service-music" }
+    }
+{%- endif %}
+{%- if page.schema_app %},
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ page_url }}#app",
+      "name": {{ site.app.name | jsonify }},
+      "applicationCategory": "MusicApplication",
+      "operatingSystem": "iOS",
+      "description": {{ desc | jsonify }},
+      "url": {{ page_url | jsonify }},
+      "image": {{ og | jsonify }},
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+      "author": { "@id": {{ org_id | jsonify }} },
+      "publisher": { "@id": {{ org_id | jsonify }} },
       "isRelatedTo": { "@id": "{{ site.url }}/#service-music" }
     }
 {%- endif %}

@@ -1,0 +1,209 @@
+---
+layout: default
+permalink: /app/
+
+title: eJukebox Music App - Free AU and NZ Radio in HD | eJukebox Music
+og_title: Every radio station in Australia and New Zealand. Free, one tap, the best sound it broadcasts.
+description: >-
+  The free eJukebox Music app for iPhone and the car. Every Australian and
+  New Zealand radio station at the highest quality it broadcasts, favourites
+  in your order, star ratings from real listeners, and a record button. No
+  account, no ads of ours.
+
+date: 2026-09-08 20:30:00 +0800
+breadcrumb: The free app
+schema_app: true
+schema_faq: true
+faq_set: app
+sitemap_priority: "0.8"
+---
+
+{%- comment -%}
+  The page the app's "i" button opens. It has one job: say what the app is,
+  say why a venue music company made it, and hand people the download. The
+  store buttons read site.app.*_url from _config.yml - while a url is empty
+  the button becomes a plain "soon" line rather than a link to nothing.
+{%- endcomment -%}
+{%- assign ios = site.app.ios_url -%}
+{%- assign android = site.app.android_url -%}
+
+<section class="band band--flush" aria-labelledby="app-h" style="padding-bottom:clamp(30px,4vw,52px)">
+  <div class="wrap">
+    <p class="eyebrow">The free app</p>
+    <h1 id="app-h">Every radio station in Australia and New Zealand. One tap, and the best sound it broadcasts.</h1>
+    <p class="lede">eJukebox Music is a radio app for your phone and your car. <strong>Free, no account, no advertising of ours.</strong> Every station we can find a public stream for, the commercial networks and the ABC and RNZ and the little community stations, and our own eJukebox channels at the top.</p>
+    <div class="btn-row" id="get">
+      {%- if ios != "" %}
+      <a class="btn btn--primary" href="{{ ios }}">Get it on the App Store</a>
+      {%- else %}
+      <span class="btn btn--primary" aria-disabled="true" style="cursor:default">iPhone - on the App Store soon</span>
+      {%- endif %}
+      {%- if android != "" %}
+      <a class="btn btn--ghost" href="{{ android }}">Get it on Google Play</a>
+      {%- endif %}
+      <a class="btn btn--ghost" href="#why">Why a venue music company made it</a>
+    </div>
+    <p class="trustline" style="margin-top:22px">Made in Australia by the people who put the music into pubs and clubs. <strong>The streams belong to the stations.</strong> The app just puts them all in one place, at their best.</p>
+  </div>
+
+  <div class="shot shot--wide shot--soft shot--band" style="margin-top:clamp(26px,3.4vw,44px)">
+    <img src="{{ '/assets/img/music-room-small-dance-floor-late.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-room-small-dance-floor-late.webp' | relative_url }} 640w, {{ '/assets/img/music-room-small-dance-floor-late.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="A small worn dance floor in a suburban pub late on a Saturday night, eight or nine adults of mixed ages dancing under low light."
+         width="1344" height="768" loading="eager" decoding="async">
+  </div>
+  <div class="wrap">
+    <p class="note">Illustrative - AI generated, not photographs of real customers.</p>
+  </div>
+</section>
+
+<!-- ============================================================ WHAT IT DOES == -->
+<section class="band" aria-labelledby="does-h">
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2 id="does-h">A radio. A good one.</h2>
+    <div class="grid grid--3 grid--top" style="margin-top:clamp(22px,3vw,32px)">
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">Every station</p>
+        <h3>All of them, checked daily</h3>
+        <p style="color:var(--soft);margin:0">More than eight hundred Australian and New Zealand stations, sorted by where you are. The list rebuilds itself every night, so a station that moves its stream comes back on its own and a dead one drops out.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">The best sound</p>
+        <h3>The highest quality each station puts out</h3>
+        <p style="color:var(--soft);margin:0">Most stations broadcast several streams. The app picks the one that sounds best, marks it HD, and lets you pick a lighter one from the STREAM row if you are watching your data.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">In the car</p>
+        <h3>Locked, in your pocket, on the wheel</h3>
+        <p style="color:var(--soft);margin:0">It keeps playing with the screen off. Next and previous on the steering wheel, the lock screen or your earbuds step through your favourites in the order you put them.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">Record</p>
+        <h3>Like a cassette, at full quality</h3>
+        <p style="color:var(--soft);margin:0">Press Record and the app keeps what is playing until you stop it or the time you set runs out. Recordings play back like any station, phone locked, for as long as they run. For your own listening.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">Ratings</p>
+        <h3>Stars from real listeners</h3>
+        <p style="color:var(--soft);margin:0">Rate a station one to five and everyone sees the average within a minute. Sort by top rated when you want to know what people in your part of the country actually listen to.</p>
+      </div>
+      <div class="panel">
+        <p class="anno" style="display:block;margin-bottom:10px">Yours</p>
+        <h3>Favourites, hidden, and a backup</h3>
+        <p style="color:var(--soft);margin:0">Keep the ones you love at the top, tuck away the ones you never want to see, and it all follows you to a new phone. No account needed - it rides on the phone you already own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================== WHY === -->
+<section class="band band--warm" aria-labelledby="why-h" id="why">
+  <div class="wrap">
+    <div class="grid grid--wide-split">
+      <div>
+        <p class="eyebrow">Why we made it</p>
+        <h2 id="why-h">A venue music company made a radio app. Here is the connection.</h2>
+        <p class="drop" style="margin-bottom:18px">Getting people listening.</p>
+        <div class="shot shot--photo shot--soft" style="margin-bottom:clamp(22px,3vw,30px)">
+          <img src="{{ '/assets/img/music-room-man-laughing-close.webp' | relative_url }}"
+               srcset="{{ '/assets/img/640/music-room-man-laughing-close.webp' | relative_url }} 640w, {{ '/assets/img/music-room-man-laughing-close.webp' | relative_url }} 1152w"
+               sizes="(max-width:760px) 100vw, 1200px"
+               alt="A man in his late fifties at a country pub bar caught mid-laugh, head back a little and eyes creased almost shut."
+               width="1152" height="896" loading="lazy" decoding="async">
+        </div>
+        <p class="sub">eJukebox is not a streaming company. Everything we do is about getting people in a room to listen to music, and to stay for it. In a pub, a club or a business that means eJukebox playing the room, and the people in it <strong>requesting their own songs from their phones and taking control of the music at their favourite venue</strong>.</p>
+        <p class="sub">The app is the same idea, outside the venue. Every station you could want, the best version of each, and you in charge of what plays. Same people, same reason, different room.</p>
+      </div>
+      <div class="panel panel--warm">
+        <span class="counter__n counter__n--ash">0</span>
+        <p class="counter__l">accounts, sign-ups, subscriptions or ads of ours between you and the music.</p>
+        <p class="anno anno--mut" style="display:block;margin-top:18px">Free, for good.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== OUR CHANNELS IN IT = -->
+<section class="band band--cold" aria-labelledby="ours-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">Our channels are in it</p>
+    <h2 id="ours-h">Hear what a venue sounds like before you walk in.</h2>
+    <p class="sub">At the top of the app sit the eJukebox channels, the ones our music directors build for pubs and clubs, and a small number of live feeds from real eJukebox venues. <strong>If you run a room, that is what the trial puts in it.</strong> If you do not, they are simply good radio with no ads.</p>
+    <div class="btn-row">
+      <a class="btn btn--ghost" href="{{ '/' | relative_url }}">The music side of eJukebox</a>
+      <a class="btn btn--ghost" href="{{ '/trial/' | relative_url }}">The 30-day trial for venues</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ THE SOUND ==== -->
+<section class="band" aria-labelledby="sound-h">
+  <div class="wrap">
+    <div class="grid grid--wide-split">
+      <div>
+        <p class="eyebrow">The sound</p>
+        <h2 id="sound-h">Why it sounds better than the station's own app.</h2>
+        <p class="sub">A station's own app usually plays one stream, and it is not always the good one. eJukebox Music knows every stream a station puts out, what codec it uses and how many kilobits it carries, and it ranks them by how they actually sound rather than by the number. <strong>A modern AAC stream at a lower number beats an old MP3 at a higher one</strong>, so that is the one you get.</p>
+        <p class="sub">The stations stay as they were made, ads and all. We change nothing on the way through and we never sit in the middle of the stream. Your phone talks to the broadcaster directly.</p>
+      </div>
+      <div class="shot shot--photo shot--soft">
+        <img src="{{ '/assets/img/music-detail-volume-dial-wall.webp' | relative_url }}"
+             srcset="{{ '/assets/img/640/music-detail-volume-dial-wall.webp' | relative_url }} 640w, {{ '/assets/img/music-detail-volume-dial-wall.webp' | relative_url }} 1024w"
+             sizes="(max-width:760px) 100vw, 560px"
+             alt="An old brass-plated rotary volume control set into a pub wall beside a doorway, the plate scratched and dulled by decades of hands."
+             width="1024" height="1024" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ QUESTIONS === -->
+<section class="band band--tight" aria-labelledby="faq-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">Before you ask</p>
+    <h2 id="faq-h">Questions about the app.</h2>
+
+    <div class="faq">
+      {%- for f in site.data.faq.app %}
+      <details{% if forloop.first %} open{% endif %}>
+        <summary>{{ f.q }}</summary>
+        <div class="faq__a">{% for p in f.a %}<p>{{ p }}</p>{% endfor %}</div>
+      </details>
+      {%- endfor %}
+    </div>
+
+    <p class="note" style="margin-top:22px">A station missing, a stream that will not start, or something you wish it did? <a href="{{ '/contact/' | relative_url }}">Tell us</a> - a person reads every message.</p>
+  </div>
+</section>
+
+<!-- =============================================================== THE ASK === -->
+<section class="band band--warm" aria-label="Get the app">
+  <div class="shot shot--strip shot--soft" style="margin-bottom:clamp(40px,5.4vw,68px)">
+    <img src="{{ '/assets/img/music-room-country-verandah-sunset.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-room-country-verandah-sunset.webp' | relative_url }} 640w, {{ '/assets/img/music-room-country-verandah-sunset.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="The wide verandah of a two-storey country pub at sunset, seen from the dirt shoulder of the road."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
+  <div class="wrap">
+    {%- if ios != "" %}
+    {% include cta.html
+       heading="Get the app. It is free, and it stays free."
+       body="Every station in Australia and New Zealand, the best sound each one puts out, and you in charge of what plays. If you run a room as well, the rest of this site is for you."
+       cta="Get it on the App Store"
+       href=ios
+       ghost="See the 30-day trial for venues"
+       ghost_href="/trial/" %}
+    {%- else %}
+    {% include cta.html
+       heading="Coming to the App Store. Run a room in the meantime?"
+       body="The app is in its final testing and lands on the App Store shortly. If you would like an early copy, or you run a venue and want the music sorted properly, tell us."
+       cta="Ask for an early copy"
+       href="/contact/"
+       ghost="See the 30-day trial for venues"
+       ghost_href="/trial/" %}
+    {%- endif %}
+  </div>
+</section>

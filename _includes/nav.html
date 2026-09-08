@@ -17,6 +17,7 @@
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-here" aria-current="page"{% endif %}>The room</a>
       <a href="{{ '/trial/' | relative_url }}"{% if page.url contains '/trial' %} class="is-here" aria-current="page"{% endif %}>The trial</a>
       <a href="{{ '/licensing/' | relative_url }}"{% if page.url contains '/licensing' %} class="is-here" aria-current="page"{% endif %}>The licence</a>
+      <a href="{{ '/app/' | relative_url }}"{% if page.url contains '/app/' %} class="is-here" aria-current="page"{% endif %}>The app</a>
       <a href="{{ '/contact/' | relative_url }}"{% if page.url contains '/contact' %} class="is-here" aria-current="page"{% endif %}>Talk to us</a>
     </nav>
 
