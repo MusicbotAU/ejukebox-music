@@ -1,0 +1,102 @@
+---
+layout: default
+permalink: /app/privacy/
+
+title: Privacy Policy - eJukebox Music App | eJukebox Music
+description: >-
+  What the free eJukebox Music app collects, what it does not, and who sees
+  what. Short, because there is not much to tell.
+
+date: 2026-09-08 22:00:00 +0800
+breadcrumb: App privacy
+# Unlisted: the App Store and the app link here, nothing else does. Out of the
+# sitemap and marked noindex so it never competes with the real pages in search.
+sitemap: false
+noindex: true
+---
+
+{%- comment -%}
+  The privacy policy the App Store listing points at. Every statement below
+  was checked against the app's source on 8 Sep 2026 (ratings.ts, nearby.ts,
+  telemetry.ts, store.ts, EjukeCloudPrefs.swift, EjukeRecorder.swift). If the
+  app starts sending something new, this page changes in the same commit.
+{%- endcomment -%}
+
+<section class="band band--flush" aria-labelledby="pp-h" style="padding-bottom:clamp(30px,4vw,52px)">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">The eJukebox Music app</p>
+    <h1 id="pp-h">Privacy policy.</h1>
+    <p class="lede">The app has no accounts, no sign-up, no advertising and no tracking. <strong>We cannot tell who you are, and we do not try to.</strong> This page says exactly what leaves your phone, and where it goes.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd, trading as eJukebox. Last updated 8 September 2026.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="leaves-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">In plain terms</p>
+    <h2 id="leaves-h">What leaves your phone.</h2>
+
+    <div class="stack-lg">
+      <div class="panel">
+        <h3>The station list and the logos</h3>
+        <p style="color:var(--soft);margin:0">The app downloads the station directory and the station artwork from our servers in Australia. Like any web request, our server sees your phone's internet address at the time. We do not keep a record of who downloaded what.</p>
+      </div>
+
+      <div class="panel">
+        <h3>The radio itself</h3>
+        <p style="color:var(--soft);margin:0">When you play a station, your phone connects to that broadcaster directly. We are not in the middle of the stream. The broadcaster sees the same thing it would see from its own app or a web browser: your internet address and how long you listened. Their privacy policy covers that, not ours. The song titles shown while a station plays come from the broadcaster's own now-playing service in the same way.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Star ratings</h3>
+        <p style="color:var(--soft);margin:0">When you rate a station, the app sends the station, the number of stars and a random code that the app made up when it was first opened. That code is not your name, your phone number, your Apple ID or your device's serial number. It exists only so that rating a station again replaces your earlier rating instead of adding a second one. Ratings are stored in Australia, and only the averages are ever shown to anyone.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Near me</h3>
+        <p style="color:var(--soft);margin:0">If you tap Near me and allow location, the app asks the phone for a rough position once, at the lowest accuracy iOS offers, and asks the phone which state or region that is. Only the answer, for example Victoria or Canterbury, is kept, and it stays on the phone. Your position is never sent to us. If you say no to the permission, the app works exactly the same and you pick the region yourself.</p>
+      </div>
+
+      <div class="panel">
+        <h3>Diagnostics, only if you switch them on</h3>
+        <p style="color:var(--soft);margin:0">Diagnostics are off unless you turn them on. If you do, the app sends player events (started, stopped, reconnected, which station) with the same random code, the iOS version and the app version to our monitoring service, so we can see why a stream dropped out. Nothing about you as a person is in it, and you can switch it off again at any time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--cold" aria-labelledby="stays-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">On the phone</p>
+    <h2 id="stays-h">What stays on your phone.</h2>
+    <p class="sub"><strong>Favourites, the order you put them in, hidden stations, your sort choice and your own star ratings</strong> are stored on the phone. The app also keeps a copy of those settings in your own iCloud account, through Apple's key-value storage, so a new phone signed in to the same Apple ID gets them back. That copy is between you and Apple. We cannot read it.</p>
+    <p class="sub"><strong>Recordings</strong> are files on your phone. They are never uploaded, and we never see them. They are for your own listening; the broadcast still belongs to the station.</p>
+    <p class="sub">Deleting the app deletes all of it, apart from the iCloud copy of your settings, which iOS removes when you turn off iCloud for the app or delete its data in Settings.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="not-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">For the record</p>
+    <h2 id="not-h">What we do not do.</h2>
+    <ul class="closer__ask" style="margin-top:14px">
+      <li>No accounts, passwords, names, email addresses or phone numbers. The app never asks.</li>
+      <li>No advertising in the app, and no advertising identifiers.</li>
+      <li>No tracking across other apps or websites, and no data sold, rented or shared with data brokers.</li>
+      <li>No analytics unless you turn diagnostics on yourself.</li>
+      <li>No access to your contacts, photos, microphone, camera or calendar.</li>
+      <li>Not directed at children, and nothing in it is designed to collect from them.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band--tight" aria-labelledby="rights-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">Your rights, and us</p>
+    <h2 id="rights-h">Questions, deletion, changes.</h2>
+    <p class="sub">The one thing we hold that came from your phone is your ratings under that random code. If you want them removed, the code is shown in the app's diagnostics sheet (press and hold the station title in the player); send it through the <a href="{{ '/contact/' | relative_url }}">contact page</a> and we will delete them. No questions asked.</p>
+    <p class="sub">We handle personal information under the Australian Privacy Act 1988 and the Australian Privacy Principles. If you think we have got something wrong, tell us first and we will fix it; if you are not satisfied you can take it to the Office of the Australian Information Commissioner.</p>
+    <p class="sub">If the app starts collecting anything new, this page changes the same day, and the date at the top moves.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned and operated. <a href="{{ '/app/' | relative_url }}">About the app</a> - <a href="{{ '/contact/' | relative_url }}">Contact</a></p>
+  </div>
+</section>
