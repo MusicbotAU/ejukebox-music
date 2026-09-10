@@ -1,0 +1,18 @@
+{
+  "name": "eJukebox Music",
+  "short_name": "eJukebox",
+  "description": "Every Australian and New Zealand radio station, free, at the best quality each one broadcasts. Plays on with the screen off.",
+  "start_url": "/app/play/",
+  "scope": "/app/play/",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "en-AU",
+  "background_color": "#120c11",
+  "theme_color": "#120c11",
+  "categories": ["music", "entertainment"],
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

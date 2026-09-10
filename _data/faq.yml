@@ -149,6 +149,14 @@ trial:
         five on the first day is already meant for five o'clock in your venue.
 
 app:
+  - q: Do I have to install the app to listen?
+    a:
+      - >-
+        No. Open ejukebox.music/app/play in any browser and it is the same
+        radio - every station, the best stream each one broadcasts, favourites,
+        ratings and the song that is playing. It keeps playing when you
+        minimise the window or turn your phone's screen off. The phone app adds
+        the record button, CarPlay and Android Auto.
   - q: Is the eJukebox Music app free?
     a:
       - >-

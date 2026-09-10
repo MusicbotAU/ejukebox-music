@@ -5,7 +5,7 @@ permalink: /app/
 title: eJukebox Music App - Free AU and NZ Radio in HD | eJukebox Music
 og_title: Every radio station in Australia and New Zealand. Free, one tap, the best sound it broadcasts.
 description: >-
-  The free eJukebox Music app for iPhone and the car. Every Australian and
+  The free eJukebox Music app for iPhone, Android, the car and any browser. Every Australian and
   New Zealand radio station at the highest quality it broadcasts, favourites
   in your order, star ratings from real listeners, and a record button. No
   account, no ads of ours.
@@ -31,7 +31,7 @@ sitemap_priority: "0.8"
   <div class="wrap">
     <p class="eyebrow">The free app</p>
     <h1 id="app-h">Every radio station in Australia and New Zealand. One tap, and the best sound it broadcasts.</h1>
-    <p class="lede">eJukebox Music is a radio app for your phone and your car. <strong>Free, no account, no advertising of ours.</strong> Every station we can find a public stream for, the commercial networks and the ABC and RNZ and the little community stations, and our own eJukebox channels at the top.</p>
+    <p class="lede">eJukebox Music is a radio app for your phone, your car and your browser. <strong>Free, no account, no advertising of ours.</strong> Every station we can find a public stream for, the commercial networks and the ABC and RNZ and the little community stations, and our own eJukebox channels at the top.</p>
     <div class="btn-row" id="get">
       {%- if ios != "" %}
       <a class="btn btn--primary" href="{{ ios }}">Get it on the App Store</a>
@@ -41,6 +41,7 @@ sitemap_priority: "0.8"
       {%- if android != "" %}
       <a class="btn btn--ghost" href="{{ android }}">Get it on Google Play</a>
       {%- endif %}
+      <a class="btn btn--ghost" href="{{ '/app/play/' | relative_url }}">Listen now, in your browser</a>
       <a class="btn btn--ghost" href="#why">Why a venue music company made it</a>
     </div>
     <p class="trustline" style="margin-top:22px">Made in Australia by the people who put the music into pubs and clubs. <strong>The streams belong to the stations.</strong> The app just puts them all in one place, at their best.</p>
@@ -58,6 +59,55 @@ sitemap_priority: "0.8"
   </div>
 </section>
 
+<!-- ====================================================== IN YOUR BROWSER ==== -->
+<section class="band band--warm" aria-labelledby="web-h" id="web">
+  <div class="wrap">
+    <div class="grid grid--wide-split">
+      <div>
+        <p class="eyebrow eyebrow--ember">No install needed</p>
+        <h2 id="web-h">The whole app, in a browser tab.</h2>
+        <p class="sub">Open <a href="{{ '/app/play/' | relative_url }}">ejukebox.music/app/play</a> on a laptop, a desktop, a tablet or a phone and it is the same radio: every station, the best stream each one puts out, favourites, star ratings, what song is playing. <strong>It keeps playing when you minimise the window, switch tabs or turn the phone's screen off</strong>, and the lock screen and your earbuds control it.</p>
+        <p class="sub">Sign in with Google or Microsoft and your favourites follow you between the browser and the phone app. Or do not sign in - it works on its own, on that browser, for good.</p>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ '/app/play/' | relative_url }}">Listen now</a>
+          <span class="anno anno--mut">Works in Safari, Chrome, Edge and Firefox</span>
+        </div>
+      </div>
+      <div class="shot shot--photo shot--soft">
+        <img src="{{ '/assets/img/music-web-kitchen-laptop-night.webp' | relative_url }}"
+             srcset="{{ '/assets/img/640/music-web-kitchen-laptop-night.webp' | relative_url }} 640w, {{ '/assets/img/music-web-kitchen-laptop-night.webp' | relative_url }} 1344w"
+             sizes="(max-width:760px) 100vw, 620px"
+             alt="A laptop open on a kitchen bench late at night, a small speaker beside it, a woman listening from the doorway with a cup of tea."
+             width="1344" height="768" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <div class="shots" style="margin-top:clamp(26px,3.4vw,44px)">
+      <figure class="shot-figure">
+        <div class="shot shot--photo shot--soft">
+          <img src="{{ '/assets/img/music-web-cafe-counter-morning.webp' | relative_url }}" srcset="{{ '/assets/img/640/music-web-cafe-counter-morning.webp' | relative_url }} 640w, {{ '/assets/img/music-web-cafe-counter-morning.webp' | relative_url }} 1344w" sizes="(max-width:760px) 100vw, 400px" alt="A cafe counter at seven in the morning, a shelf speaker between the jars, sunlight through the window." width="1344" height="768" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="shot__cap">On the shop computer, before the doors open.</figcaption>
+      </figure>
+      <figure class="shot-figure">
+        <div class="shot shot--photo shot--soft">
+          <img src="{{ '/assets/img/music-web-bedside-phone-dawn.webp' | relative_url }}" srcset="{{ '/assets/img/640/music-web-bedside-phone-dawn.webp' | relative_url }} 640w, {{ '/assets/img/music-web-bedside-phone-dawn.webp' | relative_url }} 1152w" sizes="(max-width:760px) 100vw, 400px" alt="A phone face down on a bedside table beside earbuds and a glass of water at first light." width="1152" height="896" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="shot__cap">On the phone, screen off, from the browser.</figcaption>
+      </figure>
+    </div>
+    <p class="note">Illustrative - AI generated, not photographs of real customers.</p>
+  </div>
+  <div class="shot shot--wide shot--soft shot--band" style="margin-top:clamp(26px,3.4vw,44px)">
+    <img src="{{ '/assets/img/music-web-car-dash-dusk.webp' | relative_url }}"
+         srcset="{{ '/assets/img/640/music-web-car-dash-dusk.webp' | relative_url }} 640w, {{ '/assets/img/music-web-car-dash-dusk.webp' | relative_url }} 1344w"
+         sizes="(max-width:760px) 100vw, 1200px"
+         alt="The dashboard of a ute at dusk on a country road, flat paddocks and a line of gum trees under an orange sky."
+         width="1344" height="768" loading="lazy" decoding="async">
+  </div>
+  <div class="wrap">
+    <p class="note">In the car it is the phone app, on CarPlay and Android Auto, with the wheel stepping through your favourites.</p>
+  </div>
+</section>
 <!-- ============================================================ WHAT IT DOES == -->
 <section class="band" aria-labelledby="does-h">
   <div class="wrap">
