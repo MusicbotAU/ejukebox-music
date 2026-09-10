@@ -642,7 +642,7 @@ function fetchText(url, ms) { var c = new AbortController(); var t = setTimeout(
 function fetchJson(url) { return fetchText(url).then(function (t) { try { return t ? JSON.parse(t) : null; } catch (e) { return null; } }); }
 // Our own boxes (Icecast status, SHOUTcast currentsong) speak no CORS, so the web asks our server
 // to read them (music_np.php only allows those two hosts). Everything else is asked directly.
-function httpsify(u) { var s = String(u).replace(/^http:\/\/icecast-haproxy[^/]*\//, 'https://listen2.ejukebox.net/').replace(/^http:/, 'https:'); return 'https://auth.ejukebox.net/music_np.php?u=' + encodeURIComponent(s); }
+function httpsify(u) { return 'https://auth.ejukebox.net/music_np.php?u=' + encodeURIComponent(String(u)); }
 function lookup(s) {
   var h = s.nowPlaying; if (!h) return Promise.resolve(null);
   var grab = function (xml, name) { var m = new RegExp('<property name="' + name + '"><!\\[CDATA\\[([\\s\\S]*?)\\]\\]>').exec(xml) || new RegExp('<property name="' + name + '">([^<]*)</property>').exec(xml); return m ? m[1] : null; };
