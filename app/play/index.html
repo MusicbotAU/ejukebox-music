@@ -106,7 +106,7 @@ a{color:var(--brass)}
 /* ---- the shell ------------------------------------------------------------- */
 .shell{padding-top:calc(var(--top) + var(--sat));padding-bottom:calc(var(--dock) + var(--sab) + 12px);min-height:100vh}
 .rail{display:none}
-.main{max-width:1680px;margin:0 auto;padding:12px clamp(14px,2.4vw,28px) 24px}
+.main{max-width:1680px;margin:0 auto;padding:12px clamp(14px,2.4vw,28px) 24px;min-width:0;width:100%;overflow-x:hidden}
 @media (min-width:1000px){
   .shell{display:grid;grid-template-columns:var(--rail) minmax(0,1fr)}
   .rail{display:block;position:sticky;top:calc(var(--top) + var(--sat));height:calc(100vh - var(--top) - var(--sat) - var(--dock) - var(--sab));overflow:auto;padding:18px 14px 24px 22px;border-right:1px solid var(--line);scrollbar-width:thin}
@@ -127,8 +127,9 @@ a{color:var(--brass)}
 .chip.row-item{border:0;border-radius:10px;justify-content:space-between;padding:8px 10px;width:100%}
 .chip.row-item.on{background:var(--ember-soft);color:var(--ember)}
 .chip.row-item .n{font-family:var(--mono);font-size:.68rem;color:var(--mut)}
-.chips--mobile{display:flex;flex-direction:column;gap:8px;margin:2px 0 14px}
-.chips--mobile .strip{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.chips--mobile{display:flex;flex-direction:column;gap:8px;margin:2px 0 14px;min-width:0;max-width:100%}
+.chips--mobile .strip{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch;min-width:0;max-width:100%}
+@media (min-width:1000px){.chips--mobile{display:none}}
 .chips--mobile .strip::-webkit-scrollbar{display:none}
 .chips--mobile .strip .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);align-self:center;padding-right:4px}
 
@@ -140,11 +141,11 @@ a{color:var(--brass)}
 .sec__h .car{margin-left:auto;color:var(--mut);transition:transform 320ms var(--ease)}
 .sec.folded .sec__h .car{transform:rotate(-90deg)}
 .sec.folded .rows{display:none}
-.rows{display:grid;gap:6px}
+.rows{display:grid;gap:6px;min-width:0}
 @media (min-width:1100px){.rows{grid-template-columns:repeat(auto-fill,minmax(400px,1fr))}}
 .row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 10px 8px 8px;border-radius:14px;border:1px solid transparent;background:transparent;cursor:pointer;text-align:left;width:100%;user-select:none;transition:background-color 320ms var(--ease),border-color 320ms var(--ease)}
 .row:hover{background:var(--room-2);border-color:var(--line)}
-.row.now{background:var(--ember-soft);border-color:var(--ember-line)}
+.row.playing{background:var(--ember-soft);border-color:var(--ember-line)}
 .row .logo{width:52px;height:52px;border-radius:12px;object-fit:cover;background:var(--room-3);display:block}
 .row .logo.txt{display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;color:#fff;font-size:1.05rem}
 .row .t{min-width:0}
@@ -164,10 +165,10 @@ a{color:var(--brass)}
 .row .acts button.fav svg{fill:var(--ember)}
 .empty{color:var(--soft);padding:26px 8px;text-align:center}
 .empty b{color:var(--ivory)}
-.venues{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin;margin-bottom:6px}
+.venues{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:thin;margin-bottom:6px;min-width:0;max-width:100%}
 .vcard{flex:0 0 132px;border:1px solid var(--line);background:var(--room-2);border-radius:16px;padding:10px;cursor:pointer;text-align:center;color:var(--ivory)}
 .vcard:hover{border-color:var(--brass-line)}
-.vcard.now{border-color:var(--ember-line);background:var(--ember-soft)}
+.vcard.playing{border-color:var(--ember-line);background:var(--ember-soft)}
 .vcard img{width:72px;height:72px;border-radius:14px;object-fit:cover;background:var(--room-3);display:block;margin:2px auto 8px}
 .vcard .nm{font-weight:600;font-size:.86rem;line-height:1.2}
 .vcard .on{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--ember);text-transform:uppercase;margin-top:4px}
@@ -441,7 +442,7 @@ function rowHtml(s) {
   var cur = player.station && player.station.id === s.id && player.wanted;
   var fav = prefs.favourites.indexOf(s.id) >= 0;
   var st = starsText(s.id);
-  return '<div class="row' + (cur ? ' now' : '') + '" data-id="' + esc(s.id) + '" role="button" tabindex="0" aria-label="' + esc(s.name) + '">' +
+  return '<div class="row' + (cur ? ' playing' : '') + '" data-id="' + esc(s.id) + '" role="button" tabindex="0" aria-label="' + esc(s.name) + '">' +
     logoHtml(s, 'logo') +
     '<div class="t"><div class="name">' + (cur ? '<i class="live" aria-label="Playing"></i>' : '') + '<span>' + esc(s.name) + '</span>' + (s.hd ? '<span class="hd">HD</span>' : '') + (st ? '<span class="stars">' + st + '</span>' : '') + '</div>' +
     '<div class="meta">' + esc(subtitle(s)) + '</div>' + (s.tagline ? '<div class="tag">' + esc(s.tagline) + '</div>' : '') + '</div>' +
@@ -456,7 +457,7 @@ function render() {
   var v = venues();
   var cur = player.station ? player.station.id : null;
   $('venues').innerHTML = v.length ? '<div class="sec"><div class="sec__h" data-fold="venues"><h2>Live from eJukebox venues</h2><span class="n">' + v.length + ' on air</span></div><div class="venues">' +
-    v.map(function (s) { return '<button class="vcard' + (cur === s.id && player.wanted ? ' now' : '') + '" data-id="' + esc(s.id) + '">' + logoHtml(s, 'logo') + '<div class="nm">' + esc(s.name) + '</div><div class="on">on air</div></button>'; }).join('') + '</div></div>' : '';
+    v.map(function (s) { return '<button class="vcard' + (cur === s.id && player.wanted ? ' playing' : '') + '" data-id="' + esc(s.id) + '">' + logoHtml(s, 'logo') + '<div class="nm">' + esc(s.name) + '</div><div class="on">on air</div></button>'; }).join('') + '</div></div>' : '';
   var secs = sections();
   var html = secs.map(function (sec) {
     var folded = prefs.collapsed.indexOf(sec.key === 'hidden' ? 'hidden-open' : sec.key) >= 0;
@@ -556,10 +557,12 @@ function startStream(idx, reason) {
     url = url.replace(/^http:/, 'https:');
   }
   var go = function () { var p = audio.play(); if (p && p.catch) p.catch(function (e) { if (e && e.name === 'NotAllowedError') { player.wanted = false; setState('paused'); toast('Press play to start'); } else scheduleReconnect('play refused'); }); };
-  if (stream.type === 'hls' && !audio.canPlayType('application/vnd.apple.mpegurl')) {
+  var nativeOnly = /^((?!chrome|android|crios|fxios|edg).)*safari/i.test(navigator.userAgent) && !!audio.canPlayType('application/vnd.apple.mpegurl');
+  if (stream.type === 'hls' && !nativeOnly && window.MediaSource) {
     loadHls().then(function () {
       if (player.station !== s || player.streamIndex !== idx) return;
-      hls = new Hls({ liveSyncDurationCount: 3, enableWorker: true });
+      if (!window.Hls || !Hls.isSupported()) { audio.src = url; go(); return; }
+      hls = new Hls({ liveSyncDurationCount: 3, enableWorker: true, xhrSetup: function (xhr) { xhr.withCredentials = false; } });
       hls.loadSource(url); hls.attachMedia(audio);
       hls.on(Hls.Events.MANIFEST_PARSED, go);
       hls.on(Hls.Events.ERROR, function (e, d) { if (d && d.fatal) scheduleReconnect('hls ' + d.type); });
@@ -634,7 +637,7 @@ if ('mediaSession' in navigator) {
 }
 
 // ---------------------------------------------------------------- what song is this?
-var songTimer = null, songWs = null, songStop = false;
+var songTimer = null, songWs = null, songStop = false, songToken = 0;
 function decode(s) { return String(s || '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/\s+/g, ' ').trim(); }
 function joinAT(a, t) { a = decode(a); t = decode(t); if (!t && !a) return null; if (!a) return t; if (!t) return a; return a + ' - ' + t; }
 function plausible(t) { if (!t || t.length < 3 || t.length > 140) return null; if (/^(unknown|no track|advert|ad break|commercial|station id|jingle|promo)\b/i.test(t)) return null; return t; }
@@ -662,20 +665,22 @@ function startSong(s) {
   stopSong();
   if (!s.nowPlaying) return;
   songStop = false;
+  var mine = ++songToken;
+  var live = function () { return !songStop && songToken === mine && player.station === s; };
   if (s.nowPlaying.type === 'listnr' && s.nowPlaying.key) {
     var key = s.nowPlaying.key;
     var open = function () {
-      if (songStop) return;
+      if (!live()) return;
       try { songWs = new WebSocket('wss://ws.nowplaying.listnr.com/station'); } catch (e) { return; }
       songWs.onopen = function () { songWs.send(JSON.stringify({ action: 'Subscribe', payload: { callSign: key, initialise: true } })); };
-      songWs.onmessage = function (e) { try { var d = JSON.parse(String(e.data)); if (!d.data || d.data.type !== 'nowPlaying') return; var st = (d.data.stations || []).filter(function (x) { return x.station === key; })[0] || (d.data.stations || [])[0]; var t = st && st.currentTrack; setSong(plausible(joinAT(t && (t.artist || t.artistName), t && t.title))); } catch (er) {} };
-      songWs.onclose = function () { if (!songStop) songTimer = setTimeout(open, 5000); };
+      songWs.onmessage = function (e) { if (!live()) return; try { var d = JSON.parse(String(e.data)); if (!d.data || d.data.type !== 'nowPlaying') return; var st = (d.data.stations || []).filter(function (x) { return x.station === key; })[0] || (d.data.stations || [])[0]; var t = st && st.currentTrack; setSong(plausible(joinAT(t && (t.artist || t.artistName), t && t.title))); } catch (er) {} };
+      songWs.onclose = function () { if (live()) songTimer = setTimeout(open, 5000); };
       songWs.onerror = function () { try { songWs.close(); } catch (e) {} };
     };
     open();
     return;
   }
-  var poll = function () { if (songStop || player.station !== s) return; lookup(s).then(function (t) { if (!songStop && player.station === s) setSong(plausible(t)); }); };
+  var poll = function () { if (!live()) return; lookup(s).then(function (t) { if (live()) setSong(plausible(t)); }); };
   poll();
   songTimer = setInterval(poll, 20000);
 }
