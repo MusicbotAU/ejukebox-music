@@ -188,11 +188,23 @@ app:
   - q: What are recordings for?
     a:
       - >-
-        Missing a show is the reason. Press Record and the app keeps what is
-        playing, at full stream quality, until you stop it or the time you set
-        runs out. Recordings play back like any station, with the phone locked
-        if you like. They are for your own listening - the station still owns
-        the broadcast.
+        Missing a show on one of the eJukebox stations is the reason. On our
+        own channels and the live venue feeds, press Record and the app keeps
+        what is playing, at full stream quality, until you stop it or the time
+        you set runs out. Recordings play back inside the app like any station,
+        with the phone locked if you like.
+      - >-
+        Every other station plays live only. The broadcaster owns that stream,
+        so the app keeps no copy of it.
+  - q: I run a radio station. How do I change or remove my listing?
+    a:
+      - >-
+        The app lists the stream your station already publishes, and your own
+        servers play it to the listener - we are never in the middle, and the
+        app never records it. To update a stream, a logo or a name, or to have
+        a station removed, send it through the contact page with the station
+        name. Removals are actioned within two business days. The full detail
+        is on the broadcasters page at ejukebox.music/broadcasters.
   - q: What has a venue music company got to do with a radio app?
     a:
       - >-

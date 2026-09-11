@@ -1,0 +1,80 @@
+---
+layout: default
+permalink: /broadcasters/
+
+title: For Broadcasters - How Your Station Appears in eJukebox Music | eJukebox Music
+description: >-
+  How eJukebox Music lists a radio station, what the app does and does not do
+  with a broadcaster's stream, and how to update or remove a listing.
+
+date: 2026-09-12 10:00:00 +0800
+breadcrumb: Broadcasters
+# Linked from the app page's questions and from the App Store review notes.
+# Not in the nav: it is for station owners and reviewers, not for listeners.
+---
+
+{%- comment -%}
+  The rights page. Every statement below was checked against the catalog
+  generator (catalog/src/catalog/sources/*.js) and the app's recorder
+  (src/recorder.ts, canRecord) on 12 Sep 2026. If the app starts doing
+  something new with a broadcaster's stream, this page changes in the same
+  commit.
+{%- endcomment -%}
+
+<section class="band band--flush" aria-labelledby="bc-h" style="padding-bottom:clamp(30px,4vw,52px)">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">The eJukebox Music app</p>
+    <h1 id="bc-h">For broadcasters.</h1>
+    <p class="lede">eJukebox Music is a directory. It points a listener at the stream your station already publishes, and your servers play it to them. <strong>We are never in the middle.</strong> This page says exactly what that means, and how to change or remove your listing.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd, trading as eJukebox. Last updated 12 September 2026.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="how-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">How it works</p>
+    <h2 id="how-h">How your station is listed.</h2>
+
+    <div class="stack-lg">
+      <div class="panel">
+        <h3>Where the entry comes from</h3>
+        <p style="color:var(--soft);margin:0">The directory is built from the listings broadcasters publish for their own web players and apps: the ABC's public services listing, iHeartRadio Australia's public station index, Triton Digital's public player service, the LiSTNR and rova station pages, and hdradio.au for the digital stations. It is rebuilt every day, so a station that moves its stream comes back on its own, and a station that goes off air drops out.</p>
+      </div>
+
+      <div class="panel">
+        <h3>What the app shows</h3>
+        <p style="color:var(--soft);margin:0">Your station's name, logo, frequency, city, genre and a link to your website, plus the song titles your own now-playing service publishes while you are playing. All of it identifies your station as yours. None of it is presented as ours, and nothing is altered.</p>
+      </div>
+
+      <div class="panel">
+        <h3>The stream itself</h3>
+        <p style="color:var(--soft);margin:0">When a listener taps your station, their phone connects to your servers, exactly as it would from your own app or a web browser. We do not proxy, cache, re-encode or re-host a second of it. Your advertising, your station IDs and your metadata reach the listener untouched, and your logs see the listener the same way your own player would.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--cold" aria-labelledby="not-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">For the record</p>
+    <h2 id="not-h">What the app does not do.</h2>
+    <ul class="closer__ask" style="margin-top:14px">
+      <li>No advertising of ours over, around or between your streams.</li>
+      <li>No recording of your stream. The app's record button works on eJukebox's own stations only; on every other station the app plays live and keeps no copy.</li>
+      <li>No stripping or replacing of your metadata, and no re-hosting of your audio on our servers.</li>
+      <li>No charge to the listener, no account and no sign-in wall between them and your station.</li>
+      <li>No claim over your name, your logo or your programming. They are used only to identify your station.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="change-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">Your listing</p>
+    <h2 id="change-h">Update, correct or remove your station.</h2>
+    <p class="sub"><strong>To change something</strong> - a new stream, a new logo, a new name or a station we have missed - send it through the <a href="{{ '/contact/' | relative_url }}">contact page</a> with the station name and what you would like. The next daily rebuild carries it.</p>
+    <p class="sub"><strong>To be removed</strong>, say so on the same page. A station is taken out within two business days of the request, no questions asked, and it stays out of every future rebuild. If you would rather we never list a station of yours in the first place, tell us once and we will keep it that way.</p>
+    <p class="sub">eJukebox's own stations - the eJukebox channels and the live feeds from eJukebox venues - are programmed and streamed by us, and are the only stations the app will record.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned and operated. <a href="{{ '/app/' | relative_url }}">About the app</a> - <a href="{{ '/app/privacy/' | relative_url }}">App privacy</a> - <a href="{{ '/contact/' | relative_url }}">Contact</a></p>
+  </div>
+</section>
