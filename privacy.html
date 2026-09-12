@@ -4,10 +4,10 @@ permalink: /app/privacy/
 
 title: Privacy Policy - eJukebox Music App | eJukebox Music
 description: >-
-  What the free eJukebox Music app collects, what it does not, and who sees
-  what. Short, because there is not much to tell.
+  What the eJukebox Music app collects, what it does not, and who sees what.
+  Short, because there is not much to tell.
 
-date: 2026-09-08 22:00:00 +0800
+date: 2026-09-13 09:00:00 +0800
 breadcrumb: App privacy
 # Unlisted: the App Store and the app link here, nothing else does. Out of the
 # sitemap and marked noindex so it never competes with the real pages in search.
@@ -26,8 +26,8 @@ noindex: true
   <div class="wrap wrap--narrow">
     <p class="eyebrow">The eJukebox Music app</p>
     <h1 id="pp-h">Privacy policy.</h1>
-    <p class="lede">The app has no accounts, no sign-up, no advertising and no tracking. <strong>We cannot tell who you are, and we do not try to.</strong> This page says exactly what leaves your phone, and where it goes.</p>
-    <p class="anno anno--mut">MusicBot Pty Ltd, trading as eJukebox. Last updated 8 September 2026.</p>
+    <p class="lede">No advertising, no tracking, and nothing sold to anybody. <strong>The app works fully without an account</strong> - and if you choose to sign in, this page says exactly what that stores and how to delete it. This page says what leaves your phone, and where it goes.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd, trading as eJukebox. Last updated 13 September 2026.</p>
   </div>
 </section>
 
@@ -37,6 +37,11 @@ noindex: true
     <h2 id="leaves-h">What leaves your phone.</h2>
 
     <div class="stack-lg">
+      <div class="panel">
+        <h3>If you sign in</h3>
+        <p style="color:var(--soft);margin:0">Signing in is optional and the app is complete without it. It exists for one reason: so your favourites follow you to another phone. You can sign in with Apple, Google or Microsoft - we never see or hold a password. From whichever one you choose we receive, and store, <strong>your name and your email address</strong>, together with the settings we sync: your favourites and the order you put them in, your recent stations, the stations you have hidden, your sort choice, your region and country, and your own star ratings. That is the whole list. It is kept in our own storage in Australia and is not shared with anyone or used to advertise to you. You can delete all of it from inside the app at any time - see <a href="#delete">deleting your account</a> below.</p>
+      </div>
+
       <div class="panel">
         <h3>The station list and the logos</h3>
         <p style="color:var(--soft);margin:0">The app downloads the station directory and the station artwork from our servers in Australia. Like any web request, our server sees your phone's internet address at the time. We do not keep a record of who downloaded what.</p>
@@ -54,7 +59,7 @@ noindex: true
 
       <div class="panel">
         <h3>Near me</h3>
-        <p style="color:var(--soft);margin:0">If you tap Near me and allow location, the app asks the phone for a rough position once, at the lowest accuracy iOS offers, and asks the phone which state or region that is. Only the answer, for example Victoria or Canterbury, is kept, and it stays on the phone. Your position is never sent to us. If you say no to the permission, the app works exactly the same and you pick the region yourself.</p>
+        <p style="color:var(--soft);margin:0">If you tap Near me and allow location, the app asks the phone for a rough position once, at the lowest accuracy iOS offers, and asks the phone which state or region that is. Only the answer, for example Victoria or Canterbury, is kept. Your position itself is never sent to us. If you are signed in, that region is one of the settings that syncs, so your new phone opens on the same stations. If you say no to the permission, the app works exactly the same and you pick the region yourself.</p>
       </div>
 
       <div class="panel">
@@ -69,7 +74,7 @@ noindex: true
   <div class="wrap wrap--narrow">
     <p class="eyebrow eyebrow--ash">On the phone</p>
     <h2 id="stays-h">What stays on your phone.</h2>
-    <p class="sub"><strong>Favourites, the order you put them in, hidden stations, your sort choice and your own star ratings</strong> are stored on the phone. The app also keeps a copy of those settings in your own iCloud account, through Apple's key-value storage, so a new phone signed in to the same Apple ID gets them back. That copy is between you and Apple. We cannot read it.</p>
+    <p class="sub"><strong>Favourites, the order you put them in, hidden stations, your sort choice and your own star ratings</strong> are stored on the phone. The app also keeps a copy of those settings in your own iCloud account, through Apple's key-value storage, so a new phone signed in to the same Apple ID gets them back. That copy is between you and Apple. We cannot read it. If you are <em>also</em> signed in to an eJukebox account, a copy of those same settings sits on our servers too, as set out above.</p>
     <p class="sub"><strong>Recordings</strong> are files on your phone. They are never uploaded, and we never see them. They are for your own listening; the broadcast still belongs to the station.</p>
     <p class="sub">Deleting the app deletes all of it, apart from the iCloud copy of your settings, which iOS removes when you turn off iCloud for the app or delete its data in Settings.</p>
   </div>
@@ -80,7 +85,8 @@ noindex: true
     <p class="eyebrow">For the record</p>
     <h2 id="not-h">What we do not do.</h2>
     <ul class="closer__ask" style="margin-top:14px">
-      <li>No accounts, passwords, names, email addresses or phone numbers. The app never asks.</li>
+      <li>No passwords - Apple, Google or Microsoft handle the sign-in and we never see one - and no phone numbers, ever.</li>
+      <li>No account required. Every part of the app works without one.</li>
       <li>No advertising in the app, and no advertising identifiers.</li>
       <li>No tracking across other apps or websites, and no data sold, rented or shared with data brokers.</li>
       <li>No analytics unless you turn diagnostics on yourself.</li>
@@ -94,7 +100,11 @@ noindex: true
   <div class="wrap wrap--narrow">
     <p class="eyebrow eyebrow--ash">Your rights, and us</p>
     <h2 id="rights-h">Questions, deletion, changes.</h2>
-    <p class="sub">The one thing we hold that came from your phone is your ratings under that random code. If you want them removed, the code is shown in the app's diagnostics sheet (press and hold the station title in the player); send it through the <a href="{{ '/contact/' | relative_url }}">contact page</a> and we will delete them. No questions asked.</p>
+
+    <h3 id="delete">Deleting your account</h3>
+    <p class="sub">If you signed in, you can delete your account and everything stored with it from inside the app, in a few seconds and without asking anyone: <strong>tap the person icon at the top right, then "Delete account" at the bottom of the sheet, and confirm.</strong> That removes your name, your email address, your favourites, your recents, your hidden stations and your ratings from our servers straight away, signs you out, and clears the copy on that phone. It cannot be undone, and there is no deactivate-only halfway house.</p>
+    <p class="sub"><strong>Deleting the app does not delete your account.</strong> If you have already removed the app, or you would rather not use it, ask us at the <a href="{{ '/app/delete/' | relative_url }}">account deletion page</a> and we will do it for you within 30 days.</p>
+    <p class="sub">Star ratings are stored against a random code the app made up, not against you or your account, so they are not part of your account and survive deleting it. If you want those removed too, the code is shown in the app's diagnostics sheet (press and hold the station title in the player); send it through the <a href="{{ '/contact/' | relative_url }}">contact page</a> and we will delete them. No questions asked.</p>
     <p class="sub">We handle personal information under the Australian Privacy Act 1988 and the Australian Privacy Principles. If you think we have got something wrong, tell us first and we will fix it; if you are not satisfied you can take it to the Office of the Australian Information Commissioner.</p>
     <p class="sub">If the app starts collecting anything new, this page changes the same day, and the date at the top moves.</p>
     <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned and operated. <a href="{{ '/app/' | relative_url }}">About the app</a> - <a href="{{ '/contact/' | relative_url }}">Contact</a></p>

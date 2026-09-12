@@ -1,0 +1,78 @@
+---
+layout: default
+permalink: /app/delete/
+
+title: Delete your eJukebox Music account | eJukebox Music
+description: >-
+  How to delete your eJukebox Music account and everything stored with it -
+  in the app in a few seconds, or by asking us if you no longer have the app.
+
+date: 2026-09-13 09:00:00 +0800
+breadcrumb: Delete your account
+# Unlisted, like the privacy page: the stores and the app link here. Kept out of
+# search so it never competes with the real pages.
+sitemap: false
+noindex: true
+---
+
+{%- comment -%}
+  Google Play requires a WEB page, reachable without installing the app, that
+  explains account deletion and gives a way to request it. Apple requires the
+  control to be IN the app - which it is - so this page leads with that and
+  offers the off-app route for people who have already uninstalled.
+
+  Every field named below is the actual row stored by the catalog Function
+  (catalog/src/catalog/userprefs.js). If that changes, this page changes with it.
+{%- endcomment -%}
+
+<section class="band band--flush" aria-labelledby="del-h" style="padding-bottom:clamp(30px,4vw,52px)">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">The eJukebox Music app</p>
+    <h1 id="del-h">Delete your account.</h1>
+    <p class="lede">You can delete your eJukebox Music account, and everything stored with it, <strong>from inside the app in a few seconds</strong>. You do not need to email anyone or ring anyone.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd, trading as eJukebox. Last updated 13 September 2026.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="inapp-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">The quick way</p>
+    <h2 id="inapp-h">In the app.</h2>
+    <ol class="closer__ask" style="margin-top:14px">
+      <li>Open eJukebox Music.</li>
+      <li>Tap the <strong>person icon</strong> at the top right of the home screen.</li>
+      <li>Scroll to the bottom of the sheet and tap <strong>Delete account</strong>.</li>
+      <li>Read what it lists, then confirm.</li>
+    </ol>
+    <p class="sub">It happens immediately. The app signs you out and clears its copy on that phone.</p>
+  </div>
+</section>
+
+<section class="band band--cold" aria-labelledby="what-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--ash">To be exact</p>
+    <h2 id="what-h">What gets deleted.</h2>
+    <p class="sub">Everything we hold against your account, which is:</p>
+    <ul class="closer__ask" style="margin-top:14px">
+      <li>Your name and email address, as given to us by Apple, Google or Microsoft.</li>
+      <li>Which of those three you signed in with.</li>
+      <li>Your favourites and the order you put them in.</li>
+      <li>Your recent stations, and the stations you have hidden.</li>
+      <li>Your sort choice, your region and country, and the last station you played.</li>
+      <li>Your own star ratings.</li>
+    </ul>
+    <p class="sub">It is deleted outright, not deactivated, and it cannot be undone. There is no retention period: the record is removed when you ask, not later.</p>
+    <p class="sub"><strong>Two things are not part of your account.</strong> Recordings are files on your phone that we never receive, so deleting your account does not touch them - remove them in the app, or by deleting the app. Star ratings are stored against a random code the app generated, never against you, so they carry no identity and remain; if you want those gone as well, ask us through the <a href="{{ '/contact/' | relative_url }}">contact page</a>.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="off-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow">If you no longer have the app</p>
+    <h2 id="off-h">Ask us instead.</h2>
+    <p class="sub"><strong>Deleting the app does not delete your account.</strong> If you have already removed it, or you would simply rather we did it, send us a message from the <a href="{{ '/contact/' | relative_url }}">contact page</a> from the email address you signed in with, and say that you want your eJukebox Music account deleted.</p>
+    <p class="sub">We will delete it and confirm by reply, within 30 days and usually the same week. We will not ask you to reinstall the app, and we will not try to talk you out of it.</p>
+    <p class="sub">More detail on what the app collects is on the <a href="{{ '/app/privacy/' | relative_url }}">privacy policy</a>.</p>
+    <p class="anno anno--mut">MusicBot Pty Ltd - Australian owned and operated. <a href="{{ '/app/' | relative_url }}">About the app</a> - <a href="{{ '/contact/' | relative_url }}">Contact</a></p>
+  </div>
+</section>
