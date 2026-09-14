@@ -30,7 +30,7 @@ contact:
 # linking to nothing. Bundle au.com.ejukebox.music, ASC app 6809090284.
 app:
   name: eJukebox Music
-  ios_url: ""
+  ios_url: "https://apps.apple.com/au/app/ejukebox-music/id6809090284"
   android_url: ""
 
 family:

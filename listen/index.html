@@ -70,7 +70,7 @@ sitemap: false
 
   <div class="cta">
     <a class="btn primary" id="openApp" href="#">Open in the eJukebox Music app</a>
-    <a class="btn ghost" id="getApp" href="https://ejukebox.music">Get the free app</a>
+    <a class="btn ghost" id="getApp" href="https://apps.apple.com/au/app/ejukebox-music/id6809090284">Get the free app</a>
   </div>
 
   <p class="why"><b>Every station, one tap.</b> Australian and New Zealand radio at the highest quality each station broadcasts, favourites, works in the car with the steering wheel, and our own eJukebox channels at the top. Free, no sign-up.</p>
@@ -149,6 +149,9 @@ sitemap: false
   if (!id) { $('name').textContent = 'eJukebox Music'; $('sub').textContent = 'Every Australian and New Zealand station, free.'; $('card').querySelector('.play').classList.add('hidden'); setStatus(''); $('openApp').href = 'ejukeboxmusic://'; return; }
   fetch(CATALOG).then(function (r) { return r.json(); }).then(function (c) {
     var st = null; for (var i = 0; i < c.stations.length; i++) if (c.stations[i].id === id) { st = c.stations[i]; break; }
+    // The catalog may override this, but the markup already carries the real
+    // App Store link - stations.json has shipped appStoreUrl:null and this page
+    // is a share target, so the button must work without the catalog.
     if (c.app && c.app.appStoreUrl) $('getApp').href = c.app.appStoreUrl;
     if (!st) { $('name').textContent = 'Station not found'; $('sub').textContent = 'It may have changed. Open the app and search for it.'; playBtn.classList.add('hidden'); setStatus(''); return; }
     show(st); poll(); setInterval(poll, 20000);
